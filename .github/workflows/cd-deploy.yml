@@ -1,0 +1,12 @@
+name: CD Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to cloud host
+        run: echo "Deploy step goes here (Railway / AWS / GCP — TBD-03)."
