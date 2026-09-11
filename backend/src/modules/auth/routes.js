@@ -35,6 +35,7 @@ router.get('/profile', authMiddleware, authCtrl.getProfile);
 
 router.post(
   '/change-password',
+  authMiddleware,
   [
     body('current_password').notEmpty().withMessage('Current password is required'),
     body('new_password').isLength({ min: 8 }).withMessage('New password must be at least 8 characters'),

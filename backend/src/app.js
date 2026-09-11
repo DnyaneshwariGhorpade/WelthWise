@@ -30,6 +30,7 @@ app.use('/api/v1/goals', require('./modules/goals/routes'));
 app.use('/api/v1/decisions', require('./modules/decisions/routes'));
 app.use('/api/v1/advisor', require('./modules/advisor/routes'));
 app.use('/api/v1/dashboard', require('./modules/dashboard/routes'));
+app.use('/api/v1/admin', require('./modules/admin/routes'));
 
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 

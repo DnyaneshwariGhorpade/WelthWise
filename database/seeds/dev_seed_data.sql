@@ -11,7 +11,8 @@ INSERT INTO stress_test_scenarios (name, description, income_impact_pct, expense
 
 -- Demo user: user@wealthwise.demo / WealthWise@123
 INSERT INTO users (full_name, email, password_hash, role) VALUES
-  ('Demo User', 'user@wealthwise.demo', '$2a$10$CwTycUXWue0Thq9StjUM0uJ8b2f5h6dE4nR7pZ9jKmCvSx8LmYbqK', 'USER');
+  ('Demo User', 'user@wealthwise.demo', '$2a$10$./a0/xIHdVBpn8Tz.xNx0eyxMTJETV0f6Ih61MRWOeoUy7gg9ioVm', 'USER'),
+  ('Admin', 'admin@wealthwise.demo', '$2a$10$OpcjlCFPPb1CnIbC1dk7/uGTc3L6xdawrwooGWT8AxDuIja83WkjO', 'ADMIN');
 
 -- Demo financial data (user_id = 1)
 INSERT INTO incomes (user_id, source, amount, frequency) VALUES

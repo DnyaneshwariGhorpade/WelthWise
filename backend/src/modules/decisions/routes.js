@@ -3,6 +3,7 @@ const { body } = require('express-validator');
 const authMiddleware = require('../../middleware/auth.middleware');
 const validateMiddleware = require('../../middleware/validate.middleware');
 const { evaluateDecision } = require('../goals/service');
+const { writeAuditLog } = require('../../common/audit');
 
 const router = Router();
 
@@ -14,7 +15,15 @@ router.post(
   validateMiddleware,
   async (req, res, next) => {
     try {
-      res.status(201).json({ evaluation: await evaluateDecision(req.user.sub, req.body.decision_description) });
+      const evaluation = await evaluateDecision(req.user.sub, req.body.decision_description);
+      await writeAuditLog({
+        userId: req.user.sub,
+        action: 'DECISION_EVALUATED',
+        resourceType: 'decision_evaluation',
+        resourceId: evaluation.id,
+        ipAddress: req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.ip || null,
+      });
+      res.status(201).json({ evaluation });
     } catch (err) {
       next(err);
     }
