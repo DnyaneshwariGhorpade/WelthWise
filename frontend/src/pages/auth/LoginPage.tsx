@@ -21,8 +21,8 @@ export default function LoginPage() {
     }
     setLoading(true);
     try {
-      await login(email.trim(), password);
-      navigate('/app/dashboard');
+      const loggedInUser = await login(email.trim(), password);
+      navigate(loggedInUser.role === 'ADMIN' ? '/admin/dashboard' : '/app/dashboard');
     } catch (err: unknown) {
       const axiosErr = err as { response?: { data?: { error?: { message?: string } } } };
       setError(axiosErr.response?.data?.error?.message || 'Login failed. Please try again.');
