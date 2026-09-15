@@ -38,8 +38,14 @@ export async function refreshAuth(): Promise<{ token: string }> {
   return data;
 }
 
-export async function requestPasswordReset(email: string): Promise<{ message: string }> {
-  const { data } = await api.post<{ message: string }>('/auth/forgot-password', { email });
+export interface RequestPasswordResetResponse {
+  message: string;
+  sent?: boolean;
+  resetToken?: string;
+}
+
+export async function requestPasswordReset(email: string): Promise<RequestPasswordResetResponse> {
+  const { data } = await api.post<RequestPasswordResetResponse>('/auth/forgot-password', { email });
   return data;
 }
 

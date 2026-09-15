@@ -32,7 +32,7 @@ async function isBlacklisted(token) {
   }
 }
 
-module.exports = async function authMiddleware(req, res, next) {
+async function authMiddleware(req, res, next) {
   const header = req.headers.authorization;
   if (!header || !header.startsWith('Bearer ')) {
     return next(new ApiError(401, 'Authentication required'));
@@ -52,4 +52,27 @@ module.exports = async function authMiddleware(req, res, next) {
     }
     return next(new ApiError(401, 'Invalid token'));
   }
-};
+}
+
+async function refreshAuthMiddleware(req, res, next) {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    return next(new ApiError(401, 'Authentication required'));
+  }
+
+  const token = header.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, { ignoreExpiration: true });
+    if (await isBlacklisted(token)) {
+      return next(new ApiError(401, 'Session has been revoked'));
+    }
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return next(new ApiError(401, 'Invalid token for refresh'));
+  }
+}
+
+module.exports = authMiddleware;
+module.exports.authMiddleware = authMiddleware;
+module.exports.refreshAuthMiddleware = refreshAuthMiddleware;

@@ -1,19 +1,21 @@
 import { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Shield, AlertCircle, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { Shield, AlertCircle, CheckCircle2, ArrowLeft, ExternalLink } from 'lucide-react';
 
 export default function ForgotPasswordPage() {
   const { forgotPassword } = useAuth();
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [devToken, setDevToken] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess('');
+    setDevToken(undefined);
 
     if (!email.trim()) {
       setError('Please enter your email address');
@@ -22,8 +24,11 @@ export default function ForgotPasswordPage() {
 
     setLoading(true);
     try {
-      const msg = await forgotPassword(email.trim());
-      setSuccess(msg);
+      const res = await forgotPassword(email.trim());
+      setSuccess(res.message);
+      if (res.resetToken) {
+        setDevToken(res.resetToken);
+      }
     } catch (err: unknown) {
       const axiosErr = err as { response?: { data?: { error?: { message?: string } } } };
       setError(axiosErr.response?.data?.error?.message || 'Something went wrong. Please try again.');
@@ -53,9 +58,26 @@ export default function ForgotPasswordPage() {
         )}
 
         {success && (
-          <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-lg p-3 flex gap-2 items-start">
-            <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-            <span className="text-sm text-emerald-700">{success}</span>
+          <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-lg p-4 space-y-3">
+            <div className="flex gap-2 items-start">
+              <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+              <span className="text-sm text-emerald-800 font-medium">{success}</span>
+            </div>
+
+            {devToken && (
+              <div className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800">
+                <div className="font-semibold text-amber-900 mb-1">Development Mode Notice:</div>
+                Live email provider (Resend / SMTP) is not configured in environment settings.
+                <div className="mt-2">
+                  <Link
+                    to={`/reset-password?token=${devToken}`}
+                    className="inline-flex items-center gap-1 font-semibold text-emerald-700 hover:text-emerald-800 underline"
+                  >
+                    Click here to open password reset form <ExternalLink className="h-3 w-3" />
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         )}
 

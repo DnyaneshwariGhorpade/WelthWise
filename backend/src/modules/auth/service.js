@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { pool } = require('../../config/db');
 const { ApiError } = require('../../common/errors');
+const { sendPasswordResetEmail } = require('../../common/email.service');
 
 const MAX_FAILED_ATTEMPTS = 5;
 const LOCKOUT_MINUTES = 15;
@@ -164,10 +165,13 @@ async function requestPasswordReset({ email }) {
     [userId, tokenHashed, expiresAt]
   );
 
-  // TODO: Send email with `${process.env.APP_URL}/reset-password?token=${rawToken}` when email provider is configured
-  console.log(`[PASSWORD RESET] token for ${email}: ${rawToken}`);
+  const emailResult = await sendPasswordResetEmail({ email, token: rawToken });
 
-  return { message: 'If an account exists with this email, a reset link has been sent.', resetToken: process.env.NODE_ENV === 'development' ? rawToken : undefined };
+  return {
+    message: 'If an account exists with this email, a reset link has been sent.',
+    sent: emailResult.sent,
+    resetToken: (!emailResult.sent && process.env.NODE_ENV === 'development') ? rawToken : undefined,
+  };
 }
 
 async function resetPassword({ token, newPassword }) {

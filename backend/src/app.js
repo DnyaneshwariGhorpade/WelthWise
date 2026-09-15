@@ -21,6 +21,7 @@ app.use(
 );
 
 // API routers — modules are mounted as they are implemented:
+app.use('/api/v1/public', require('./modules/public/routes'));
 app.use('/api/v1/auth', require('./modules/auth/routes'));
 app.use('/api/v1/users', require('./modules/users/routes'));
 app.use('/api/v1/finances', require('./modules/finances/routes'));

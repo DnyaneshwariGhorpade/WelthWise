@@ -1,11 +1,14 @@
 import { useState, FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Shield, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Shield, Eye, EyeOff, AlertCircle, Clock } from 'lucide-react';
 
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const isTimeout = searchParams.get('reason') === 'timeout';
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +44,13 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
         <h1 className="text-2xl font-bold text-slate-900 text-center">Welcome back</h1>
         <p className="mt-2 text-sm text-slate-500 text-center">Sign in to your account</p>
+
+        {isTimeout && (
+          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3 flex gap-2 items-start">
+            <Clock className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+            <span className="text-sm text-amber-800">Your session expired after 15 minutes of inactivity. Please sign in again.</span>
+          </div>
+        )}
 
         {error && (
           <div className="mt-4 bg-red-50 border border-red-200 rounded-lg p-3 flex gap-2 items-start">

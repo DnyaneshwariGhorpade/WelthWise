@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { body } = require('express-validator');
 const authCtrl = require('./controller');
-const authMiddleware = require('../../middleware/auth.middleware');
+const { authMiddleware, refreshAuthMiddleware } = require('../../middleware/auth.middleware');
 const validateMiddleware = require('../../middleware/validate.middleware');
 
 const router = Router();
@@ -27,7 +27,7 @@ router.post(
   authCtrl.login
 );
 
-router.post('/refresh', authMiddleware, authCtrl.refresh);
+router.post('/refresh', refreshAuthMiddleware, authCtrl.refresh);
 
 router.post('/logout', authMiddleware, authCtrl.logout);
 

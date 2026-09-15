@@ -19,6 +19,19 @@ export type Frequency = 'MONTHLY' | 'QUARTERLY' | 'YEARLY';
 export type RiskLevel = 'LOW' | 'MEDIUM' | 'HIGH';
 export type LiquidityLevel = 'HIGH' | 'MEDIUM' | 'LOW';
 
+export interface PublicHighlights {
+  heroTitle: string;
+  heroSubtitle: string;
+  features: Array<{ id: string; title: string; description: string; icon: string }>;
+  platformStats: { totalRegisteredUsers: number; scoresGenerated: number; securityStandard: string };
+  disclaimer: string;
+}
+
+export const getPublicHighlights = async (): Promise<PublicHighlights> => {
+  const { data } = await api.get<PublicHighlights>('/public/highlights');
+  return data;
+};
+
 export interface DashboardSummary {
   netWorth: number;
   monthlyIncome: number;
@@ -252,8 +265,8 @@ export const evaluateDecision = async (decision_description: string) => {
 
 // ---------- Advisor ----------
 export const sendAdvisorMessage = async (message: string) => {
-  const { data } = await api.post<AdvisorMessage>('/advisor/chat', { message });
-  return data;
+  const { data } = await api.post<{ reply: AdvisorMessage }>('/advisor/chat', { message });
+  return data.reply;
 };
 
 export const getAdvisorHistory = async () => {
