@@ -174,14 +174,14 @@ CREATE TABLE audit_logs (
 );
 
 -- Indexing Strategy ------------------------------------------------
-CREATE UNIQUE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_finance_user ON incomes(user_id);
-CREATE INDEX idx_finance_user ON expenses(user_id);
-CREATE INDEX idx_finance_user ON assets(user_id);
-CREATE INDEX idx_finance_user ON liabilities(user_id);
-CREATE INDEX idx_finance_user ON investments(user_id);
-CREATE INDEX idx_wealth_scores_trend ON wealth_scores(user_id, calculated_at DESC);
-CREATE INDEX idx_stress_results_latest ON stress_test_results(user_id, run_at DESC);
-CREATE INDEX idx_goals_user_status ON financial_goals(user_id, status);
-CREATE INDEX idx_conflicts_status ON goal_conflicts(user_id, resolution_status);
-CREATE INDEX idx_audit_action_date ON audit_logs(action, created_at DESC);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_incomes_user ON incomes(user_id);
+CREATE INDEX IF NOT EXISTS idx_expenses_user ON expenses(user_id);
+CREATE INDEX IF NOT EXISTS idx_assets_user ON assets(user_id);
+CREATE INDEX IF NOT EXISTS idx_liabilities_user ON liabilities(user_id);
+CREATE INDEX IF NOT EXISTS idx_investments_user ON investments(user_id);
+CREATE INDEX IF NOT EXISTS idx_wealth_scores_trend ON wealth_scores(user_id, calculated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_stress_results_latest ON stress_test_results(user_id, run_at DESC);
+CREATE INDEX IF NOT EXISTS idx_goals_user_status ON financial_goals(user_id, status);
+CREATE INDEX IF NOT EXISTS idx_conflicts_status ON goal_conflicts(user_id, resolution_status);
+CREATE INDEX IF NOT EXISTS idx_audit_action_date ON audit_logs(action, created_at DESC);

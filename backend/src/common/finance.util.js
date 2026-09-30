@@ -11,7 +11,7 @@ function round(x) {
 }
 
 function fmt(v) {
-  return v.toLocaleString(undefined, { maximumFractionDigits: 2 });
+  return Number(v).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 }
 
 async function getAggregates(userId) {

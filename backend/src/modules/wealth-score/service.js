@@ -23,7 +23,7 @@ function buildExplanation(agg, sub) {
   else parts.push('You have no recorded income yet, which limits your savings capacity.');
 
   if (agg.totalLiabilities > 0 && agg.totalLiabilities > agg.totalAssets) parts.push('Your liabilities exceed your assets, which is pulling your debt sub-score down.');
-  else if (agg.totalLiabilities > 0) parts.push(`Your debt level (${fmt(agg.totalLiabilities)}) is managed relative to your assets.`);
+  else if (agg.totalLiabilities > 0) parts.push(`Your debt level (₹${fmt(agg.totalLiabilities)}) is managed relative to your assets.`);
   else parts.push('You have no outstanding liabilities — a strong debt position.');
 
   if (agg.emergencyMonths < 3) parts.push(`Your emergency fund covers about ${fmt(agg.emergencyMonths)} months of expenses; aim for at least 3-6 months.`);
@@ -31,7 +31,7 @@ function buildExplanation(agg, sub) {
   else parts.push(`Your emergency fund covers ${fmt(agg.emergencyMonths)} months of expenses — a strong liquidity buffer.`);
 
   if (agg.totalInvestments <= 0) parts.push('Building an investment portfolio would improve your growth sub-score and long-term wealth.');
-  else parts.push(`Your investment portfolio (${fmt(agg.totalInvestments)}) contributes positively to growth.`);
+  else parts.push(`Your investment portfolio (₹${fmt(agg.totalInvestments)}) contributes positively to growth.`);
 
   const weakness = sub.savings <= sub.debt && sub.savings <= sub.liquidity && sub.savings <= sub.growth
     ? 'savings behavior'

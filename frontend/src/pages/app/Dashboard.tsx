@@ -32,7 +32,7 @@ import {
   AiInsight,
 } from '../../services/app.service';
 import { apiErr } from '../../services/app.service';
-import { Card, PageHeader, StatCard, fmtMoney, fmtDateTime } from '../../components/ui';
+import { Card, PageHeader, StatCard, fmtMoney, fmtCompactINR, fmtDateTime } from '../../components/ui';
 
 const insightIcon: Record<AiInsight['type'], typeof Sparkles> = {
   SCORE_CHANGE: TrendingUp,
@@ -173,7 +173,7 @@ export default function Dashboard() {
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v}`} />
+                    <YAxis tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(v) => fmtCompactINR(v)} />
                     <Tooltip formatter={(v: number, name: string) => [fmtMoney(v), name === 'netWorth' ? 'Net Worth' : name === 'income' ? 'Income' : 'Expenses']} />
                     <Area type="monotone" dataKey="netWorth" name="netWorth" stroke="#059669" strokeWidth={2} fill="url(#netWorth)" />
                     <Area type="monotone" dataKey="income" name="income" stroke="#3b82f6" strokeWidth={2} fill="none" />

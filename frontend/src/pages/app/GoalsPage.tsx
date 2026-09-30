@@ -248,7 +248,7 @@ export default function GoalsPage() {
               <textarea
                 value={evalDecision}
                 onChange={(e) => setEvalDecision(e.target.value)}
-                placeholder="e.g. I want to buy a $25,000 car with a 5-year loan"
+                placeholder="e.g. I want to buy a ₹15,00,000 car with a 5-year loan"
                 rows={3}
                 className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
               />
@@ -282,7 +282,7 @@ export default function GoalsPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Target amount ($)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Target amount (₹)</label>
                   <input
                     type="number"
                     value={form.target_amount}
@@ -291,7 +291,7 @@ export default function GoalsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Current amount ($)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Current amount (₹)</label>
                   <input
                     type="number"
                     value={form.current_amount}

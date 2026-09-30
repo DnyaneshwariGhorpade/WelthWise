@@ -156,7 +156,14 @@ export function ScoreGauge({ score }: { score: number | null }) {
 
 export function fmtMoney(v: number | null | undefined): string {
   if (v === null || v === undefined || Number.isNaN(Number(v))) return '—';
-  return Number(v).toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  return Number(v).toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+}
+
+export function fmtCompactINR(v: number): string {
+  if (v >= 10000000) return `₹${(v / 10000000).toFixed(2).replace(/\.00$/, '')} Cr`;
+  if (v >= 100000) return `₹${(v / 100000).toFixed(2).replace(/\.00$/, '')} L`;
+  if (v >= 1000) return `₹${(v / 1000).toFixed(0)}k`;
+  return `₹${v}`;
 }
 
 export function fmtDate(v: string | null | undefined): string {

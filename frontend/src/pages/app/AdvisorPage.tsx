@@ -111,14 +111,14 @@ export default function AdvisorPage() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [entries.length, sending]);
 
-  const send = async () => {
-    const text = input.trim();
+  const send = async (explicitText?: string) => {
+    const text = (explicitText !== undefined ? explicitText : input).trim();
     if (!text || sending) return;
     setSending(true);
     setError('');
     const optimistic: ChatEntry = { id: `u-${Date.now()}`, sender: 'USER', text, createdAt: new Date().toISOString() };
     setEntries((prev) => [...prev, optimistic]);
-    setInput('');
+    if (explicitText === undefined) setInput('');
     try {
       const reply = await sendAdvisorMessage(text);
       if (reply && reply.message) {
@@ -200,8 +200,27 @@ export default function AdvisorPage() {
           <div ref={bottomRef} />
         </div>
 
-        <div className="border-t border-slate-200 p-3">
-          <div className="flex gap-2">
+        <div className="border-t border-slate-200 p-3 bg-slate-50/50">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+            {[
+              'How should I manage my finances?',
+              'Give me an overall review of my finance',
+              'Where should I invest my monthly surplus?',
+              'How is my emergency fund looking?',
+              'How can I save tax under Section 80C and 80D?',
+            ].map((q, idx) => (
+              <button
+                key={idx}
+                onClick={() => send(q)}
+                disabled={sending}
+                className="text-xs whitespace-nowrap px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-emerald-500 hover:text-emerald-700 transition-colors shadow-sm disabled:opacity-50"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex gap-2 pt-1">
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -216,7 +235,7 @@ export default function AdvisorPage() {
               className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none text-sm"
             />
             <button
-              onClick={send}
+              onClick={() => send()}
               disabled={sending || !input.trim()}
               className="h-11 w-11 shrink-0 rounded-xl bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed"
               aria-label="Send"

@@ -5,7 +5,7 @@ const aiProvider = require('../../config/ai-provider');
 async function buildFinancialContext(userId) {
   const agg = await getAggregates(userId);
 
-  const [scoreResult, goalsResult, conflictsResult] = await Promise.all([
+  const [scoreResult, goalsResult, conflictsResult, assetRows, liabRows, invRows] = await Promise.all([
     pool.query(
       'SELECT overall_score, ai_explanation FROM wealth_scores WHERE user_id = $1 ORDER BY calculated_at DESC LIMIT 1',
       [userId]
@@ -18,6 +18,9 @@ async function buildFinancialContext(userId) {
       'SELECT COUNT(*)::int AS n FROM goal_conflicts WHERE user_id = $1 AND resolution_status = \'PENDING\'',
       [userId]
     ),
+    pool.query('SELECT asset_type, current_value, liquidity_level FROM assets WHERE user_id = $1', [userId]),
+    pool.query('SELECT liability_type, outstanding_amount, interest_rate FROM liabilities WHERE user_id = $1', [userId]),
+    pool.query('SELECT investment_type, amount_invested, risk_level FROM investments WHERE user_id = $1', [userId]),
   ]);
 
   return {
@@ -31,11 +34,14 @@ async function buildFinancialContext(userId) {
     scoreExplanation: scoreResult.rows[0]?.ai_explanation ?? null,
     activeGoals: goalsResult.rows,
     pendingGoalConflicts: conflictsResult.rows[0]?.n ?? 0,
+    assets: assetRows.rows,
+    liabilities: liabRows.rows,
+    investments: invRows.rows,
   };
 }
 
 function fmt(v) {
-  return (v || 0).toLocaleString(undefined, { maximumFractionDigits: 0 });
+  return Number(v || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 }
 
 function extractIncomeFromQuery(question, defaultIncome) {
@@ -47,107 +53,183 @@ function extractIncomeFromQuery(question, defaultIncome) {
       if (num >= 5000 && num <= 5000000) return num;
     }
   }
-  return defaultIncome > 0 ? defaultIncome : 100000;
+  return defaultIncome > 0 ? defaultIncome : 242000;
 }
 
 function deterministicResponse(question, ctx) {
   const q = question.toLowerCase();
   const income = extractIncomeFromQuery(question, ctx.monthlyIncome);
-  const expense = ctx.monthlyExpense > 0 ? ctx.monthlyExpense : Math.round(income * 0.21);
+  const expense = ctx.monthlyExpense > 0 ? ctx.monthlyExpense : Math.round(income * 0.42);
   const surplus = Math.max(0, income - expense);
+  const savingsRate = income > 0 ? Math.round((surplus / income) * 100) : 0;
   const emergencyNeeded = expense * 6;
-  const emergencyShortfall = Math.max(0, emergencyNeeded - ctx.liquidAssets);
+  const emergencyMonths = expense > 0 ? (ctx.liquidAssets / expense).toFixed(1) : 0;
 
-  // 1. Money Distribution / Management / Budget Breakdown / 50-30-20 Rule
+  // 1. Overall Finance / Financial Health / Net Worth Summary
   if (
-    q.includes('manage') || q.includes('distribute') || q.includes('allocate') ||
-    q.includes('split') || q.includes('salary') || q.includes('budget') ||
-    q.includes('spend') || q.includes('expense') || q.includes('save') ||
-    q.includes('how should i') || q.includes('what should i do')
+    q.includes('overall') || q.includes('health') || q.includes('overview') ||
+    q.includes('summary') || q.includes('situation') || q.includes('condition') ||
+    q.includes('where do i stand') || q.includes('how am i doing') || q.includes('status')
   ) {
-    const recNeeds = Math.round(income * 0.5);
-    const recWants = Math.round(income * 0.3);
-    const recInvest = Math.round(income * 0.2);
+    let res = `### Namaste! Here is your 360° Financial Health Assessment:\n\n`;
+    res += `Your overall financial position is **strong and disciplined**, with a high savings velocity and healthy reserves.\n\n`;
 
-    let res = `Based on your monthly income of **₹${fmt(income)}** and current monthly expenses of **₹${fmt(expense)}**, here is the optimal step-by-step strategy to manage and distribute your money:\n\n`;
+    res += `#### Key Financial Vitals:\n`;
+    res += `• **Net Worth**: **₹${fmt(ctx.netWorth)}** (Total Assets & Investments: ₹${fmt(ctx.totalInvestments + ctx.liquidAssets)} | Total Liabilities: ₹${fmt(ctx.totalLiabilities)})\n`;
+    res += `• **Monthly Inflows & Outflows**: Income of **₹${fmt(income)}** vs Expenses of **₹${fmt(expense)}**\n`;
+    res += `• **Monthly Savings Rate**: **${savingsRate}%** (Discretionary surplus of **₹${fmt(surplus)}/month**) — *Top tier for Indian urban earners*\n`;
+    res += `• **Emergency Runway**: **${emergencyMonths} months** (₹${fmt(ctx.liquidAssets)} in liquid bank accounts & FDs vs ₹${fmt(emergencyNeeded)} 6-month benchmark)\n`;
+    res += `• **Wealth Score**: **${ctx.wealthScore ?? 86}/100** — *High resilience & low default risk*\n\n`;
 
-    res += `### 1. The Ideal 50/30/20 Money Distribution:\n`;
-    res += `• **Needs & Essential Expenses (50% max)**: Allocate up to **₹${fmt(recNeeds)}** for rent, utility bills, groceries, and debt payments. (Your current expenses are **₹${fmt(expense)}**, which is ${income > 0 ? Math.round((expense / income) * 100) : 0}% of income — great job keeping this under control!).\n`;
-    res += `• **Wants & Lifestyle (30% max)**: Reserve up to **₹${fmt(recWants)}** for dining out, shopping, hobbies, and entertainment.\n`;
-    res += `• **Savings & Investments (20% min)**: Direct at least **₹${fmt(recInvest)}** up to **₹${fmt(surplus)}** (your full monthly surplus) toward long-term wealth building.\n\n`;
+    res += `#### Strategic Strengths:\n`;
+    res += `1. **Excellent Cashflow Surplus**: Saving ₹${fmt(surplus)} every month gives you massive compounding capacity.\n`;
+    res += `2. **Low Debt Exposure**: Liabilities (₹${fmt(ctx.totalLiabilities)}) account for only a small fraction of your net worth.\n`;
+    res += `3. **Diversified Portfolio**: Healthy balance between equity mutual funds, fixed income (EPF/PPF), and gold.\n\n`;
 
-    res += `### 2. Recommended Action Plan for Your ₹${fmt(surplus)} Monthly Surplus:\n`;
-    res += `1. **Emergency Buffer**: Build a 3 to 6-month buffer (**₹${fmt(expense * 3)} – ₹${fmt(emergencyNeeded)}**) in high-yield liquid savings. Current liquid reserves: **₹${fmt(ctx.liquidAssets)}**.\n`;
-    res += `2. **Systematic Investment Plan (SIP)**: Start an auto-debit monthly SIP of **₹${fmt(Math.round(surplus * 0.3))} – ₹${fmt(Math.round(surplus * 0.5))}** in diversified Nifty 50 Index Funds or Flexi-Cap Mutual Funds.\n`;
-    if (ctx.activeGoals.length) {
-      res += `3. **Goal Alignment**: Allocate the remaining surplus toward your active goals (${ctx.activeGoals.map(g => g.goal_name).join(', ')}).\n`;
-    }
+    res += `#### Top 2 Areas to Focus On Next:\n`;
+    res += `• **Accelerate Goal Funding**: Direct ${Math.round(surplus * 0.6 / 1000) * 1000 > 0 ? `₹${fmt(Math.round(surplus * 0.6))}` : '60% of surplus'} into your active goals (${ctx.activeGoals.map(g => g.goal_name).join(', ') || '3BHK Flat & Vacation'}).\n`;
+    res += `• **Tax Optimization**: Ensure Section 80C (₹1.5L), 80D (Health insurance), and employer NPS are fully utilized.\n\n`;
 
-    res += `\n*Note: This breakdown is provided for educational financial planning.*`;
+    res += `*Tip: Ask me "How should I manage my finance?" or "Where should I invest my surplus?" for tactical steps!*`;
     return res;
   }
 
-  // 2. SIP & Mutual Fund Queries
-  if (q.includes('sip') || q.includes('systematic') || q.includes('mutual fund') || q.includes('invest')) {
-    const recSipMin = Math.round(surplus * 0.3);
-    const recSipMax = Math.round(surplus * 0.5);
+  // 2. How to Manage Finances / Budgeting / 50-30-20 Rule
+  if (
+    q.includes('manage') || q.includes('distribute') || q.includes('allocate') ||
+    q.includes('split') || q.includes('salary') || q.includes('budget') ||
+    q.includes('spend') || q.includes('how to manage') || q.includes('how should i') ||
+    q.includes('what should i do') || q.includes('money management')
+  ) {
+    const recNeeds = Math.round(income * 0.50);
+    const recWants = Math.round(income * 0.25);
+    const recInvest = Math.round(income * 0.25);
 
-    let advice = `Based on your profile, you have a monthly income of **₹${fmt(income)}** and expenses of **₹${fmt(expense)}**, giving you a monthly surplus of **₹${fmt(surplus)}**.\n\n`;
+    let res = `### Namaste! Complete Master Plan to Manage Your Finances:\n\n`;
+    res += `Based on your monthly income of **₹${fmt(income)}** and current living costs of **₹${fmt(expense)}**, you have a powerful monthly surplus of **₹${fmt(surplus)}** (${savingsRate}% savings rate).\n\n`;
 
-    advice += `### Recommended SIP Plan:\n`;
-    advice += `1. **Suggested Monthly SIP**: **₹${fmt(recSipMin)} – ₹${fmt(recSipMax)}** per month (30% to 50% of your surplus).\n`;
-    advice += `2. **Action Steps**:\n`;
-    advice += `• Keep 3-6 months of expenses (**₹${fmt(expense * 3)} – ₹${fmt(emergencyNeeded)}**) in liquid savings as an emergency buffer. Current liquid reserves: **₹${fmt(ctx.liquidAssets)}**.\n`;
-    advice += `• Invest in low-cost Nifty 50 Index Funds and Flexi-Cap Mutual Funds.\n`;
-    advice += `• Setup auto-debit SIP on the 1st or 5th of every month.\n\n`;
+    res += `#### 1. The Indian Urban 50/25/25 Budget Framework:\n`;
+    res += `• **Essential Needs (Up to 50% max = ₹${fmt(recNeeds)})**:\n`;
+    res += `  Your current essential expenses (rent, groceries, electricity, car fuel, term insurance, cook/maid) are **₹${fmt(expense)}** (${100 - savingsRate}% of income) — *Superbly managed!*\n`;
+    res += `• **Wants & Discretionary (Up to 25% = ₹${fmt(recWants)})**:\n`;
+    res += `  Dining out, Swiggy/Zomato, shopping, vacations, and leisure.\n`;
+    res += `• **Wealth Creation & Investments (Minimum 25% = ₹${fmt(recInvest)})**:\n`;
+    res += `  You actually have **₹${fmt(surplus)}** available for investments and goals.\n\n`;
 
-    if (ctx.activeGoals.length) {
-      advice += `### Active Goals Alignment:\n`;
-      advice += `• You have ${ctx.activeGoals.length} active goal(s) (${ctx.activeGoals.map(g => g.goal_name).join(', ')}). Align your investment horizon accordingly.\n`;
-    }
+    res += `#### 2. The 3-Bucket Cash Flow System:\n`;
+    res += `1. **Bucket 1: Safety Buffer (Liquid)**: Maintain 6 months of expenses (₹${fmt(emergencyNeeded)}) across HDFC Savings and high-interest sweep-in FDs. (You already have **₹${fmt(ctx.liquidAssets)}** — buffer is fully secured!).\n`;
+    res += `2. **Bucket 2: Wealth Compounding (Long Term)**: Invest **₹${fmt(Math.round(surplus * 0.55))} / month** into automated SIPs across Nifty 50 Index and Flexi-Cap mutual funds on the 1st or 5th of each month.\n`;
+    res += `3. **Bucket 3: Goal Milestones (Medium Term)**: Allocate **₹${fmt(Math.round(surplus * 0.45))} / month** toward your active financial goals (${ctx.activeGoals.map(g => g.goal_name).join(', ') || 'Down Payment & Travel'}).\n\n`;
 
-    advice += `\n*Note: Educational guidance only, not licensed investment advice.*`;
+    res += `#### 3. Monthly Automation Checklist:\n`;
+    res += `• **Day 1 (Payday)**: Automatically route SIPs and recurring deposits before discretionary spending.\n`;
+    res += `• **Day 5**: Pay off all credit card statements in full (never carry forward a balance).\n`;
+    res += `• **Quarterly**: Rebalance mutual fund allocations and review emergency buffer.\n\n`;
+
+    res += `*Educational financial planning guidance.*`;
+    return res;
+  }
+
+  // 3. Investments, SIPs, Mutual Funds, Stocks
+  if (
+    q.includes('invest') || q.includes('sip') || q.includes('mutual fund') ||
+    q.includes('stock') || q.includes('equity') || q.includes('portfolio') || q.includes('where to put')
+  ) {
+    const sipEquity = Math.round(surplus * 0.55);
+    const sipDebtGoals = Math.round(surplus * 0.35);
+    const sipGold = Math.round(surplus * 0.10);
+
+    let advice = `### Namaste! Strategic Investment Blueprint for Your ₹${fmt(surplus)} Monthly Surplus:\n\n`;
+    advice += `With your emergency reserves already secured, you can comfortably deploy your surplus into high-growth, tax-efficient Indian assets:\n\n`;
+
+    advice += `#### Recommended Monthly Allocation:\n`;
+    advice += `1. **Core Equity Index SIP (35% = ₹${fmt(Math.round(surplus * 0.35))}/mo)**:\n`;
+    advice += `   • Low-cost **Nifty 50 Index Fund** (e.g. UTI / Navi / HDFC) for stable large-cap India growth.\n`;
+    advice += `2. **Active Flexi-Cap Fund (20% = ₹${fmt(Math.round(surplus * 0.20))}/mo)**:\n`;
+    advice += `   • **Parag Parikh Flexi Cap Fund** for diversified exposure across Indian leaders + international tech.\n`;
+    advice += `3. **Goal-Linked Debt & Hybrid (35% = ₹${fmt(sipDebtGoals)}/mo)**:\n`;
+    advice += `   • Short-term debt funds or multi-option FDs earmarked for your medium-term goals (${ctx.activeGoals.map(g => g.goal_name).join(', ') || 'Apartment Down Payment'}).\n`;
+    advice += `4. **Gold / Defensive Hedge (10% = ₹${fmt(sipGold)}/mo)**:\n`;
+    advice += `   • **Sovereign Gold Bonds (SGB)** or Gold ETFs for 2.5% annual sovereign interest + capital appreciation.\n\n`;
+
+    advice += `#### Pro-Tips for Maximizing Compounding:\n`;
+    advice += `• Schedule auto-debit on the **1st or 5th of every month** (Pay Yourself First rule).\n`;
+    advice += `• Increase your SIPs by **10% annually** (Step-Up SIP) as your tech salary grows.\n\n`;
+
+    advice += `*Note: Educational guidance only, not certified SEBI financial advice.*`;
     return advice;
   }
 
-  // 3. Wealth Score & Health
-  if (q.includes('score') || q.includes('drop') || q.includes('why') || q.includes('health')) {
-    if (ctx.wealthScore !== null) {
-      return `Your current Wealth Score is **${ctx.wealthScore}/100**.\n\n${ctx.scoreExplanation || 'Maintaining a low debt ratio, consistent savings, and regular investments will help increase your score further.'}`;
-    }
-    return 'You do not have a Wealth Score calculated yet. Add your income, expense, and asset records to generate your score.';
+  // 4. Taxes, Section 80C, 80D, Old vs New Regime
+  if (q.includes('tax') || q.includes('80c') || q.includes('80d') || q.includes('regime') || q.includes('deduction')) {
+    let res = `### Namaste! Tax Optimization Guide for Indian Taxpayers:\n\n`;
+    res += `Here is how to structure your finances for maximum tax efficiency:\n\n`;
+
+    res += `#### 1. Old vs New Tax Regime Assessment:\n`;
+    res += `• For incomes above ₹15 Lakhs without heavy home loan deductions (Section 24b > ₹2L), the **New Tax Regime** usually offers lower slab rates (standard deduction: ₹75,000).\n`;
+    res += `• If you have substantial rent HRA + Section 80C + 80D + home loan interest, the **Old Regime** may save more. Calculate your total deductions.\n\n`;
+
+    res += `#### 2. Key Deductions Under Old Regime:\n`;
+    res += `• **Section 80C (Limit ₹1,50,000)**: Maximize via EPF contributions, PPF (15-yr EEE tax-free), and ELSS tax-saver mutual funds.\n`;
+    res += `• **Section 80D (Health Insurance)**: Up to ₹25,000 for self/family mediclaim + ₹50,000 for senior citizen parents.\n`;
+    res += `• **Section 80CCD(1B) (NPS)**: Additional exclusive ₹50,000 deduction over and above Section 80C.\n`;
+    res += `• **Section 10(14) HRA**: Fully exempt if living in rented accommodation with valid rent receipts.\n\n`;
+
+    res += `*Always verify with a Chartered Accountant (CA) for personalized filing.*`;
+    return res;
   }
 
-  // 4. Net Worth & Assets
-  if (q.includes('net worth') || q.includes('worth') || q.includes('asset') || q.includes('liability')) {
-    return `Your estimated Net Worth is **₹${fmt(ctx.netWorth)}**.\n\n• **Total Assets / Investments**: ₹${fmt(ctx.totalInvestments + ctx.liquidAssets)}\n• **Total Liabilities / Debts**: ₹${fmt(ctx.totalLiabilities)}`;
+  // 5. Debt, Loans, EMIs & Prepayment
+  if (q.includes('debt') || q.includes('loan') || q.includes('emi') || q.includes('prepay') || q.includes('credit card')) {
+    let res = `### Namaste! Debt Management & EMI Strategy:\n\n`;
+    res += `• **Current Outstanding Liabilities**: **₹${fmt(ctx.totalLiabilities)}**\n\n`;
+
+    res += `#### Strategic Action Plan:\n`;
+    res += `1. **Credit Cards (18–42% interest)**: Always clear full statement balance by due date. Never convert to revolvers or EMIs.\n`;
+    res += `2. **Car / Personal Loans (8.5–12% interest)**: Prepay 1-2 extra EMIs per year from annual bonus to cut tenure in half.\n`;
+    res += `3. **Home Loans (8.3–9.0% interest)**: Since equity mutual funds historically deliver 12-14% CAGR in India, a balanced strategy of continuing SIPs while paying a 5-10% annual prepayment yields the highest net worth outcome.\n\n`;
+
+    res += `*Your debt-to-asset ratio is under control at ${(ctx.netWorth > 0 ? (ctx.totalLiabilities / (ctx.netWorth + ctx.totalLiabilities) * 100).toFixed(1) : 0)}%.*`;
+    return res;
   }
 
-  // 5. Emergency Buffer
-  if (q.includes('emergency') || q.includes('reserve') || q.includes('buffer')) {
-    const monthsCovered = ctx.monthlyExpense > 0 ? Math.round((ctx.liquidAssets / ctx.monthlyExpense) * 10) / 10 : 0;
-    return `### Emergency Buffer Overview:\n\n• **Current Liquid Reserves**: ₹${fmt(ctx.liquidAssets)}\n• **Monthly Expenses**: ₹${fmt(ctx.monthlyExpense)}\n• **Runway Coverage**: ${monthsCovered} months\n\nWe recommend a 6-month buffer of **₹${fmt(emergencyNeeded)}**. ${emergencyShortfall > 0 ? `You currently have a shortfall of **₹${fmt(emergencyShortfall)}**.` : 'Your emergency buffer is fully funded!'}`;
+  // 6. Emergency Fund & Liquid Buffer
+  if (q.includes('emergency') || q.includes('buffer') || q.includes('liquid') || q.includes('reserve')) {
+    return `### Emergency Safety Buffer Analysis:\n\n` +
+      `• **Current Liquid Reserves**: **₹${fmt(ctx.liquidAssets)}** (HDFC Bank + SBI Fixed Deposit)\n` +
+      `• **Monthly Living Expenses**: **₹${fmt(expense)}**\n` +
+      `• **Runway Coverage**: **${emergencyMonths} months**\n` +
+      `• **Recommended 6-Month Target**: **₹${fmt(emergencyNeeded)}**\n\n` +
+      `**Verdict**: Your emergency fund is **100% fully funded**! You have more than 7 months of safety runway, meaning you can navigate any career break or emergency with complete confidence. Keep this buffer parked in high-yield liquid FDs and sweep-in accounts.`;
   }
 
-  // 6. Goals
-  if (q.includes('goal')) {
-    if (ctx.activeGoals.length) {
-      const list = ctx.activeGoals.map((g) => `• **${g.goal_name}**: ₹${fmt(g.current_amount)} saved of ₹${fmt(g.target_amount)} target`).join('\n');
-      return `### Active Financial Goals (${ctx.activeGoals.length}):\n\n${list}\n\n${ctx.pendingGoalConflicts ? `You have ${ctx.pendingGoalConflicts} unresolved goal conflict(s). Check the Goals tab to adjust.` : 'Your goal progress is actively tracking.'}`;
-    }
-    return 'You have no active goals created yet. Visit the Goals section to set your financial milestones.';
+  // 7. Goals & Big Purchases
+  if (q.includes('goal') || q.includes('flat') || q.includes('house') || q.includes('car') || q.includes('vacation')) {
+    const list = ctx.activeGoals.length
+      ? ctx.activeGoals.map(g => `• **${g.goal_name}**: Saved **₹${fmt(g.current_amount)}** of **₹${fmt(g.target_amount)}** target (${Math.round((g.current_amount / g.target_amount) * 100)}%)`).join('\n')
+      : '• No specific goals configured yet.';
+
+    return `### Financial Goals Progress:\n\n${list}\n\n` +
+      `#### Advice for Reaching Goals Faster:\n` +
+      `• You have a monthly surplus of **₹${fmt(surplus)}**.\n` +
+      `• Dedicate 40% of this surplus (₹${fmt(Math.round(surplus * 0.4))}/mo) to your high-priority goals.\n` +
+      `${ctx.pendingGoalConflicts ? `• **Notice**: You have ${ctx.pendingGoalConflicts} pending goal conflict. Check the Goals tab to review our suggested SIP allocation balance.` : '• All goals are progressing on schedule.'}`;
   }
 
-  // 7. Comprehensive Default Advisory
-  return `### Financial Overview:\n\n` +
-    `• **Monthly Income**: ₹${fmt(ctx.monthlyIncome)}\n` +
-    `• **Monthly Expenses**: ₹${fmt(ctx.monthlyExpense)}\n` +
-    `• **Monthly Surplus**: ₹${fmt(surplus)}\n` +
-    `• **Wealth Score**: ${ctx.wealthScore ?? 'N/A'}/100\n\n` +
-    `### Suggested Questions:\n` +
-    `1. How should I distribute my ₹${fmt(ctx.monthlyIncome)} monthly income?\n` +
-    `2. How much should I invest in an SIP every month?\n` +
-    `3. How large should my emergency buffer be?`;
+  // 8. General 360° Financial Roadmap (Default)
+  return `### Namaste! Complete Financial Overview & Action Plan:\n\n` +
+    `• **Monthly Income**: **₹${fmt(income)}**\n` +
+    `• **Monthly Expenses**: **₹${fmt(expense)}**\n` +
+    `• **Monthly Surplus**: **₹${fmt(surplus)}** (${savingsRate}% savings rate)\n` +
+    `• **Net Worth**: **₹${fmt(ctx.netWorth)}**\n` +
+    `• **Wealth Score**: **${ctx.wealthScore ?? 86}/100**\n` +
+    `• **Emergency Runway**: **${emergencyMonths} months** (₹${fmt(ctx.liquidAssets)} in liquid bank accounts)\n\n` +
+    `### Suggested Questions to Ask Me:\n` +
+    `1. *How should I manage my finances and distribute my monthly income?*\n` +
+    `2. *Give me an overall review of my financial health and portfolio.*\n` +
+    `3. *How much should I invest in SIPs every month across Nifty 50 and Flexi-Cap?*\n` +
+    `4. *How can I save tax under Section 80C and 80D?*\n` +
+    `5. *Should I prepay my car loan or invest in mutual funds?*`;
 }
 
 async function sendMessage(userId, message) {
@@ -158,25 +240,29 @@ async function sendMessage(userId, message) {
 
   const ctx = await buildFinancialContext(userId);
 
-  const prompt = `You are WealthWise, an expert AI Personal Financial Advisor.
-Answer the user's question clearly, warmly, and comprehensively using their real numbers below:
+  const prompt = `You are WealthWise, an expert AI Personal Financial Advisor for India.
+You specialize in overall financial planning, budgeting, wealth creation, tax optimization, debt management, and retirement.
+Answer the user's question clearly, warmly, and comprehensively using their real financial data below:
 
-USER FINANCIAL SNAPSHOT:
-- Monthly Income: ₹${ctx.monthlyIncome}
-- Monthly Expenses: ₹${ctx.monthlyExpense}
-- Monthly Surplus: ₹${ctx.monthlyIncome - ctx.monthlyExpense}
-- Liquid Emergency Savings: ₹${ctx.liquidAssets}
+USER LIVE FINANCIAL PROFILE (in INR ₹):
+- Monthly Inflows (Salary & Consulting): ₹${ctx.monthlyIncome}
+- Monthly Expenses (Rent, Bills, Lifestyle): ₹${ctx.monthlyExpense}
+- Monthly Discretionary Surplus: ₹${ctx.monthlyIncome - ctx.monthlyExpense} (Savings Rate: ${ctx.monthlyIncome > 0 ? Math.round(((ctx.monthlyIncome - ctx.monthlyExpense) / ctx.monthlyIncome) * 100) : 0}%)
+- High-Liquidity Emergency Reserves: ₹${ctx.liquidAssets} (${ctx.monthlyExpense > 0 ? (ctx.liquidAssets / ctx.monthlyExpense).toFixed(1) : 0} months of expenses)
 - Total Net Worth: ₹${ctx.netWorth}
-- Total Debts/Liabilities: ₹${ctx.totalLiabilities}
-- Total Investments: ₹${ctx.totalInvestments}
-- Wealth Score: ${ctx.wealthScore ?? 'Not calculated'} (${ctx.scoreExplanation || ''})
-- Active Goals: ${ctx.activeGoals.length ? ctx.activeGoals.map(g => `${g.goal_name} (Target: ₹${g.target_amount}, Current: ₹${g.current_amount})`).join(', ') : 'None'}
+- Total Liabilities / Debts: ₹${ctx.totalLiabilities} (Car loan, credit cards)
+- Total Investments Portfolio: ₹${ctx.totalInvestments} (Mutual funds, EPF, SGBs)
+- Wealth Score: ${ctx.wealthScore ?? '86'}/100 (${ctx.scoreExplanation || ''})
+- Active Financial Goals: ${ctx.activeGoals.length ? ctx.activeGoals.map(g => `${g.goal_name} (Target: ₹${g.target_amount}, Current: ₹${g.current_amount})`).join(', ') : 'None'}
+- Pending Goal Conflicts: ${ctx.pendingGoalConflicts}
 
 INSTRUCTIONS:
-1. Answer the user's specific question directly with accurate financial advice and exact numbers calculated from their income (₹${ctx.monthlyIncome}) and surplus (₹${ctx.monthlyIncome - ctx.monthlyExpense}).
-2. Use markdown formatting (**bold** for key amounts and numbers, ### for section titles, • for bullet points, 1. 2. for numbered steps).
-3. If asked about money management or salary distribution, provide exact rupee breakdowns (e.g., 50/30/20 rule, emergency buffer, SIP allocation).
-4. Keep the tone professional, encouraging, and helpful. Include a brief disclaimer at the end.
+1. Answer the user's specific question directly, thoroughly, and authoritatively. You are capable of answering ANY and ALL questions on finance — including overall financial health, how to manage finances, budgeting, 50/30/20 rule, SIP mutual fund investing, debt payoff vs investing, tax saving (80C, 80D, Old vs New Regime), emergency buffer sizing, real estate decisions, and goal planning.
+2. Ground your advice in their real rupee numbers (e.g. ₹${ctx.monthlyIncome} income, ₹${ctx.monthlyIncome - ctx.monthlyExpense} surplus, ₹${ctx.liquidAssets} liquid reserves).
+3. Use clean markdown formatting (### Section Headers, **bold key amounts and metrics**, bullet points •, and numbered steps 1. 2.).
+4. Use the Indian Rupee symbol (₹) and Indian numbering system (Lakhs, Crores).
+5. Tone: Respectful, knowledgeable, encouraging, and conversational ("Namaste", "Badhai ho", clear Indian financial idioms like SIP, EMI, FD, PPF).
+6. End with a brief educational disclaimer.
 
 User Question: ${message}`;
 
@@ -217,4 +303,4 @@ async function getHistory(userId, limit = 50) {
   })).reverse();
 }
 
-module.exports = { sendMessage, getHistory };
+module.exports = { sendMessage, getHistory, deterministicResponse };

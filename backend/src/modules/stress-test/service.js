@@ -50,7 +50,7 @@ function buildRecommendation(agg, scenario, monthsOfRunway) {
   if (monthsOfRunway < 3) tips.push('Build an emergency fund covering at least 3 months of expenses before taking on new commitments.');
   if (monthsOfRunway < 6) tips.push('Top up liquid, high-liquidity savings so your runway reaches 6+ months.');
   if (agg.monthlyExpense > agg.monthlyIncome) tips.push('Cut recurring expenses so your baseline budget is at or below your income.');
-  if (agg.totalLiabilities > 0) tips.push(`Review your ${fmt(agg.totalLiabilities)} of debt — prioritise high-interest obligations to lower required payments.`);
+  if (agg.totalLiabilities > 0) tips.push(`Review your ₹${fmt(agg.totalLiabilities)} of debt — prioritise high-interest obligations to lower required payments.`);
   tips.push(`Scenario "${scenario.name}" reduces income by ${scenario.income_impact_pct}% and raises expenses by ${scenario.expense_impact_pct}% — stress-test again after every material change.`);
   return tips.join(' ');
 }
