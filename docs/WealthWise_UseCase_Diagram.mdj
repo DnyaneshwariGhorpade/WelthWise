@@ -1,0 +1,6478 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "WealthWise",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "mdl_000360",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model",
+			"ownedElements": [],
+			"visibility": "public"
+		},
+		{
+			"_type": "UMLModel",
+			"_id": "mdl_000001",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "WealthWise Use Cases",
+			"ownedElements": [
+				{
+					"_type": "UMLUseCaseDiagram",
+					"_id": "dia_000002",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "WealthWise Use Cases",
+					"ownedViews": [
+						{
+							"_type": "UMLUseCaseSubjectView",
+							"_id": "vw_000046",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "sb_000003"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000047",
+									"model": {
+										"$ref": "sb_000003"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000048",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 173,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»WealthWise System"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000049",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 712,
+											"top": 120,
+											"width": 115,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "WealthWise System"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000050",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000051",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 0,
+									"top": 0,
+									"width": 0,
+									"height": 0,
+									"stereotypeLabel": {
+										"$ref": "lb_000048"
+									},
+									"nameLabel": {
+										"$ref": "lb_000049"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000050"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000051"
+									}
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 330,
+							"top": 110,
+							"width": 880,
+							"height": 820,
+							"nameCompartment": {
+								"$ref": "nc_000047"
+							}
+						},
+						{
+							"_type": "UMLActorView",
+							"_id": "vw_000052",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ac_000004"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000053",
+									"_parent": {
+										"$ref": "vw_000052"
+									},
+									"model": {
+										"$ref": "ac_000004"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000054",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 76,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«actor»User"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000055",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 185,
+											"top": 549,
+											"width": 30,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "User"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000056",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000057",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 150,
+									"top": 490,
+									"width": 100,
+									"height": 55,
+									"stereotypeLabel": {
+										"$ref": "lb_000054"
+									},
+									"nameLabel": {
+										"$ref": "lb_000055"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000056"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000057"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000058",
+									"_parent": {
+										"$ref": "vw_000052"
+									},
+									"model": {
+										"$ref": "ac_000004"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000059",
+									"_parent": {
+										"$ref": "vw_000052"
+									},
+									"model": {
+										"$ref": "ac_000004"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000060",
+									"_parent": {
+										"$ref": "vw_000052"
+									},
+									"model": {
+										"$ref": "ac_000004"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000061",
+									"_parent": {
+										"$ref": "vw_000052"
+									},
+									"model": {
+										"$ref": "ac_000004"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 150,
+							"top": 490,
+							"width": 100,
+							"height": 55,
+							"nameCompartment": {
+								"$ref": "nc_000053"
+							}
+						},
+						{
+							"_type": "UMLActorView",
+							"_id": "vw_000062",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ac_000005"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000063",
+									"_parent": {
+										"$ref": "vw_000062"
+									},
+									"model": {
+										"$ref": "ac_000005"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000064",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 82,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«actor»Admin"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000065",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 171,
+											"top": 819,
+											"width": 37,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Admin"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000066",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000067",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 140,
+									"top": 760,
+									"width": 100,
+									"height": 55,
+									"stereotypeLabel": {
+										"$ref": "lb_000064"
+									},
+									"nameLabel": {
+										"$ref": "lb_000065"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000066"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000067"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000068",
+									"_parent": {
+										"$ref": "vw_000062"
+									},
+									"model": {
+										"$ref": "ac_000005"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000069",
+									"_parent": {
+										"$ref": "vw_000062"
+									},
+									"model": {
+										"$ref": "ac_000005"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000070",
+									"_parent": {
+										"$ref": "vw_000062"
+									},
+									"model": {
+										"$ref": "ac_000005"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000071",
+									"_parent": {
+										"$ref": "vw_000062"
+									},
+									"model": {
+										"$ref": "ac_000005"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 140,
+							"top": 760,
+							"width": 100,
+							"height": 55,
+							"nameCompartment": {
+								"$ref": "nc_000063"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000072",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000006"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000073",
+									"_parent": {
+										"$ref": "vw_000072"
+									},
+									"model": {
+										"$ref": "uc_000006"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000074",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 95,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Login"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000075",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 331,
+											"top": 163,
+											"width": 37,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Login"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000076",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000077",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 255,
+									"top": 145,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000074"
+									},
+									"nameLabel": {
+										"$ref": "lb_000075"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000076"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000077"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000078",
+									"_parent": {
+										"$ref": "vw_000072"
+									},
+									"model": {
+										"$ref": "uc_000006"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000079",
+									"_parent": {
+										"$ref": "vw_000072"
+									},
+									"model": {
+										"$ref": "uc_000006"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000080",
+									"_parent": {
+										"$ref": "vw_000072"
+									},
+									"model": {
+										"$ref": "uc_000006"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000081",
+									"_parent": {
+										"$ref": "vw_000072"
+									},
+									"model": {
+										"$ref": "uc_000006"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000082",
+									"_parent": {
+										"$ref": "vw_000072"
+									},
+									"model": {
+										"$ref": "uc_000006"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 255,
+							"top": 145,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000073"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000083",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000007"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000084",
+									"_parent": {
+										"$ref": "vw_000083"
+									},
+									"model": {
+										"$ref": "uc_000007"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000085",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 167,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Register Account"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000086",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 506,
+											"top": 163,
+											"width": 108,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Register Account"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000087",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000088",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 465,
+									"top": 145,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000085"
+									},
+									"nameLabel": {
+										"$ref": "lb_000086"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000087"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000088"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000089",
+									"_parent": {
+										"$ref": "vw_000083"
+									},
+									"model": {
+										"$ref": "uc_000007"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000090",
+									"_parent": {
+										"$ref": "vw_000083"
+									},
+									"model": {
+										"$ref": "uc_000007"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000091",
+									"_parent": {
+										"$ref": "vw_000083"
+									},
+									"model": {
+										"$ref": "uc_000007"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000092",
+									"_parent": {
+										"$ref": "vw_000083"
+									},
+									"model": {
+										"$ref": "uc_000007"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000093",
+									"_parent": {
+										"$ref": "vw_000083"
+									},
+									"model": {
+										"$ref": "uc_000007"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 465,
+							"top": 145,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000084"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000094",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000008"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000095",
+									"_parent": {
+										"$ref": "vw_000094"
+									},
+									"model": {
+										"$ref": "uc_000008"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000096",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 154,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Review AI Plan"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000097",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 722,
+											"top": 163,
+											"width": 95,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Review AI Plan"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000098",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000099",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 675,
+									"top": 145,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000096"
+									},
+									"nameLabel": {
+										"$ref": "lb_000097"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000098"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000099"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000100",
+									"_parent": {
+										"$ref": "vw_000094"
+									},
+									"model": {
+										"$ref": "uc_000008"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000101",
+									"_parent": {
+										"$ref": "vw_000094"
+									},
+									"model": {
+										"$ref": "uc_000008"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000102",
+									"_parent": {
+										"$ref": "vw_000094"
+									},
+									"model": {
+										"$ref": "uc_000008"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000103",
+									"_parent": {
+										"$ref": "vw_000094"
+									},
+									"model": {
+										"$ref": "uc_000008"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000104",
+									"_parent": {
+										"$ref": "vw_000094"
+									},
+									"model": {
+										"$ref": "uc_000008"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 675,
+							"top": 145,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000095"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000105",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000009"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000106",
+									"_parent": {
+										"$ref": "vw_000105"
+									},
+									"model": {
+										"$ref": "uc_000009"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000107",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 173,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Authenticate User"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000108",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 292,
+											"top": 293,
+											"width": 115,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Authenticate User"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000109",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000110",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 255,
+									"top": 275,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000107"
+									},
+									"nameLabel": {
+										"$ref": "lb_000108"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000109"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000110"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000111",
+									"_parent": {
+										"$ref": "vw_000105"
+									},
+									"model": {
+										"$ref": "uc_000009"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000112",
+									"_parent": {
+										"$ref": "vw_000105"
+									},
+									"model": {
+										"$ref": "uc_000009"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000113",
+									"_parent": {
+										"$ref": "vw_000105"
+									},
+									"model": {
+										"$ref": "uc_000009"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000114",
+									"_parent": {
+										"$ref": "vw_000105"
+									},
+									"model": {
+										"$ref": "uc_000009"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000115",
+									"_parent": {
+										"$ref": "vw_000105"
+									},
+									"model": {
+										"$ref": "uc_000009"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 255,
+							"top": 275,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000106"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000116",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000010"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000117",
+									"_parent": {
+										"$ref": "vw_000116"
+									},
+									"model": {
+										"$ref": "uc_000010"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000118",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 193,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Enter Income/Expense"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000119",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 283,
+											"top": 423,
+											"width": 134,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Enter Income/Expense"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000120",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000121",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 255,
+									"top": 405,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000118"
+									},
+									"nameLabel": {
+										"$ref": "lb_000119"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000120"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000121"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000122",
+									"_parent": {
+										"$ref": "vw_000116"
+									},
+									"model": {
+										"$ref": "uc_000010"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000123",
+									"_parent": {
+										"$ref": "vw_000116"
+									},
+									"model": {
+										"$ref": "uc_000010"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000124",
+									"_parent": {
+										"$ref": "vw_000116"
+									},
+									"model": {
+										"$ref": "uc_000010"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000125",
+									"_parent": {
+										"$ref": "vw_000116"
+									},
+									"model": {
+										"$ref": "uc_000010"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000126",
+									"_parent": {
+										"$ref": "vw_000116"
+									},
+									"model": {
+										"$ref": "uc_000010"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 255,
+							"top": 405,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000117"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000127",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000011"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000128",
+									"_parent": {
+										"$ref": "vw_000127"
+									},
+									"model": {
+										"$ref": "uc_000011"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000129",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 238,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Manage Assets & Liabilities"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000130",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 470,
+											"top": 423,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Manage Assets & Liabilities"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000131",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000132",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 465,
+									"top": 405,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000129"
+									},
+									"nameLabel": {
+										"$ref": "lb_000130"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000131"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000132"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000133",
+									"_parent": {
+										"$ref": "vw_000127"
+									},
+									"model": {
+										"$ref": "uc_000011"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000134",
+									"_parent": {
+										"$ref": "vw_000127"
+									},
+									"model": {
+										"$ref": "uc_000011"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000135",
+									"_parent": {
+										"$ref": "vw_000127"
+									},
+									"model": {
+										"$ref": "uc_000011"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000136",
+									"_parent": {
+										"$ref": "vw_000127"
+									},
+									"model": {
+										"$ref": "uc_000011"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000137",
+									"_parent": {
+										"$ref": "vw_000127"
+									},
+									"model": {
+										"$ref": "uc_000011"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 465,
+							"top": 405,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000128"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000138",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000012"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000139",
+									"_parent": {
+										"$ref": "vw_000138"
+									},
+									"model": {
+										"$ref": "uc_000012"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000140",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 199,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Detect Goal Conflicts"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000141",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 699,
+											"top": 423,
+											"width": 141,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Detect Goal Conflicts"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000142",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000143",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 675,
+									"top": 405,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000140"
+									},
+									"nameLabel": {
+										"$ref": "lb_000141"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000142"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000143"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000144",
+									"_parent": {
+										"$ref": "vw_000138"
+									},
+									"model": {
+										"$ref": "uc_000012"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000145",
+									"_parent": {
+										"$ref": "vw_000138"
+									},
+									"model": {
+										"$ref": "uc_000012"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000146",
+									"_parent": {
+										"$ref": "vw_000138"
+									},
+									"model": {
+										"$ref": "uc_000012"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000147",
+									"_parent": {
+										"$ref": "vw_000138"
+									},
+									"model": {
+										"$ref": "uc_000012"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000148",
+									"_parent": {
+										"$ref": "vw_000138"
+									},
+									"model": {
+										"$ref": "uc_000012"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 675,
+							"top": 405,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000139"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000149",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000013"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000150",
+									"_parent": {
+										"$ref": "vw_000149"
+									},
+									"model": {
+										"$ref": "uc_000013"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000151",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 225,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Queue Score Recalculation"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000152",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 266,
+											"top": 553,
+											"width": 167,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Queue Score Recalculation"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000153",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000154",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 255,
+									"top": 535,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000151"
+									},
+									"nameLabel": {
+										"$ref": "lb_000152"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000153"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000154"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000155",
+									"_parent": {
+										"$ref": "vw_000149"
+									},
+									"model": {
+										"$ref": "uc_000013"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000156",
+									"_parent": {
+										"$ref": "vw_000149"
+									},
+									"model": {
+										"$ref": "uc_000013"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000157",
+									"_parent": {
+										"$ref": "vw_000149"
+									},
+									"model": {
+										"$ref": "uc_000013"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000158",
+									"_parent": {
+										"$ref": "vw_000149"
+									},
+									"model": {
+										"$ref": "uc_000013"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000159",
+									"_parent": {
+										"$ref": "vw_000149"
+									},
+									"model": {
+										"$ref": "uc_000013"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 255,
+							"top": 535,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000150"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000160",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000014"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000161",
+									"_parent": {
+										"$ref": "vw_000160"
+									},
+									"model": {
+										"$ref": "uc_000014"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000162",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 206,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Calculate Wealth Score"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000163",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 486,
+											"top": 553,
+											"width": 147,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Calculate Wealth Score"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000164",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000165",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 465,
+									"top": 535,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000162"
+									},
+									"nameLabel": {
+										"$ref": "lb_000163"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000164"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000165"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000166",
+									"_parent": {
+										"$ref": "vw_000160"
+									},
+									"model": {
+										"$ref": "uc_000014"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000167",
+									"_parent": {
+										"$ref": "vw_000160"
+									},
+									"model": {
+										"$ref": "uc_000014"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000168",
+									"_parent": {
+										"$ref": "vw_000160"
+									},
+									"model": {
+										"$ref": "uc_000014"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000169",
+									"_parent": {
+										"$ref": "vw_000160"
+									},
+									"model": {
+										"$ref": "uc_000014"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000170",
+									"_parent": {
+										"$ref": "vw_000160"
+									},
+									"model": {
+										"$ref": "uc_000014"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 465,
+							"top": 535,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000161"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000171",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000015"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000172",
+									"_parent": {
+										"$ref": "vw_000171"
+									},
+									"model": {
+										"$ref": "uc_000015"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000173",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 232,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Generate AI Recommendation"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000174",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 683,
+											"top": 553,
+											"width": 173,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Generate AI Recommendation"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000175",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000176",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 675,
+									"top": 535,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000173"
+									},
+									"nameLabel": {
+										"$ref": "lb_000174"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000175"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000176"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000177",
+									"_parent": {
+										"$ref": "vw_000171"
+									},
+									"model": {
+										"$ref": "uc_000015"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000178",
+									"_parent": {
+										"$ref": "vw_000171"
+									},
+									"model": {
+										"$ref": "uc_000015"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000179",
+									"_parent": {
+										"$ref": "vw_000171"
+									},
+									"model": {
+										"$ref": "uc_000015"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000180",
+									"_parent": {
+										"$ref": "vw_000171"
+									},
+									"model": {
+										"$ref": "uc_000015"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000181",
+									"_parent": {
+										"$ref": "vw_000171"
+									},
+									"model": {
+										"$ref": "uc_000015"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 675,
+							"top": 535,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000172"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000182",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000016"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000183",
+									"_parent": {
+										"$ref": "vw_000182"
+									},
+									"model": {
+										"$ref": "uc_000016"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000184",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 173,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»View Wealth Score"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000185",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 292,
+											"top": 683,
+											"width": 115,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "View Wealth Score"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000186",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000187",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 255,
+									"top": 665,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000184"
+									},
+									"nameLabel": {
+										"$ref": "lb_000185"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000186"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000187"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000188",
+									"_parent": {
+										"$ref": "vw_000182"
+									},
+									"model": {
+										"$ref": "uc_000016"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000189",
+									"_parent": {
+										"$ref": "vw_000182"
+									},
+									"model": {
+										"$ref": "uc_000016"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000190",
+									"_parent": {
+										"$ref": "vw_000182"
+									},
+									"model": {
+										"$ref": "uc_000016"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000191",
+									"_parent": {
+										"$ref": "vw_000182"
+									},
+									"model": {
+										"$ref": "uc_000016"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000192",
+									"_parent": {
+										"$ref": "vw_000182"
+									},
+									"model": {
+										"$ref": "uc_000016"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 255,
+							"top": 665,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000183"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000193",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000017"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000194",
+									"_parent": {
+										"$ref": "vw_000193"
+									},
+									"model": {
+										"$ref": "uc_000017"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000195",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 219,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»View Sub-Score Breakdown"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000196",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 480,
+											"top": 683,
+											"width": 160,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "View Sub-Score Breakdown"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000197",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000198",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 465,
+									"top": 665,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000195"
+									},
+									"nameLabel": {
+										"$ref": "lb_000196"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000197"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000198"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000199",
+									"_parent": {
+										"$ref": "vw_000193"
+									},
+									"model": {
+										"$ref": "uc_000017"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000200",
+									"_parent": {
+										"$ref": "vw_000193"
+									},
+									"model": {
+										"$ref": "uc_000017"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000201",
+									"_parent": {
+										"$ref": "vw_000193"
+									},
+									"model": {
+										"$ref": "uc_000017"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000202",
+									"_parent": {
+										"$ref": "vw_000193"
+									},
+									"model": {
+										"$ref": "uc_000017"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000203",
+									"_parent": {
+										"$ref": "vw_000193"
+									},
+									"model": {
+										"$ref": "uc_000017"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 465,
+							"top": 665,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000194"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000204",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000018"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000205",
+									"_parent": {
+										"$ref": "vw_000204"
+									},
+									"model": {
+										"$ref": "uc_000018"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000206",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 160,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Run Stress Test"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000207",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 719,
+											"top": 683,
+											"width": 102,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Run Stress Test"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000208",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000209",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 675,
+									"top": 665,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000206"
+									},
+									"nameLabel": {
+										"$ref": "lb_000207"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000208"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000209"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000210",
+									"_parent": {
+										"$ref": "vw_000204"
+									},
+									"model": {
+										"$ref": "uc_000018"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000211",
+									"_parent": {
+										"$ref": "vw_000204"
+									},
+									"model": {
+										"$ref": "uc_000018"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000212",
+									"_parent": {
+										"$ref": "vw_000204"
+									},
+									"model": {
+										"$ref": "uc_000018"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000213",
+									"_parent": {
+										"$ref": "vw_000204"
+									},
+									"model": {
+										"$ref": "uc_000018"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000214",
+									"_parent": {
+										"$ref": "vw_000204"
+									},
+									"model": {
+										"$ref": "uc_000018"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 675,
+							"top": 665,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000205"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000215",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000019"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000216",
+									"_parent": {
+										"$ref": "vw_000215"
+									},
+									"model": {
+										"$ref": "uc_000019"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000217",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 134,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Ask Advisor"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000218",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 312,
+											"top": 813,
+											"width": 76,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Ask Advisor"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000219",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000220",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 255,
+									"top": 795,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000217"
+									},
+									"nameLabel": {
+										"$ref": "lb_000218"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000219"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000220"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000221",
+									"_parent": {
+										"$ref": "vw_000215"
+									},
+									"model": {
+										"$ref": "uc_000019"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000222",
+									"_parent": {
+										"$ref": "vw_000215"
+									},
+									"model": {
+										"$ref": "uc_000019"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000223",
+									"_parent": {
+										"$ref": "vw_000215"
+									},
+									"model": {
+										"$ref": "uc_000019"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000224",
+									"_parent": {
+										"$ref": "vw_000215"
+									},
+									"model": {
+										"$ref": "uc_000019"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000225",
+									"_parent": {
+										"$ref": "vw_000215"
+									},
+									"model": {
+										"$ref": "uc_000019"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 255,
+							"top": 795,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000216"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000226",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000020"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000227",
+									"_parent": {
+										"$ref": "vw_000226"
+									},
+									"model": {
+										"$ref": "uc_000020"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000228",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 141,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Manage Goals"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000229",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 519,
+											"top": 813,
+											"width": 82,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Manage Goals"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000230",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000231",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 465,
+									"top": 795,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000228"
+									},
+									"nameLabel": {
+										"$ref": "lb_000229"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000230"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000231"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000232",
+									"_parent": {
+										"$ref": "vw_000226"
+									},
+									"model": {
+										"$ref": "uc_000020"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000233",
+									"_parent": {
+										"$ref": "vw_000226"
+									},
+									"model": {
+										"$ref": "uc_000020"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000234",
+									"_parent": {
+										"$ref": "vw_000226"
+									},
+									"model": {
+										"$ref": "uc_000020"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000235",
+									"_parent": {
+										"$ref": "vw_000226"
+									},
+									"model": {
+										"$ref": "uc_000020"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000236",
+									"_parent": {
+										"$ref": "vw_000226"
+									},
+									"model": {
+										"$ref": "uc_000020"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 465,
+							"top": 795,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000227"
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "vw_000237",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "uc_000021"
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "nc_000238",
+									"_parent": {
+										"$ref": "vw_000237"
+									},
+									"model": {
+										"$ref": "uc_000021"
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "lb_000239",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 219,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "«useCase»Compute Months of Runway"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000240",
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 690,
+											"top": 813,
+											"width": 160,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "Compute Months of Runway"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000241",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 180,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": "(from WealthWise Use Cases)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "lb_000242",
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"left": 0,
+											"top": 0,
+											"width": 4,
+											"height": 13,
+											"horizontalAlignment": 0,
+											"wordWrap": true,
+											"text": ""
+										}
+									],
+									"left": 675,
+									"top": 795,
+									"width": 190,
+									"height": 50,
+									"stereotypeLabel": {
+										"$ref": "lb_000239"
+									},
+									"nameLabel": {
+										"$ref": "lb_000240"
+									},
+									"namespaceLabel": {
+										"$ref": "lb_000241"
+									},
+									"propertyLabel": {
+										"$ref": "lb_000242"
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "cp_000243",
+									"_parent": {
+										"$ref": "vw_000237"
+									},
+									"model": {
+										"$ref": "uc_000021"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "cp_000244",
+									"_parent": {
+										"$ref": "vw_000237"
+									},
+									"model": {
+										"$ref": "uc_000021"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "cp_000245",
+									"_parent": {
+										"$ref": "vw_000237"
+									},
+									"model": {
+										"$ref": "uc_000021"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "cp_000246",
+									"_parent": {
+										"$ref": "vw_000237"
+									},
+									"model": {
+										"$ref": "uc_000021"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "cp_000247",
+									"_parent": {
+										"$ref": "vw_000237"
+									},
+									"model": {
+										"$ref": "uc_000021"
+									},
+									"subViews": [],
+									"font": "Arial;13;0",
+									"left": -32,
+									"top": -32,
+									"width": 10,
+									"height": 10,
+									"visible": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 675,
+							"top": 795,
+							"width": 190,
+							"height": 50,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"nameCompartment": {
+								"$ref": "nc_000238"
+							}
+						},
+						{
+							"_type": "UMLAssociationView",
+							"_id": "ev_000248",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "as_000033"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000249",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000033"
+									},
+									"hostEdge": {
+										"$ref": "ev_000248"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000252",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000033"
+									},
+									"hostEdge": {
+										"$ref": "ev_000248"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000254",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000033"
+									},
+									"hostEdge": {
+										"$ref": "ev_000248"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000072"
+							},
+							"tail": {
+								"$ref": "vw_000052"
+							},
+							"lineStyle": 1,
+							"points": "250:510;340:170",
+							"nameLabel": {
+								"$ref": "el_000249"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000252"
+							},
+							"propertyLabel": {
+								"$ref": "el_000254"
+							}
+						},
+						{
+							"_type": "UMLAssociationView",
+							"_id": "ev_000255",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "as_000036"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000256",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000036"
+									},
+									"hostEdge": {
+										"$ref": "ev_000255"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000259",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000036"
+									},
+									"hostEdge": {
+										"$ref": "ev_000255"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000261",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000036"
+									},
+									"hostEdge": {
+										"$ref": "ev_000255"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000116"
+							},
+							"tail": {
+								"$ref": "vw_000052"
+							},
+							"lineStyle": 1,
+							"points": "250:525;340:430",
+							"nameLabel": {
+								"$ref": "el_000256"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000259"
+							},
+							"propertyLabel": {
+								"$ref": "el_000261"
+							}
+						},
+						{
+							"_type": "UMLAssociationView",
+							"_id": "ev_000262",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "as_000039"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000263",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000039"
+									},
+									"hostEdge": {
+										"$ref": "ev_000262"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000266",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000039"
+									},
+									"hostEdge": {
+										"$ref": "ev_000262"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000268",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000039"
+									},
+									"hostEdge": {
+										"$ref": "ev_000262"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000182"
+							},
+							"tail": {
+								"$ref": "vw_000052"
+							},
+							"lineStyle": 1,
+							"points": "250:540;340:690",
+							"nameLabel": {
+								"$ref": "el_000263"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000266"
+							},
+							"propertyLabel": {
+								"$ref": "el_000268"
+							}
+						},
+						{
+							"_type": "UMLAssociationView",
+							"_id": "ev_000269",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "as_000042"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000270",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000042"
+									},
+									"hostEdge": {
+										"$ref": "ev_000269"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000273",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000042"
+									},
+									"hostEdge": {
+										"$ref": "ev_000269"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000275",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "as_000042"
+									},
+									"hostEdge": {
+										"$ref": "ev_000269"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000215"
+							},
+							"tail": {
+								"$ref": "vw_000052"
+							},
+							"lineStyle": 1,
+							"points": "250:545;340:820",
+							"nameLabel": {
+								"$ref": "el_000270"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000273"
+							},
+							"propertyLabel": {
+								"$ref": "el_000275"
+							}
+						},
+						{
+							"_type": "UMLGeneralizationView",
+							"_id": "ev_000276",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ge_000045"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000277",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ge_000045"
+									},
+									"hostEdge": {
+										"$ref": "ev_000276"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000280",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ge_000045"
+									},
+									"hostEdge": {
+										"$ref": "ev_000276"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000282",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ge_000045"
+									},
+									"hostEdge": {
+										"$ref": "ev_000276"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000052"
+							},
+							"tail": {
+								"$ref": "vw_000062"
+							},
+							"lineStyle": 1,
+							"points": "210:760;210:545",
+							"nameLabel": {
+								"$ref": "el_000277"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000280"
+							},
+							"propertyLabel": {
+								"$ref": "el_000282"
+							}
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000283",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000022"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000284",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000022"
+									},
+									"hostEdge": {
+										"$ref": "ev_000283"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000287",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 318,
+									"top": 181,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000022"
+									},
+									"hostEdge": {
+										"$ref": "ev_000283"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000289",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000022"
+									},
+									"hostEdge": {
+										"$ref": "ev_000283"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000105"
+							},
+							"tail": {
+								"$ref": "vw_000072"
+							},
+							"lineStyle": 1,
+							"points": "350:195;350:275",
+							"nameLabel": {
+								"$ref": "el_000284"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000287"
+							},
+							"propertyLabel": {
+								"$ref": "el_000289"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000290",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000023"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000291",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000023"
+									},
+									"hostEdge": {
+										"$ref": "ev_000290"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000294",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 528,
+									"top": 181,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000023"
+									},
+									"hostEdge": {
+										"$ref": "ev_000290"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000296",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000023"
+									},
+									"hostEdge": {
+										"$ref": "ev_000290"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000105"
+							},
+							"tail": {
+								"$ref": "vw_000083"
+							},
+							"lineStyle": 1,
+							"points": "560:195;400:300",
+							"nameLabel": {
+								"$ref": "el_000291"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000294"
+							},
+							"propertyLabel": {
+								"$ref": "el_000296"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000297",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000025"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000298",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000025"
+									},
+									"hostEdge": {
+										"$ref": "ev_000297"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000301",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 318,
+									"top": 441,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000025"
+									},
+									"hostEdge": {
+										"$ref": "ev_000297"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000303",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000025"
+									},
+									"hostEdge": {
+										"$ref": "ev_000297"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000149"
+							},
+							"tail": {
+								"$ref": "vw_000116"
+							},
+							"lineStyle": 1,
+							"points": "350:455;350:535",
+							"nameLabel": {
+								"$ref": "el_000298"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000301"
+							},
+							"propertyLabel": {
+								"$ref": "el_000303"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000304",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000026"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000305",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000026"
+									},
+									"hostEdge": {
+										"$ref": "ev_000304"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000308",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 528,
+									"top": 441,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000026"
+									},
+									"hostEdge": {
+										"$ref": "ev_000304"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000310",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000026"
+									},
+									"hostEdge": {
+										"$ref": "ev_000304"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000149"
+							},
+							"tail": {
+								"$ref": "vw_000127"
+							},
+							"lineStyle": 1,
+							"points": "560:455;400:560",
+							"nameLabel": {
+								"$ref": "el_000305"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000308"
+							},
+							"propertyLabel": {
+								"$ref": "el_000310"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000311",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000027"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000312",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000027"
+									},
+									"hostEdge": {
+										"$ref": "ev_000311"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000315",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 318,
+									"top": 701,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000027"
+									},
+									"hostEdge": {
+										"$ref": "ev_000311"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000317",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000027"
+									},
+									"hostEdge": {
+										"$ref": "ev_000311"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000160"
+							},
+							"tail": {
+								"$ref": "vw_000182"
+							},
+							"lineStyle": 1,
+							"points": "350:715;560:585",
+							"nameLabel": {
+								"$ref": "el_000312"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000315"
+							},
+							"propertyLabel": {
+								"$ref": "el_000317"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000318",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000032"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000319",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000032"
+									},
+									"hostEdge": {
+										"$ref": "ev_000318"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000322",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 738,
+									"top": 806,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000032"
+									},
+									"hostEdge": {
+										"$ref": "ev_000318"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000324",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000032"
+									},
+									"hostEdge": {
+										"$ref": "ev_000318"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000138"
+							},
+							"tail": {
+								"$ref": "vw_000226"
+							},
+							"lineStyle": 1,
+							"points": "655:820;770:820;770:455",
+							"nameLabel": {
+								"$ref": "el_000319"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000322"
+							},
+							"propertyLabel": {
+								"$ref": "el_000324"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000325",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000030"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000326",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000030"
+									},
+									"hostEdge": {
+										"$ref": "ev_000325"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000329",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 318,
+									"top": 606,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000030"
+									},
+									"hostEdge": {
+										"$ref": "ev_000325"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000331",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000030"
+									},
+									"hostEdge": {
+										"$ref": "ev_000325"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000171"
+							},
+							"tail": {
+								"$ref": "vw_000215"
+							},
+							"lineStyle": 1,
+							"points": "350:845;350:620;680:620;680:585",
+							"nameLabel": {
+								"$ref": "el_000326"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000329"
+							},
+							"propertyLabel": {
+								"$ref": "el_000331"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000332",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000024"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000333",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000024"
+									},
+									"hostEdge": {
+										"$ref": "ev_000332"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000336",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 858,
+									"top": 181,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000024"
+									},
+									"hostEdge": {
+										"$ref": "ev_000332"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000338",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000024"
+									},
+									"hostEdge": {
+										"$ref": "ev_000332"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000171"
+							},
+							"tail": {
+								"$ref": "vw_000094"
+							},
+							"lineStyle": 1,
+							"points": "770:195;890:195;890:585;770:585",
+							"nameLabel": {
+								"$ref": "el_000333"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000336"
+							},
+							"propertyLabel": {
+								"$ref": "el_000338"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLIncludeView",
+							"_id": "ev_000339",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ie_000029"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000340",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000029"
+									},
+									"hostEdge": {
+										"$ref": "ev_000339"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000343",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 738,
+									"top": 701,
+									"width": 63,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«include»",
+									"model": {
+										"$ref": "ie_000029"
+									},
+									"hostEdge": {
+										"$ref": "ev_000339"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000345",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ie_000029"
+									},
+									"hostEdge": {
+										"$ref": "ev_000339"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000237"
+							},
+							"tail": {
+								"$ref": "vw_000204"
+							},
+							"lineStyle": 1,
+							"points": "770:715;770:795",
+							"nameLabel": {
+								"$ref": "el_000340"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000343"
+							},
+							"propertyLabel": {
+								"$ref": "el_000345"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLExtendView",
+							"_id": "ev_000346",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ee_000031"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000347",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ee_000031"
+									},
+									"hostEdge": {
+										"$ref": "ev_000346"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000350",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 872,
+									"top": 776,
+									"width": 56,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«extend»",
+									"model": {
+										"$ref": "ee_000031"
+									},
+									"hostEdge": {
+										"$ref": "ev_000346"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000352",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ee_000031"
+									},
+									"hostEdge": {
+										"$ref": "ev_000346"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000215"
+							},
+							"tail": {
+								"$ref": "vw_000094"
+							},
+							"lineStyle": 1,
+							"points": "770:195;900:195;900:790;430:790;430:800",
+							"nameLabel": {
+								"$ref": "el_000347"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000350"
+							},
+							"propertyLabel": {
+								"$ref": "el_000352"
+							},
+							"stereotypeDisplay": "label"
+						},
+						{
+							"_type": "UMLExtendView",
+							"_id": "ev_000353",
+							"_parent": {
+								"$ref": "dia_000002"
+							},
+							"model": {
+								"$ref": "ee_000028"
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "el_000354",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ee_000028"
+									},
+									"hostEdge": {
+										"$ref": "ev_000353"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000357",
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 532,
+									"top": 676,
+									"width": 56,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "«extend»",
+									"model": {
+										"$ref": "ee_000028"
+									},
+									"hostEdge": {
+										"$ref": "ev_000353"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								},
+								{
+									"_type": "LabelView",
+									"_id": "el_000359",
+									"visible": false,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"left": 0,
+									"top": 0,
+									"width": 4,
+									"height": 13,
+									"horizontalAlignment": 0,
+									"wordWrap": true,
+									"text": "",
+									"model": {
+										"$ref": "ee_000028"
+									},
+									"hostEdge": {
+										"$ref": "ev_000353"
+									},
+									"edgePosition": 1,
+									"suppressVisibility": true
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "vw_000182"
+							},
+							"tail": {
+								"$ref": "vw_000193"
+							},
+							"lineStyle": 1,
+							"points": "560:690;445:690",
+							"nameLabel": {
+								"$ref": "el_000354"
+							},
+							"stereotypeLabel": {
+								"$ref": "el_000357"
+							},
+							"propertyLabel": {
+								"$ref": "el_000359"
+							},
+							"stereotypeDisplay": "label"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCaseSubject",
+					"_id": "sb_000003",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "WealthWise System"
+				},
+				{
+					"_type": "UMLActor",
+					"_id": "ac_000004",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "User",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLActor",
+					"_id": "ac_000005",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Admin",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000006",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Login",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000022",
+							"_parent": {
+								"$ref": "uc_000006"
+							},
+							"name": "includeLogin",
+							"source": {
+								"$ref": "uc_000006"
+							},
+							"target": {
+								"$ref": "uc_000009"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000007",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Register Account",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000023",
+							"_parent": {
+								"$ref": "uc_000007"
+							},
+							"name": "includeRegister",
+							"source": {
+								"$ref": "uc_000007"
+							},
+							"target": {
+								"$ref": "uc_000009"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000008",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Review AI Plan",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000024",
+							"_parent": {
+								"$ref": "uc_000008"
+							},
+							"name": "includeReview",
+							"source": {
+								"$ref": "uc_000008"
+							},
+							"target": {
+								"$ref": "uc_000015"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000009",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Authenticate User",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000010",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Enter Income/Expense",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000025",
+							"_parent": {
+								"$ref": "uc_000010"
+							},
+							"name": "includeEnter",
+							"source": {
+								"$ref": "uc_000010"
+							},
+							"target": {
+								"$ref": "uc_000013"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000011",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Manage Assets & Liabilities",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000026",
+							"_parent": {
+								"$ref": "uc_000011"
+							},
+							"name": "includeAssets",
+							"source": {
+								"$ref": "uc_000011"
+							},
+							"target": {
+								"$ref": "uc_000013"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000012",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Detect Goal Conflicts",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000013",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Queue Score Recalculation",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000014",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Calculate Wealth Score",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000015",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Generate AI Recommendation",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000016",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "View Wealth Score",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000027",
+							"_parent": {
+								"$ref": "uc_000016"
+							},
+							"name": "includeViewWealth",
+							"source": {
+								"$ref": "uc_000016"
+							},
+							"target": {
+								"$ref": "uc_000014"
+							},
+							"visibility": "public"
+						},
+						{
+							"_type": "UMLExtend",
+							"_id": "ee_000028",
+							"_parent": {
+								"$ref": "uc_000016"
+							},
+							"name": "extendSub",
+							"source": {
+								"$ref": "uc_000017"
+							},
+							"target": {
+								"$ref": "uc_000016"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000017",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "View Sub-Score Breakdown",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000018",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Run Stress Test",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000029",
+							"_parent": {
+								"$ref": "uc_000018"
+							},
+							"name": "includeStress",
+							"source": {
+								"$ref": "uc_000018"
+							},
+							"target": {
+								"$ref": "uc_000021"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000019",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Ask Advisor",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000030",
+							"_parent": {
+								"$ref": "uc_000019"
+							},
+							"name": "includeAsk",
+							"source": {
+								"$ref": "uc_000019"
+							},
+							"target": {
+								"$ref": "uc_000015"
+							},
+							"visibility": "public"
+						},
+						{
+							"_type": "UMLExtend",
+							"_id": "ee_000031",
+							"_parent": {
+								"$ref": "uc_000019"
+							},
+							"name": "extendReview",
+							"source": {
+								"$ref": "uc_000008"
+							},
+							"target": {
+								"$ref": "uc_000019"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000020",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Manage Goals",
+					"visibility": "public",
+					"ownedElements": [
+						{
+							"_type": "UMLInclude",
+							"_id": "ie_000032",
+							"_parent": {
+								"$ref": "uc_000020"
+							},
+							"name": "includeGoals",
+							"source": {
+								"$ref": "uc_000020"
+							},
+							"target": {
+								"$ref": "uc_000012"
+							},
+							"visibility": "public"
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "uc_000021",
+					"_parent": {
+						"$ref": "mdl_000001"
+					},
+					"name": "Compute Months of Runway",
+					"visibility": "public"
+				},
+				{
+					"_type": "UMLGeneralization",
+					"_id": "ge_000045",
+					"_parent": {
+						"$ref": "ac_000005"
+					},
+					"name": "genAdminUser",
+					"visibility": "public",
+					"source": {
+						"$ref": "ac_000005"
+					},
+					"target": {
+						"$ref": "ac_000004"
+					}
+				},
+				{
+					"_type": "UMLAssociation",
+					"_id": "as_000033",
+					"_parent": {
+						"$ref": "ac_000004"
+					},
+					"name": "assocLogin",
+					"visibility": "public",
+					"end1": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000034",
+						"_parent": {
+							"$ref": "as_000033"
+						},
+						"reference": {
+							"$ref": "ac_000004"
+						},
+						"visibility": "public"
+					},
+					"end2": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000035",
+						"_parent": {
+							"$ref": "as_000033"
+						},
+						"reference": {
+							"$ref": "uc_000006"
+						},
+						"visibility": "public"
+					}
+				},
+				{
+					"_type": "UMLAssociation",
+					"_id": "as_000036",
+					"_parent": {
+						"$ref": "ac_000004"
+					},
+					"name": "assocEnter",
+					"visibility": "public",
+					"end1": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000037",
+						"_parent": {
+							"$ref": "as_000036"
+						},
+						"reference": {
+							"$ref": "ac_000004"
+						},
+						"visibility": "public"
+					},
+					"end2": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000038",
+						"_parent": {
+							"$ref": "as_000036"
+						},
+						"reference": {
+							"$ref": "uc_000010"
+						},
+						"visibility": "public"
+					}
+				},
+				{
+					"_type": "UMLAssociation",
+					"_id": "as_000039",
+					"_parent": {
+						"$ref": "ac_000004"
+					},
+					"name": "assocView",
+					"visibility": "public",
+					"end1": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000040",
+						"_parent": {
+							"$ref": "as_000039"
+						},
+						"reference": {
+							"$ref": "ac_000004"
+						},
+						"visibility": "public"
+					},
+					"end2": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000041",
+						"_parent": {
+							"$ref": "as_000039"
+						},
+						"reference": {
+							"$ref": "uc_000016"
+						},
+						"visibility": "public"
+					}
+				},
+				{
+					"_type": "UMLAssociation",
+					"_id": "as_000042",
+					"_parent": {
+						"$ref": "ac_000004"
+					},
+					"name": "assocAsk",
+					"visibility": "public",
+					"end1": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000043",
+						"_parent": {
+							"$ref": "as_000042"
+						},
+						"reference": {
+							"$ref": "ac_000004"
+						},
+						"visibility": "public"
+					},
+					"end2": {
+						"_type": "UMLAssociationEnd",
+						"_id": "ae_000044",
+						"_parent": {
+							"$ref": "as_000042"
+						},
+						"reference": {
+							"$ref": "uc_000019"
+						},
+						"visibility": "public"
+					}
+				}
+			],
+			"visibility": "public"
+		}
+	]
+}
