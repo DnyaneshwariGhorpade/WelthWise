@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Shield, AlertCircle, CheckCircle2, ArrowLeft, ExternalLink } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 export default function ForgotPasswordPage() {
   const { forgotPassword } = useAuth();
@@ -18,7 +18,7 @@ export default function ForgotPasswordPage() {
     setDevToken(undefined);
 
     if (!email.trim()) {
-      setError('Please enter your email address');
+      setError('Please enter your registered email address');
       return;
     }
 
@@ -38,84 +38,95 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center px-4 py-12">
-      <Link to="/" className="flex items-center gap-2 mb-8">
-        <Shield className="h-8 w-8 text-emerald-600" />
-        <span className="text-2xl font-bold text-slate-900">WealthWise</span>
+    <div className="min-h-screen bg-[#FBF9F6] text-[#121212] flex flex-col items-center justify-center px-4 py-12 selection:bg-[#121212] selection:text-white">
+      {/* Brand Logo */}
+      <Link to="/" className="flex items-center gap-3 mb-8 group">
+        <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center transition-transform group-hover:scale-105 shadow-xs">
+          <span className="font-editorial text-xl italic">W</span>
+        </div>
+        <span className="text-2xl font-bold tracking-tight text-[#121212]">
+          WealthWise
+        </span>
       </Link>
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
-        <h1 className="text-2xl font-bold text-slate-900 text-center">Reset your password</h1>
-        <p className="mt-2 text-sm text-slate-500 text-center">
-          Enter your email and we'll send you a reset link
-        </p>
+      {/* Main Recovery Card */}
+      <div className="w-full max-w-md bg-white rounded-3xl border border-[#EAE6DF] p-8 sm:p-10 shadow-sm">
+        <div className="text-center">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#7A746B]">
+            Credential Recovery
+          </span>
+          <h1 className="font-editorial text-3xl font-normal text-[#121212] mt-1 tracking-tight">
+            Reset Password
+          </h1>
+          <p className="mt-2 text-sm text-[#7A746B]">
+            Enter your account email to receive a secure reset link
+          </p>
+        </div>
 
         {error && (
-          <div className="mt-4 bg-red-50 border border-red-200 rounded-lg p-3 flex gap-2 items-start">
-            <AlertCircle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
-            <span className="text-sm text-red-700">{error}</span>
+          <div className="mt-5 bg-[#FDF3F2] border border-[#F3D1CE] rounded-2xl p-4 flex gap-2.5 items-start">
+            <AlertCircle className="h-4 w-4 text-[#C24134] shrink-0 mt-0.5" />
+            <span className="text-xs text-[#8B2318]">{error}</span>
           </div>
         )}
 
         {success && (
-          <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-lg p-4 space-y-3">
-            <div className="flex gap-2 items-start">
-              <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
-              <span className="text-sm text-emerald-800 font-medium">{success}</span>
+          <div className="mt-5 bg-[#F4F8F5] border border-[#D1E4D6] rounded-2xl p-4 space-y-3">
+            <div className="flex gap-2.5 items-start">
+              <CheckCircle2 className="h-4 w-4 text-[#2B523B] shrink-0 mt-0.5" />
+              <span className="text-xs text-[#1F3D2C] leading-relaxed">{success}</span>
             </div>
-
             {devToken && (
-              <div className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800">
-                <div className="font-semibold text-amber-900 mb-1">Development Mode Notice:</div>
-                Live email provider (Resend / SMTP) is not configured in environment settings.
-                <div className="mt-2">
-                  <Link
-                    to={`/reset-password?token=${devToken}`}
-                    className="inline-flex items-center gap-1 font-semibold text-emerald-700 hover:text-emerald-800 underline"
-                  >
-                    Click here to open password reset form <ExternalLink className="h-3 w-3" />
-                  </Link>
-                </div>
+              <div className="mt-2 pt-2 border-t border-[#D1E4D6] text-xs">
+                <span className="text-[#5A554E] block mb-1">Development quick-access link:</span>
+                <Link
+                  to={`/reset-password?token=${devToken}`}
+                  className="inline-flex items-center gap-1 font-semibold text-[#121212] underline underline-offset-4"
+                >
+                  <span>Open Reset Link</span>
+                  <ExternalLink className="h-3 w-3" />
+                </Link>
               </div>
             )}
           </div>
         )}
 
-        {!success ? (
-          <form onSubmit={handleSubmit} className="mt-6 space-y-5">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">Email address</label>
-              <input
-                id="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                placeholder="you@example.com"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-emerald-600 text-white font-semibold py-2.5 rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
-            >
-              {loading ? 'Sending...' : 'Send Reset Link'}
-            </button>
-          </form>
-        ) : (
-          <div className="mt-6 text-center">
-            <Link to="/login" className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 font-medium">
-              <ArrowLeft className="h-4 w-4" /> Back to Sign In
-            </Link>
+        <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+          <div>
+            <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-[#5A554E] mb-2">
+              Registered Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#DDD7CD] rounded-xl text-sm text-[#121212] focus:outline-none focus:border-[#121212] focus:bg-white transition-all placeholder-[#A19D94]"
+              placeholder="you@example.com"
+            />
           </div>
-        )}
 
-        <p className="mt-6 text-center text-sm text-slate-500">
-          <Link to="/login" className="text-emerald-600 hover:text-emerald-700 font-medium">Back to Sign In</Link>
-        </p>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-[#121212] text-white font-semibold py-3.5 rounded-full hover:bg-[#2B2B30] disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm tracking-wide shadow-xs flex items-center justify-center gap-2 group mt-2"
+          >
+            <span>{loading ? 'Transmitting Link...' : 'Send Reset Link'}</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </button>
+        </form>
+
+        <div className="mt-8 pt-6 border-t border-[#F0ECE3] text-center">
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-1.5 text-xs text-[#5A554E] hover:text-[#121212] font-semibold transition-colors"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            <span>Return to Sign In</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

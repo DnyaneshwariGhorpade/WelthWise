@@ -8,7 +8,6 @@ import {
   Target,
   MessagesSquare,
   Settings,
-  Shield,
   LogOut,
   PanelRight,
 } from 'lucide-react';
@@ -18,8 +17,8 @@ const nav = [
   { to: '/app/finances', label: 'Finances', icon: Wallet },
   { to: '/app/wealth-score', label: 'Wealth Score', icon: Gauge },
   { to: '/app/stress-test', label: 'Stress Test', icon: Activity },
-  { to: '/app/goals', label: 'Goals', icon: Target },
-  { to: '/app/advisor', label: 'Advisor', icon: MessagesSquare },
+  { to: '/app/goals', label: 'Goals & Conflicts', icon: Target },
+  { to: '/app/advisor', label: 'AI Advisor', icon: MessagesSquare },
   { to: '/app/settings', label: 'Settings', icon: Settings },
 ];
 
@@ -28,107 +27,128 @@ function AppShell() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    if (window.confirm('Log out of WealthWise?')) {
+    if (window.confirm('Log out of your WealthWise private session?')) {
       logout();
       navigate('/login');
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
-      {/* Sidebar */}
-      <aside className="hidden md:flex w-64 flex-col bg-slate-900 text-slate-300 fixed inset-y-0 left-0">
-        <div className="h-16 flex items-center gap-2 px-5 border-b border-slate-800">
-          <Shield className="h-7 w-7 text-emerald-500" />
-          <span className="text-lg font-bold text-white">WealthWise</span>
+    <div className="min-h-screen bg-[#FBF9F6] text-[#121212] flex selection:bg-[#121212] selection:text-white">
+      {/* Desktop Sidebar (Passero Luxury Boutique Noir) */}
+      <aside className="hidden md:flex w-64 flex-col bg-[#141210] text-[#B5AEA4] fixed inset-y-0 left-0 border-r border-[#26221E] z-30">
+        
+        {/* Brand Header */}
+        <div className="h-20 flex items-center gap-3 px-6 border-b border-[#26221E]">
+          <div className="w-8 h-8 rounded-full bg-white text-[#121212] flex items-center justify-center font-editorial text-base italic font-bold">
+            W
+          </div>
+          <div>
+            <div className="text-base font-bold text-white tracking-tight leading-none">WealthWise</div>
+            <div className="text-[10px] uppercase tracking-widest text-[#7A746B] mt-1">Private Client</div>
+          </div>
         </div>
-        <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
+
+        {/* Navigation Items */}
+        <nav className="flex-1 py-6 px-3 space-y-1.5 overflow-y-auto">
           {nav.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium tracking-wide transition-all ${
                   isActive
-                    ? 'bg-emerald-600 text-white'
-                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-white/10 text-white font-semibold shadow-xs border border-white/10'
+                    : 'text-[#9E978E] hover:bg-white/[0.04] hover:text-white'
                 }`
               }
             >
-              <item.icon className="h-4 w-4" />
-              {item.label}
+              <item.icon className="h-4 w-4 shrink-0" />
+              <span>{item.label}</span>
             </NavLink>
           ))}
+
           {user?.role === 'ADMIN' && (
-            <>
-              <div className="pt-4 pb-1 px-3 text-xs uppercase tracking-wider text-slate-600">Admin</div>
+            <div className="pt-5 mt-2 border-t border-[#26221E]/60">
+              <div className="px-3.5 pb-2 text-[10px] uppercase tracking-widest text-[#666056] font-semibold">
+                Governance
+              </div>
               <NavLink
                 to="/admin/dashboard"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    isActive ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                  `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium tracking-wide transition-all ${
+                    isActive
+                      ? 'bg-white/10 text-white font-semibold border border-white/10'
+                      : 'text-[#9E978E] hover:bg-white/[0.04] hover:text-white'
                   }`
                 }
               >
-                <PanelRight className="h-4 w-4" />
-                Admin Console
+                <PanelRight className="h-4 w-4 shrink-0 text-[#C59B55]" />
+                <span className="text-[#C59B55]">Admin Console</span>
               </NavLink>
-            </>
+            </div>
           )}
         </nav>
-        <div className="p-3 border-t border-slate-800">
-          <div className="flex items-center gap-3 px-3 py-2">
-            <div className="h-8 w-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-sm font-bold">
+
+        {/* User Card & Logout */}
+        <div className="p-4 border-t border-[#26221E] bg-[#100E0C]">
+          <div className="flex items-center gap-3 px-2 py-2">
+            <div className="h-9 w-9 rounded-full bg-[#26221E] text-white flex items-center justify-center text-xs font-bold border border-white/10">
               {(user?.fullName || 'U').charAt(0).toUpperCase()}
             </div>
-            <div className="min-w-0">
-              <div className="text-sm font-medium text-white truncate">{user?.fullName}</div>
-              <div className="text-xs text-slate-500 truncate">{user?.email}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-semibold text-white truncate">{user?.fullName}</div>
+              <div className="text-[11px] text-[#7A746B] truncate font-mono-nums">{user?.email}</div>
             </div>
           </div>
           <button
             onClick={handleLogout}
-            className="mt-1 w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-400 hover:bg-slate-800 hover:text-red-400 transition-colors"
+            className="mt-2 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-[#9E978E] hover:bg-white/[0.05] hover:text-[#E06C60] transition-colors"
           >
-            <LogOut className="h-4 w-4" />
-            Log out
+            <LogOut className="h-3.5 w-3.5" />
+            <span>Sign Out</span>
           </button>
         </div>
       </aside>
 
-      {/* Main */}
+      {/* Main Content Area */}
       <div className="flex-1 md:pl-64 flex flex-col min-w-0">
-        {/* Mobile header */}
-        <header className="md:hidden bg-slate-900 text-white h-14 flex items-center justify-between px-4 sticky top-0 z-40">
-          <Link to="/app/dashboard" className="flex items-center gap-2">
-            <Shield className="h-6 w-6 text-emerald-500" />
-            <span className="font-bold">WealthWise</span>
+        
+        {/* Mobile Header */}
+        <header className="md:hidden bg-[#141210] text-white h-16 flex items-center justify-between px-5 sticky top-0 z-40 border-b border-[#26221E]">
+          <Link to="/app/dashboard" className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-full bg-white text-[#121212] flex items-center justify-center font-editorial text-sm italic font-bold">
+              W
+            </div>
+            <span className="font-bold text-sm">WealthWise</span>
           </Link>
-          <button onClick={handleLogout} className="text-slate-400" aria-label="Log out">
-            <LogOut className="h-5 w-5" />
+          <button onClick={handleLogout} className="text-[#9E978E] hover:text-white" aria-label="Sign out">
+            <LogOut className="h-4 w-4" />
           </button>
         </header>
-        {/* Mobile nav */}
-        <nav className="md:hidden bg-white border-b border-slate-200 overflow-x-auto sticky top-14 z-40">
-          <div className="flex px-2 py-1.5 gap-1">
+
+        {/* Mobile Sub-Navigation Bar */}
+        <nav className="md:hidden bg-white border-b border-[#EAE6DF] overflow-x-auto sticky top-16 z-40 px-3 py-2">
+          <div className="flex gap-1.5 min-w-max">
             {nav.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap ${
-                    isActive ? 'bg-emerald-600 text-white' : 'text-slate-500'
+                  `flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${
+                    isActive ? 'bg-[#121212] text-white' : 'text-[#5A554E] hover:bg-[#F5F2EB]'
                   }`
                 }
               >
                 <item.icon className="h-3.5 w-3.5" />
-                {item.label}
+                <span>{item.label}</span>
               </NavLink>
             ))}
           </div>
         </nav>
 
-        <main className="flex-1 p-4 md:p-8 max-w-7xl w-full mx-auto">
+        {/* Routed Sub-pages */}
+        <main className="flex-1 p-5 md:p-10 max-w-7xl w-full mx-auto">
           <Outlet />
         </main>
       </div>
