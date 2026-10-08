@@ -3,7 +3,7 @@ import { Loader2 } from 'lucide-react';
 
 export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`bg-white rounded-2xl shadow-sm border border-slate-200 ${className}`}>
+    <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 ${className}`}>
       {children}
     </div>
   );
@@ -13,8 +13,8 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
   return (
     <div className="mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
-        {subtitle && <p className="mt-1 text-sm text-slate-500">{subtitle}</p>}
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{title}</h1>
+        {subtitle && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>}
       </div>
       {actions && <div className="flex gap-2 shrink-0">{actions}</div>}
     </div>
@@ -37,10 +37,10 @@ export function Button({
   className?: string;
 }) {
   const styles = {
-    primary: 'bg-emerald-600 text-white hover:bg-emerald-700',
-    secondary: 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
-    ghost: 'text-slate-500 hover:bg-slate-100',
+    primary: 'bg-emerald-600 text-white hover:bg-emerald-700 dark:hover:bg-emerald-500',
+    secondary: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700',
+    danger: 'bg-red-600 text-white hover:bg-red-700 dark:hover:bg-red-500',
+    ghost: 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800',
   }[variant];
   return (
     <button
@@ -68,19 +68,19 @@ export function StatCard({
   accent?: 'emerald' | 'blue' | 'amber' | 'red' | 'violet';
 }) {
   const accentMap = {
-    emerald: 'bg-emerald-50 text-emerald-600',
-    blue: 'bg-blue-50 text-blue-600',
-    amber: 'bg-amber-50 text-amber-600',
-    red: 'bg-red-50 text-red-600',
-    violet: 'bg-violet-50 text-violet-600',
+    emerald: 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400',
+    blue: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
+    amber: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400',
+    red: 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400',
+    violet: 'bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400',
   }[accent];
   return (
     <Card className="p-5">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-slate-500">{label}</p>
-          <p className="mt-2 text-2xl font-bold text-slate-900">{value}</p>
-          {hint && <p className="mt-1 text-xs text-slate-400">{hint}</p>}
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{label}</p>
+          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">{value}</p>
+          {hint && <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{hint}</p>}
         </div>
         {icon && <div className={`h-10 w-10 rounded-xl flex items-center justify-center ${accentMap}`}>{icon}</div>}
       </div>
@@ -114,9 +114,9 @@ export function ErrorNotice({ message }: { message: string }) {
 export function EmptyState({ icon, title, message }: { icon: ReactNode; title: string; message: string }) {
   return (
     <div className="text-center py-10">
-      <div className="mx-auto h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">{icon}</div>
-      <h3 className="mt-3 text-sm font-semibold text-slate-900">{title}</h3>
-      <p className="mt-1 text-sm text-slate-500 max-w-sm mx-auto">{message}</p>
+      <div className="mx-auto h-12 w-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 dark:text-slate-500">{icon}</div>
+      <h3 className="mt-3 text-sm font-semibold text-slate-900 dark:text-white">{title}</h3>
+      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">{message}</p>
     </div>
   );
 }
@@ -147,8 +147,8 @@ export function ScoreGauge({ score }: { score: number | null }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-4xl font-extrabold text-slate-900">{value}</span>
-        <span className="text-xs font-medium text-slate-400 mt-1">out of 100</span>
+        <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{value}</span>
+        <span className="text-xs font-medium text-slate-400 dark:text-slate-500 mt-1">out of 100</span>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ function AppShell() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF9F6] text-[#121212] flex selection:bg-[#121212] selection:text-white">
+    <div className="min-h-screen bg-[#FBF9F6] dark:bg-slate-900 text-[#121212] dark:text-slate-200 flex selection:bg-[#121212] dark:selection:bg-slate-200 selection:text-white dark:selection:text-slate-900">
       {/* Desktop Sidebar (Passero Luxury Boutique Noir) */}
       <aside className="hidden md:flex w-64 flex-col bg-[#141210] text-[#B5AEA4] fixed inset-y-0 left-0 border-r border-[#26221E] z-30">
         
@@ -128,7 +128,7 @@ function AppShell() {
         </header>
 
         {/* Mobile Sub-Navigation Bar */}
-        <nav className="md:hidden bg-white border-b border-[#EAE6DF] overflow-x-auto sticky top-16 z-40 px-3 py-2">
+        <nav className="md:hidden bg-white dark:bg-slate-900 border-b border-[#EAE6DF] dark:border-slate-800 overflow-x-auto sticky top-16 z-40 px-3 py-2">
           <div className="flex gap-1.5 min-w-max">
             {nav.map((item) => (
               <NavLink
@@ -136,7 +136,7 @@ function AppShell() {
                 to={item.to}
                 className={({ isActive }) =>
                   `flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${
-                    isActive ? 'bg-[#121212] text-white' : 'text-[#5A554E] hover:bg-[#F5F2EB]'
+                    isActive ? 'bg-[#121212] dark:bg-slate-800 text-white' : 'text-[#5A554E] dark:text-slate-400 hover:bg-[#F5F2EB] dark:hover:bg-slate-800'
                   }`
                 }
               >
