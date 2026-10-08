@@ -20,55 +20,59 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AIConfigPage from './pages/admin/AIConfigPage';
 import AuditLogsPage from './pages/admin/AuditLogsPage';
 
+import { ThemeProvider } from './context/ThemeContext';
+
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        {/* Public / Auth screens */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
+    <ThemeProvider>
+      <AuthProvider>
+        <Routes>
+          {/* Public / Auth screens */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-        {/* Protected user app screens */}
-        <Route
-          path="/app"
-          element={
-            <RequireAuth>
-              <AppShell />
-            </RequireAuth>
-          }
-        >
-          <Route index element={<Navigate to="/app/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="finances" element={<Finances />} />
-          <Route path="wealth-score" element={<WealthScorePage />} />
-          <Route path="stress-test" element={<StressTestPage />} />
-          <Route path="goals" element={<GoalsPage />} />
-          <Route path="advisor" element={<AdvisorPage />} />
-          <Route path="settings" element={<SettingsPage />} />
-        </Route>
+          {/* Protected user app screens */}
+          <Route
+            path="/app"
+            element={
+              <RequireAuth>
+                <AppShell />
+              </RequireAuth>
+            }
+          >
+            <Route index element={<Navigate to="/app/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="finances" element={<Finances />} />
+            <Route path="wealth-score" element={<WealthScorePage />} />
+            <Route path="stress-test" element={<StressTestPage />} />
+            <Route path="goals" element={<GoalsPage />} />
+            <Route path="advisor" element={<AdvisorPage />} />
+            <Route path="settings" element={<SettingsPage />} />
+          </Route>
 
-        {/* Protected admin screens */}
-        <Route
-          path="/admin"
-          element={
-            <RequireAdmin>
-              <AdminShell />
-            </RequireAdmin>
-          }
-        >
-          <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="ai-config" element={<AIConfigPage />} />
-          <Route path="audit-logs" element={<AuditLogsPage />} />
-        </Route>
+          {/* Protected admin screens */}
+          <Route
+            path="/admin"
+            element={
+              <RequireAdmin>
+                <AdminShell />
+              </RequireAdmin>
+            }
+          >
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="ai-config" element={<AIConfigPage />} />
+            <Route path="audit-logs" element={<AuditLogsPage />} />
+          </Route>
 
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </AuthProvider>
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

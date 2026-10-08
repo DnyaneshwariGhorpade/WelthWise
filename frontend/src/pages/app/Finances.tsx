@@ -261,7 +261,7 @@ export default function Finances() {
       {formOpen && (
         <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4" onClick={() => !saving && setFormOpen(false)}>
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-lg font-bold text-slate-900 mb-4">{editing ? `Edit ${config.label}` : `Add ${config.label}`}</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{editing ? `Edit ${config.label}` : `Add ${config.label}`}</h3>
             <div className="space-y-4">
               {config.fields.map((f) => (
                 <div key={f.key}>

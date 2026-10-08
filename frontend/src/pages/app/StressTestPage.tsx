@@ -97,7 +97,7 @@ export default function StressTestPage() {
                     <div className="h-9 w-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
                       <Activity className="h-4 w-4" />
                     </div>
-                    <h3 className="font-bold text-slate-900">{s.name}</h3>
+                    <h3 className="font-bold text-slate-900 dark:text-white">{s.name}</h3>
                   </div>
                   <p className="mt-3 text-sm text-slate-600 line-clamp-2">{s.description || 'No description'}</p>
                   <div className="mt-4 flex gap-2 text-xs">
@@ -112,7 +112,7 @@ export default function StressTestPage() {
           {result && (
             <Card className="mt-6 p-6">
               <div className="flex items-center justify-between mb-5">
-                <h2 className="text-lg font-bold text-slate-900">Result: {result.scenarioName}</h2>
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white">Result: {result.scenarioName}</h2>
                 {result.isStale ? (
                   <Badge color="amber">
                     <Clock className="h-3 w-3 inline mr-1" />
@@ -126,7 +126,7 @@ export default function StressTestPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-slate-50 rounded-xl p-5 text-center">
                   <p className="text-xs uppercase tracking-wider text-slate-500">Survival Runway</p>
-                  <p className="mt-2 text-3xl font-extrabold text-slate-900">
+                  <p className="mt-2 text-3xl font-extrabold text-slate-900 dark:text-white">
                     {Math.floor(result.monthsOfRunway)} mo
                   </p>
                   <div className="mt-2">

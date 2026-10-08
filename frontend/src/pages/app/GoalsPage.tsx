@@ -161,7 +161,7 @@ export default function GoalsPage() {
                 <Card key={goal.id} className="p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="font-bold text-slate-900">{goal.name}</h3>
+                      <h3 className="font-bold text-slate-900 dark:text-white">{goal.name}</h3>
                       <p className="mt-1 text-sm text-slate-500">
                         {fmtMoney(goal.currentAmount)} of {fmtMoney(goal.targetAmount)} · due {fmtDate(goal.targetDate)}
                       </p>
@@ -202,7 +202,7 @@ export default function GoalsPage() {
 
           <div className="space-y-6">
             <Card className="p-5">
-              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-4">
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
                 <AlertTriangle className="h-4 w-4 text-amber-500" />
                 Detected Conflicts
               </h3>
@@ -240,7 +240,7 @@ export default function GoalsPage() {
             </Card>
 
             <Card className="p-5">
-              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-1">
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2 mb-1">
                 <Target className="h-4 w-4 text-emerald-600" />
                 “Should You Do This?”
               </h3>
@@ -269,7 +269,7 @@ export default function GoalsPage() {
       {formOpen && (
         <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4" onClick={() => !saving && setFormOpen(false)}>
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-lg font-bold text-slate-900 mb-4">{editing ? 'Edit Goal' : 'New Goal'}</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{editing ? 'Edit Goal' : 'New Goal'}</h3>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Goal name</label>

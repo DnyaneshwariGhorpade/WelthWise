@@ -67,7 +67,7 @@ export default function WealthScorePage() {
           <div className="mx-auto h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center">
             <Gauge className="h-6 w-6 text-slate-400" />
           </div>
-          <h3 className="mt-4 text-lg font-bold text-slate-900">No Wealth Score yet</h3>
+          <h3 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">No Wealth Score yet</h3>
           <p className="mt-2 text-sm text-slate-500 max-w-md mx-auto">
             Add your income, expenses, assets, and liabilities to Financials and your Wealth Score will be computed automatically.
           </p>
@@ -95,7 +95,7 @@ export default function WealthScorePage() {
           </Card>
 
           <Card className="p-6 lg:col-span-2">
-            <h3 className="text-sm font-semibold text-slate-900 mb-5">Sub-scores</h3>
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-5">Sub-scores</h3>
             <div className="space-y-5">
               {FACTORS.map((f) => {
                 const v = Number(score[f.key]);
@@ -103,7 +103,7 @@ export default function WealthScorePage() {
                   <div key={f.key}>
                     <div className="flex justify-between text-sm mb-1.5">
                       <span className="font-medium text-slate-700">{f.label}</span>
-                      <span className="font-bold text-slate-900">{v}</span>
+                      <span className="font-bold text-slate-900 dark:text-white">{v}</span>
                     </div>
                     <div className="h-2.5 rounded-full bg-slate-100 overflow-hidden">
                       <div
@@ -120,7 +120,7 @@ export default function WealthScorePage() {
 
           <Card className="p-6 lg:col-span-3">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-emerald-600" />
                 AI Explanation
               </h3>
@@ -143,7 +143,7 @@ export default function WealthScorePage() {
           </Card>
 
           <Card className="p-6 lg:col-span-3">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4">Score History</h3>
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">Score History</h3>
             {chartData.length ? (
               <div className="h-56">
                 <ResponsiveContainer width="100%" height="100%">

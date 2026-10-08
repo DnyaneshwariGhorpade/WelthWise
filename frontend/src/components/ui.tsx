@@ -3,7 +3,7 @@ import { Loader2 } from 'lucide-react';
 
 export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 ${className}`}>
+    <div className={`bg-white dark:bg-[#1A1A1A] rounded-2xl shadow-sm border border-slate-200 dark:border-[#333] transition-colors ${className}`}>
       {children}
     </div>
   );
@@ -13,8 +13,8 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
   return (
     <div className="mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{title}</h1>
-        {subtitle && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>}
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">{title}</h1>
+        {subtitle && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 transition-colors">{subtitle}</p>}
       </div>
       {actions && <div className="flex gap-2 shrink-0">{actions}</div>}
     </div>
@@ -37,10 +37,10 @@ export function Button({
   className?: string;
 }) {
   const styles = {
-    primary: 'bg-emerald-600 text-white hover:bg-emerald-700 dark:hover:bg-emerald-500',
-    secondary: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700',
-    danger: 'bg-red-600 text-white hover:bg-red-700 dark:hover:bg-red-500',
-    ghost: 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800',
+    primary: 'bg-emerald-600 text-white hover:bg-emerald-700',
+    secondary: 'bg-white dark:bg-[#1A1A1A] text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-[#444] hover:bg-slate-50 dark:hover:bg-[#2A2A2A]',
+    danger: 'bg-red-600 text-white hover:bg-red-700',
+    ghost: 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#2A2A2A]',
   }[variant];
   return (
     <button
@@ -68,21 +68,21 @@ export function StatCard({
   accent?: 'emerald' | 'blue' | 'amber' | 'red' | 'violet';
 }) {
   const accentMap = {
-    emerald: 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400',
-    blue: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
-    amber: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400',
-    red: 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400',
-    violet: 'bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400',
+    emerald: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400',
+    blue: 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+    amber: 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400',
+    red: 'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400',
+    violet: 'bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400',
   }[accent];
   return (
     <Card className="p-5">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{label}</p>
-          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">{value}</p>
-          {hint && <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{hint}</p>}
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 transition-colors">{label}</p>
+          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white transition-colors">{value}</p>
+          {hint && <p className="mt-1 text-xs text-slate-400 dark:text-slate-500 transition-colors">{hint}</p>}
         </div>
-        {icon && <div className={`h-10 w-10 rounded-xl flex items-center justify-center ${accentMap}`}>{icon}</div>}
+        {icon && <div className={`h-10 w-10 rounded-xl flex items-center justify-center transition-colors ${accentMap}`}>{icon}</div>}
       </div>
     </Card>
   );
@@ -90,12 +90,12 @@ export function StatCard({
 
 export function Badge({ children, color = 'slate' }: { children: ReactNode; color?: 'slate' | 'emerald' | 'red' | 'amber' | 'blue' | 'violet' }) {
   const map = {
-    slate: 'bg-slate-100 text-slate-700',
-    emerald: 'bg-emerald-100 text-emerald-700',
-    red: 'bg-red-100 text-red-700',
-    amber: 'bg-amber-100 text-amber-700',
-    blue: 'bg-blue-100 text-blue-700',
-    violet: 'bg-violet-100 text-violet-700',
+    slate: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300',
+    emerald: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400',
+    red: 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400',
+    amber: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400',
+    blue: 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400',
+    violet: 'bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-400',
   }[color];
   return <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${map}`}>{children}</span>;
 }
@@ -107,16 +107,16 @@ export function Spinner() {
 export function ErrorNotice({ message }: { message: string }) {
   if (!message) return null;
   return (
-    <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">{message}</div>
+    <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg px-4 py-3 text-sm text-red-700 dark:text-red-400">{message}</div>
   );
 }
 
 export function EmptyState({ icon, title, message }: { icon: ReactNode; title: string; message: string }) {
   return (
     <div className="text-center py-10">
-      <div className="mx-auto h-12 w-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 dark:text-slate-500">{icon}</div>
-      <h3 className="mt-3 text-sm font-semibold text-slate-900 dark:text-white">{title}</h3>
-      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">{message}</p>
+      <div className="mx-auto h-12 w-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">{icon}</div>
+      <h3 className="mt-3 text-sm font-semibold text-slate-900 dark:text-white transition-colors">{title}</h3>
+      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto transition-colors">{message}</p>
     </div>
   );
 }
@@ -131,7 +131,7 @@ export function ScoreGauge({ score }: { score: number | null }) {
   return (
     <div className="relative inline-flex items-center justify-center">
       <svg width="180" height="180" viewBox="0 0 180 180">
-        <circle cx="90" cy="90" r={radius} fill="none" stroke="#e2e8f0" strokeWidth="14" />
+        <circle cx="90" cy="90" r={radius} fill="none" className="stroke-slate-200 dark:stroke-[#333] transition-colors" strokeWidth="14" />
         <circle
           cx="90"
           cy="90"
@@ -147,8 +147,8 @@ export function ScoreGauge({ score }: { score: number | null }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{value}</span>
-        <span className="text-xs font-medium text-slate-400 dark:text-slate-500 mt-1">out of 100</span>
+        <span className="text-4xl font-extrabold text-slate-900 dark:text-white transition-colors">{value}</span>
+        <span className="text-xs font-medium text-slate-400 mt-1">out of 100</span>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { NavLink, Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Cpu, ScrollText, ArrowLeft, LogOut, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { LayoutDashboard, Cpu, ScrollText, ArrowLeft, LogOut, Sun, Moon } from 'lucide-react';
 
 const adminNav = [
   { to: '/admin/dashboard', label: 'Platform Metrics', icon: LayoutDashboard },
@@ -11,8 +11,8 @@ const adminNav = [
 
 function AdminShell() {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     if (window.confirm('Log out of WealthWise Admin Console?')) {
@@ -22,7 +22,7 @@ function AdminShell() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF9F6] dark:bg-slate-900 text-[#121212] dark:text-slate-200 flex selection:bg-[#121212] dark:selection:bg-slate-200 selection:text-white dark:selection:text-slate-900">
+    <div className="min-h-screen bg-[#FBF9F6] dark:bg-[#121212] text-[#121212] dark:text-[#EAE6DF] flex selection:bg-[#121212] selection:text-white dark:selection:bg-white dark:selection:text-[#121212] transition-colors">
       {/* Desktop Sidebar (Passero Admin Luxury Noir) */}
       <aside className="hidden md:flex w-64 flex-col bg-[#141210] text-[#B5AEA4] fixed inset-y-0 left-0 border-r border-[#26221E] z-30">
         
@@ -70,8 +70,18 @@ function AdminShell() {
           </div>
         </nav>
 
-        {/* Admin Card & Logout */}
+        {/* Admin Card & Actions */}
         <div className="p-4 border-t border-[#26221E] bg-[#100E0C]">
+          <div className="flex items-center justify-between mb-3 px-2">
+             <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 text-xs font-medium text-[#9E978E] hover:text-white transition-colors"
+                title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+             >
+                {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+                <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+             </button>
+          </div>
           <div className="flex items-center gap-3 px-2 py-2">
             <div className="h-9 w-9 rounded-full bg-[#C59B55] text-[#141210] flex items-center justify-center text-xs font-bold">
               {(user?.fullName || 'A').charAt(0).toUpperCase()}
@@ -81,16 +91,6 @@ function AdminShell() {
               <div className="text-[11px] text-[#C59B55] truncate font-mono-nums">ADMINISTRATOR</div>
             </div>
           </div>
-          <button
-            onClick={toggleTheme}
-            className="mt-4 w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-[#9E978E] hover:bg-white/[0.05] hover:text-white transition-colors"
-          >
-            <div className="flex items-center gap-2">
-              {theme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
-              <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-            </div>
-          </button>
-
           <button
             onClick={handleLogout}
             className="mt-2 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-[#9E978E] hover:bg-white/[0.05] hover:text-[#E06C60] transition-colors"
@@ -113,25 +113,25 @@ function AdminShell() {
             <span className="font-bold text-sm">Admin Console</span>
           </Link>
           <div className="flex items-center gap-3">
-            <button onClick={toggleTheme} className="text-[#9E978E] hover:text-white" aria-label="Toggle Theme">
-              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </button>
-            <button onClick={handleLogout} className="text-[#9E978E] hover:text-white" aria-label="Sign out">
-              <LogOut className="h-4 w-4" />
-            </button>
+             <button onClick={toggleTheme} className="text-[#9E978E] hover:text-white">
+                {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+             </button>
+             <button onClick={handleLogout} className="text-[#9E978E] hover:text-white" aria-label="Sign out">
+                <LogOut className="h-4 w-4" />
+             </button>
           </div>
         </header>
 
         {/* Mobile Sub-Navigation Bar */}
-        <nav className="md:hidden bg-white dark:bg-slate-900 border-b border-[#EAE6DF] dark:border-slate-800 overflow-x-auto sticky top-16 z-40 px-3 py-2">
+        <nav className="md:hidden bg-white dark:bg-[#1A1A1A] border-b border-[#EAE6DF] dark:border-[#333] overflow-x-auto sticky top-16 z-40 px-3 py-2 transition-colors">
           <div className="flex gap-1.5 min-w-max">
             {adminNav.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${
-                    isActive ? 'bg-[#121212] dark:bg-slate-800 text-white' : 'text-[#5A554E] dark:text-slate-400 hover:bg-[#F5F2EB] dark:hover:bg-slate-800'
+                  `flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    isActive ? 'bg-[#121212] dark:bg-white text-white dark:text-[#121212]' : 'text-[#5A554E] dark:text-[#9E978E] hover:bg-[#F5F2EB] dark:hover:bg-[#2A2A2A]'
                   }`
                 }
               >

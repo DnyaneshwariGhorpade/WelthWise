@@ -24,7 +24,7 @@ function formatInlineText(text: string, isUser: boolean) {
   return parts.map((part, i) => {
     if ((part.startsWith('**') && part.endsWith('**')) || (part.startsWith('*') && part.endsWith('*'))) {
       const inner = part.startsWith('**') ? part.slice(2, -2) : part.slice(1, -1);
-      return <strong key={i} className={`font-semibold ${isUser ? 'text-white' : 'text-slate-900'}`}>{inner}</strong>;
+      return <strong key={i} className={`font-semibold ${isUser ? 'text-white' : 'text-slate-900 dark:text-white dark:text-white transition-colors'}`}>{inner}</strong>;
     }
     return part;
   });
@@ -43,7 +43,7 @@ function FormattedMessage({ text, sender }: { text: string; sender: 'USER' | 'AI
         if (trimmed.startsWith('#')) {
           const headerText = trimmed.replace(/^#+\s*/, '');
           return (
-            <h4 key={idx} className={`font-bold text-sm mt-2 mb-1 ${isUser ? 'text-white' : 'text-slate-900'}`}>
+            <h4 key={idx} className={`font-bold text-sm mt-2 mb-1 ${isUser ? 'text-white' : 'text-slate-900 dark:text-white dark:text-white transition-colors'}`}>
               {formatInlineText(headerText, isUser)}
             </h4>
           );
@@ -149,7 +149,7 @@ export default function AdvisorPage() {
     <div className="h-[calc(100vh-9rem)] flex flex-col">
       <PageHeader title="WealthWise Advisor" subtitle="Ask anything about your money — budgeting, investing, big purchases." />
 
-      <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-xs text-amber-800 flex items-start gap-2 mb-4">
+      <div className="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-xl px-4 py-3 text-xs text-amber-800 dark:text-amber-400 flex items-start gap-2 mb-4">
         <ShieldCheck className="h-4 w-4 shrink-0 mt-0.5" />
         <span>
           <strong>Disclaimer:</strong> Advice here is AI-generated and informational only — not licensed financial advice. Verify important decisions independently before acting.
@@ -162,11 +162,11 @@ export default function AdvisorPage() {
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {entries.length === 0 && !sending && (
             <div className="text-center py-12">
-              <div className="mx-auto h-12 w-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <div className="mx-auto h-12 w-12 rounded-full bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
                 <Bot className="h-6 w-6" />
               </div>
-              <h3 className="mt-3 text-sm font-semibold text-slate-900">Start a conversation</h3>
-              <p className="mt-1 text-sm text-slate-500 max-w-md mx-auto">
+              <h3 className="mt-3 text-sm font-semibold text-slate-900 dark:text-white dark:text-white">Start a conversation</h3>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
                 Ask about budgeting, saving for a goal, or whether to make a big purchase — the advisor has read your numbers.
               </p>
             </div>
@@ -174,12 +174,12 @@ export default function AdvisorPage() {
 
           {entries.map((e) => (
             <div key={e.id} className={`flex gap-3 ${e.sender === 'AI' ? '' : 'flex-row-reverse'}`}>
-              <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${e.sender === 'AI' ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-600'}`}>
+              <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${e.sender === 'AI' ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}`}>
                 {e.sender === 'AI' ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
               </div>
-              <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${e.sender === 'AI' ? 'bg-slate-100 text-slate-800' : 'bg-emerald-600 text-white'}`}>
+              <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${e.sender === 'AI' ? 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200' : 'bg-emerald-600 text-white'}`}>
                 <FormattedMessage text={e.text} sender={e.sender} />
-                <p className={`mt-1 text-[10px] ${e.sender === 'AI' ? 'text-slate-400' : 'text-emerald-100'}`}>
+                <p className={`mt-1 text-[10px] ${e.sender === 'AI' ? 'text-slate-400 dark:text-slate-500' : 'text-emerald-100'}`}>
                   {formatTime(e.createdAt)}
                 </p>
               </div>
@@ -191,7 +191,7 @@ export default function AdvisorPage() {
               <div className="h-8 w-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
                 <Bot className="h-4 w-4" />
               </div>
-              <div className="bg-slate-100 text-slate-500 rounded-2xl px-4 py-2.5 text-sm flex items-center gap-2">
+              <div className="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-2xl px-4 py-2.5 text-sm flex items-center gap-2">
                 <span className="animate-pulse font-medium">Advisor is analyzing your request...</span>
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function AdvisorPage() {
           <div ref={bottomRef} />
         </div>
 
-        <div className="border-t border-slate-200 p-3 bg-slate-50/50">
+        <div className="border-t border-slate-200 dark:border-slate-800 p-3 bg-slate-50/50 dark:bg-slate-900/50 transition-colors">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               'How should I manage my finances?',
@@ -213,7 +213,7 @@ export default function AdvisorPage() {
                 key={idx}
                 onClick={() => send(q)}
                 disabled={sending}
-                className="text-xs whitespace-nowrap px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-emerald-500 hover:text-emerald-700 transition-colors shadow-sm disabled:opacity-50"
+                className="text-xs whitespace-nowrap px-3 py-1.5 rounded-full bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-emerald-500 dark:hover:border-emerald-500 hover:text-emerald-700 dark:hover:text-emerald-500 transition-colors shadow-sm disabled:opacity-50"
               >
                 {q}
               </button>
@@ -232,7 +232,7 @@ export default function AdvisorPage() {
               }}
               placeholder="Ask the advisor…"
               rows={1}
-              className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none text-sm"
+              className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#1A1A1A] text-slate-900 dark:text-white dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none text-sm transition-colors"
             />
             <button
               onClick={() => send()}

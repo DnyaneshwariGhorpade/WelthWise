@@ -160,7 +160,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         <div className="lg:col-span-2 space-y-6">
           <Card className="p-5">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4">Wealth Trend</h3>
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">Wealth Trend</h3>
             {snapshotData.length ? (
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -187,7 +187,7 @@ export default function Dashboard() {
           </Card>
 
           <Card className="p-5">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4">Score History</h3>
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">Score History</h3>
             {scoreData.length ? (
               <div className="h-40">
                 <ResponsiveContainer width="100%" height="100%">
@@ -208,7 +208,7 @@ export default function Dashboard() {
 
         <div className="space-y-6">
           <Card className="p-5">
-            <h3 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-emerald-600" />
               AI Insights
             </h3>
@@ -232,7 +232,7 @@ export default function Dashboard() {
           </Card>
 
           <Card className="p-5">
-            <h3 className="text-sm font-semibold text-slate-900 mb-3">Quick Actions</h3>
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3">Quick Actions</h3>
             <div className="space-y-2">
               {quickNav.map((q) => (
                 <Link

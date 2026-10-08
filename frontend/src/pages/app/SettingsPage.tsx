@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, KeyRound, Clock, ShieldAlert, Moon, Sun } from 'lucide-react';
+import { User, KeyRound, Clock, ShieldAlert, Moon, Sun, Monitor } from 'lucide-react';
 import { getMe, updateMe, changePassword, logoutUser, Me } from '../../services/app.service';
 import { apiErr } from '../../services/app.service';
 import { useAuth } from '../../context/AuthContext';
@@ -80,12 +80,12 @@ export default function SettingsPage() {
     <div>
       <PageHeader title="Settings" subtitle="Manage your profile, password, and session." />
       <ErrorNotice message={error} />
-      {notice && <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-3 text-sm text-emerald-700 mb-4">{notice}</div>}
+      {notice && <div className="bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg px-4 py-3 text-sm text-emerald-700 dark:text-emerald-400 mb-4">{notice}</div>}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="p-6">
-          <h3 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2 mb-5">
-            <User className="h-4 w-4 text-emerald-600" />
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-white dark:text-white flex items-center gap-2 mb-5">
+            <User className="h-4 w-4 text-emerald-600 dark:text-emerald-500" />
             Profile
           </h3>
           <div className="space-y-4">
@@ -94,7 +94,7 @@ export default function SettingsPage() {
               <input
                 value={profile.full_name}
                 onChange={(e) => setProfile({ ...profile, full_name: e.target.value })}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
             <div>
@@ -103,7 +103,7 @@ export default function SettingsPage() {
                 type="email"
                 value={profile.email}
                 onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
             <Button onClick={saveProfile} disabled={savingProfile}>
@@ -113,8 +113,8 @@ export default function SettingsPage() {
         </Card>
 
         <Card className="p-6">
-          <h3 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2 mb-5">
-            <KeyRound className="h-4 w-4 text-emerald-600" />
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-white dark:text-white flex items-center gap-2 mb-5">
+            <KeyRound className="h-4 w-4 text-emerald-600 dark:text-emerald-500" />
             Change Password
           </h3>
           <div className="space-y-4">
@@ -124,7 +124,7 @@ export default function SettingsPage() {
                 type="password"
                 value={password.current_password}
                 onChange={(e) => setPassword({ ...password, current_password: e.target.value })}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
             <div>
@@ -133,7 +133,7 @@ export default function SettingsPage() {
                 type="password"
                 value={password.new_password}
                 onChange={(e) => setPassword({ ...password, new_password: e.target.value })}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
             <div>
@@ -142,7 +142,7 @@ export default function SettingsPage() {
                 type="password"
                 value={password.confirm}
                 onChange={(e) => setPassword({ ...password, confirm: e.target.value })}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
             <Button onClick={savePassword} disabled={savingPwd}>
@@ -153,32 +153,39 @@ export default function SettingsPage() {
       </div>
 
       <Card className="mt-6 p-6">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-          <div className="flex gap-3">
-            <div className="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center">
-              {theme === 'dark' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            </div>
+         <h3 className="text-sm font-semibold text-slate-900 dark:text-white dark:text-white flex items-center gap-2 mb-5">
+            <Monitor className="h-4 w-4 text-emerald-600 dark:text-emerald-500" />
+            Appearance
+         </h3>
+         <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Display & Appearance</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
-                Current theme is set to <span className="font-medium text-slate-700 dark:text-slate-200">{theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>.
-              </p>
+               <p className="text-sm font-medium text-slate-900 dark:text-white dark:text-white">Theme</p>
+               <p className="text-sm text-slate-500 dark:text-slate-400">Switch between light and dark mode for your dashboard.</p>
             </div>
-          </div>
-          <Button variant="secondary" onClick={toggleTheme}>
-            Switch to {theme === 'dark' ? 'Light' : 'Dark'} Mode
-          </Button>
-        </div>
+            <Button variant="secondary" onClick={toggleTheme} className="flex items-center gap-2">
+               {theme === 'light' ? (
+                  <>
+                     <Moon className="h-4 w-4" />
+                     <span>Dark Mode</span>
+                  </>
+               ) : (
+                  <>
+                     <Sun className="h-4 w-4" />
+                     <span>Light Mode</span>
+                  </>
+               )}
+            </Button>
+         </div>
       </Card>
 
       <Card className="mt-6 p-6">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
           <div className="flex gap-3">
-            <div className="h-10 w-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center">
               <ShieldAlert className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Session</h3>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white dark:text-white">Session</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400">
                 Signed in as <span className="font-medium text-slate-700 dark:text-slate-300">{user?.email}</span>
                 {me?.lastLoginAt && <> · last login {fmtDateTime(me.lastLoginAt)}</>}

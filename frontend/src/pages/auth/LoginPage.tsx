@@ -35,27 +35,27 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF9F6] dark:bg-slate-900 text-[#121212] dark:text-slate-200 flex flex-col items-center justify-center px-4 py-12 selection:bg-[#121212] dark:selection:bg-slate-200 selection:text-white dark:selection:text-slate-900">
+    <div className="min-h-screen bg-[#FBF9F6] text-[#121212] flex flex-col items-center justify-center px-4 py-12 selection:bg-[#121212] selection:text-white">
       {/* Brand Logo */}
       <Link to="/" className="flex items-center gap-3 mb-8 group">
-        <div className="w-10 h-10 rounded-full bg-[#121212] dark:bg-slate-800 text-white flex items-center justify-center transition-transform group-hover:scale-105 shadow-xs">
+        <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center transition-transform group-hover:scale-105 shadow-xs">
           <span className="font-editorial text-xl italic">W</span>
         </div>
-        <span className="text-2xl font-bold tracking-tight text-[#121212] dark:text-white">
+        <span className="text-2xl font-bold tracking-tight text-[#121212]">
           WealthWise
         </span>
       </Link>
 
       {/* Main Login Card */}
-      <div className="w-full max-w-md bg-white dark:bg-slate-800 rounded-3xl border border-[#EAE6DF] dark:border-slate-700 p-8 sm:p-10 shadow-sm">
+      <div className="w-full max-w-md bg-white rounded-3xl border border-[#EAE6DF] p-8 sm:p-10 shadow-sm">
         <div className="text-center">
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#7A746B] dark:text-slate-400">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#7A746B]">
             Client Portal
           </span>
-          <h1 className="font-editorial text-3xl font-normal text-[#121212] dark:text-white mt-1 tracking-tight">
+          <h1 className="font-editorial text-3xl font-normal text-[#121212] mt-1 tracking-tight">
             Welcome back
           </h1>
-          <p className="mt-2 text-sm text-[#7A746B] dark:text-slate-400">
+          <p className="mt-2 text-sm text-[#7A746B]">
             Sign in to access your financial architecture
           </p>
         </div>
@@ -78,7 +78,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="mt-7 space-y-5">
           <div>
-            <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-[#5A554E] dark:text-slate-400 mb-2">
+            <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-[#5A554E] mb-2">
               Email Address
             </label>
             <input
@@ -88,17 +88,17 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-[#FAF8F5] dark:bg-slate-900 border border-[#DDD7CD] dark:border-slate-700 rounded-xl text-sm text-[#121212] dark:text-white focus:outline-none focus:border-[#121212] dark:focus:border-slate-500 focus:bg-white dark:focus:bg-slate-800 transition-all placeholder-[#A19D94] dark:placeholder-slate-500"
+              className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#DDD7CD] rounded-xl text-sm text-[#121212] focus:outline-none focus:border-[#121212] focus:bg-white transition-all placeholder-[#A19D94]"
               placeholder="user@wealthwise.demo"
             />
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-wider text-[#5A554E] dark:text-slate-400">
+              <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-wider text-[#5A554E]">
                 Password
               </label>
-              <Link to="/forgot-password" className="text-xs text-[#5A554E] dark:text-slate-400 hover:text-[#121212] dark:hover:text-white underline underline-offset-4 transition-colors">
+              <Link to="/forgot-password" className="text-xs text-[#5A554E] hover:text-[#121212] underline underline-offset-4 transition-colors">
                 Forgot password?
               </Link>
             </div>
@@ -110,7 +110,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-11 bg-[#FAF8F5] dark:bg-slate-900 border border-[#DDD7CD] dark:border-slate-700 rounded-xl text-sm text-[#121212] dark:text-white focus:outline-none focus:border-[#121212] dark:focus:border-slate-500 focus:bg-white dark:focus:bg-slate-800 transition-all placeholder-[#A19D94] dark:placeholder-slate-500"
+                className="w-full px-4 py-3 pr-11 bg-[#FAF8F5] border border-[#DDD7CD] rounded-xl text-sm text-[#121212] focus:outline-none focus:border-[#121212] focus:bg-white transition-all placeholder-[#A19D94]"
                 placeholder="••••••••••••"
               />
               <button
