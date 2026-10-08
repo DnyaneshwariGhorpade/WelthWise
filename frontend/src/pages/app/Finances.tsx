@@ -205,7 +205,7 @@ export default function Finances() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-slate-50 text-left text-xs uppercase tracking-wider text-slate-500">
+                <tr className="bg-slate-50 text-left text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   {config.fields.map((f) => (
                     <th key={f.key} className="px-5 py-3 font-medium">
                       {f.label}

@@ -166,7 +166,7 @@ export default function AdvisorPage() {
                 <Bot className="h-6 w-6" />
               </div>
               <h3 className="mt-3 text-sm font-semibold text-slate-900 dark:text-white dark:text-white">Start a conversation</h3>
-              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400 max-w-md mx-auto">
                 Ask about budgeting, saving for a goal, or whether to make a big purchase — the advisor has read your numbers.
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function AdvisorPage() {
               </div>
               <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${e.sender === 'AI' ? 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200' : 'bg-emerald-600 text-white'}`}>
                 <FormattedMessage text={e.text} sender={e.sender} />
-                <p className={`mt-1 text-[10px] ${e.sender === 'AI' ? 'text-slate-400 dark:text-slate-500' : 'text-emerald-100'}`}>
+                <p className={`mt-1 text-[10px] ${e.sender === 'AI' ? 'text-slate-400 dark:text-slate-500 dark:text-slate-400' : 'text-emerald-100'}`}>
                   {formatTime(e.createdAt)}
                 </p>
               </div>
@@ -191,7 +191,7 @@ export default function AdvisorPage() {
               <div className="h-8 w-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
                 <Bot className="h-4 w-4" />
               </div>
-              <div className="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-2xl px-4 py-2.5 text-sm flex items-center gap-2">
+              <div className="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 dark:text-slate-400 rounded-2xl px-4 py-2.5 text-sm flex items-center gap-2">
                 <span className="animate-pulse font-medium">Advisor is analyzing your request...</span>
               </div>
             </div>

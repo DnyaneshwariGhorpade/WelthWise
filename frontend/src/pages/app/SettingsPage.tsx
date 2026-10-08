@@ -160,7 +160,7 @@ export default function SettingsPage() {
          <div className="flex items-center justify-between">
             <div>
                <p className="text-sm font-medium text-slate-900 dark:text-white dark:text-white">Theme</p>
-               <p className="text-sm text-slate-500 dark:text-slate-400">Switch between light and dark mode for your dashboard.</p>
+               <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400">Switch between light and dark mode for your dashboard.</p>
             </div>
             <Button variant="secondary" onClick={toggleTheme} className="flex items-center gap-2">
                {theme === 'light' ? (
@@ -181,16 +181,16 @@ export default function SettingsPage() {
       <Card className="mt-6 p-6">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
           <div className="flex gap-3">
-            <div className="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 dark:text-slate-400 flex items-center justify-center">
               <ShieldAlert className="h-5 w-5" />
             </div>
             <div>
               <h3 className="text-sm font-semibold text-slate-900 dark:text-white dark:text-white">Session</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400">
                 Signed in as <span className="font-medium text-slate-700 dark:text-slate-300">{user?.email}</span>
                 {me?.lastLoginAt && <> · last login {fmtDateTime(me.lastLoginAt)}</>}
               </p>
-              <p className="mt-1 text-xs text-slate-400 dark:text-slate-500 flex items-center gap-1">
+              <p className="mt-1 text-xs text-slate-400 dark:text-slate-500 dark:text-slate-400 flex items-center gap-1">
                 <Clock className="h-3 w-3" />
                 Sessions auto-expire after 15 minutes of inactivity. You'll be asked to sign in again.
               </p>

@@ -162,7 +162,7 @@ export default function GoalsPage() {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <h3 className="font-bold text-slate-900 dark:text-white">{goal.name}</h3>
-                      <p className="mt-1 text-sm text-slate-500">
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                         {fmtMoney(goal.currentAmount)} of {fmtMoney(goal.targetAmount)} · due {fmtDate(goal.targetDate)}
                       </p>
                       <div className="mt-3 flex gap-2">
@@ -185,7 +185,7 @@ export default function GoalsPage() {
                   </div>
                   <div className="mt-4">
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="text-slate-500">Progress</span>
+                      <span className="text-slate-500 dark:text-slate-400">Progress</span>
                       <span className="font-semibold text-slate-700">{goal.progress.toFixed(0)}%</span>
                     </div>
                     <div className="h-2.5 rounded-full bg-slate-100 overflow-hidden">
@@ -228,7 +228,7 @@ export default function GoalsPage() {
                           <button onClick={() => resolve(c, 'MODIFIED')} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50">
                             <Hammer className="h-3 w-3" /> Modify
                           </button>
-                          <button onClick={() => resolve(c, 'DISMISSED')} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-slate-500 text-xs font-semibold hover:bg-slate-100">
+                          <button onClick={() => resolve(c, 'DISMISSED')} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 text-xs font-semibold hover:bg-slate-100">
                             <X className="h-3 w-3" /> Dismiss
                           </button>
                         </div>
@@ -244,7 +244,7 @@ export default function GoalsPage() {
                 <Target className="h-4 w-4 text-emerald-600" />
                 “Should You Do This?”
               </h3>
-              <p className="text-xs text-slate-500 mb-3">Run any decision past the WealthWise advisor before you commit.</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">Run any decision past the WealthWise advisor before you commit.</p>
               <textarea
                 value={evalDecision}
                 onChange={(e) => setEvalDecision(e.target.value)}

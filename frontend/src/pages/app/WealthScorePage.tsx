@@ -68,7 +68,7 @@ export default function WealthScorePage() {
             <Gauge className="h-6 w-6 text-slate-400" />
           </div>
           <h3 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">No Wealth Score yet</h3>
-          <p className="mt-2 text-sm text-slate-500 max-w-md mx-auto">
+          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
             Add your income, expenses, assets, and liabilities to Financials and your Wealth Score will be computed automatically.
           </p>
           <Link

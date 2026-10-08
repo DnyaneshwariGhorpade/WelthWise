@@ -125,7 +125,7 @@ export default function StressTestPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-slate-50 rounded-xl p-5 text-center">
-                  <p className="text-xs uppercase tracking-wider text-slate-500">Survival Runway</p>
+                  <p className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Survival Runway</p>
                   <p className="mt-2 text-3xl font-extrabold text-slate-900 dark:text-white">
                     {Math.floor(result.monthsOfRunway)} mo
                   </p>
@@ -135,14 +135,14 @@ export default function StressTestPage() {
                 </div>
 
                 <div className="bg-slate-50 rounded-xl p-5">
-                  <p className="text-xs uppercase tracking-wider text-slate-500 flex items-center gap-1">
+                  <p className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1">
                     <AlertTriangle className="h-3 w-3" /> Weakest Point
                   </p>
                   <p className="mt-2 text-sm font-medium text-slate-800">{result.weakestPoint || '—'}</p>
                 </div>
 
                 <div className="bg-slate-50 rounded-xl p-5">
-                  <p className="text-xs uppercase tracking-wider text-slate-500 flex items-center gap-1">
+                  <p className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1">
                     <Lightbulb className="h-3 w-3" /> Recommendation
                   </p>
                   <p className="mt-2 text-sm text-slate-700 leading-relaxed">{result.recommendation || 'No recommendation.'}</p>
