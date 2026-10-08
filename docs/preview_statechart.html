@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthWise State Chart Diagram</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f9f9f9; 
+            text-align: center;
+        }
+        #diagram { 
+            margin-top: 30px; 
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <!-- PlantUML Encoder -->
+    <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+</head>
+<body>
+    <div id="diagram">
+        <p>Loading State Chart Diagram...</p>
+    </div>
+    
+    <script>
+        const umlCode = `
+@startuml
+skinparam stateBackgroundColor white
+skinparam stateBorderColor black
+skinparam linetype ortho
+
+' 1. Initial State
+[*] --> open_screen
+
+' 2. States
+state "open screen" as open_screen
+state "login" as login
+state "error message" as error_message
+
+' 3. Transitions
+open_screen --> login : continue
+login --> error_message : invalid password
+error_message --> login : retry
+
+' 4. Fork and Join (Simulating concurrent data loading upon login)
+state data_fork <<fork>>
+state data_join <<join>>
+state "load profile data" as load_profile
+state "load financial data" as load_financial
+
+login --> data_fork : valid password
+data_fork --> load_profile
+data_fork --> load_financial
+load_profile --> data_join
+load_financial --> data_join
+
+state "dashboard" as dashboard
+data_join --> dashboard : data loaded
+
+' 5. Self Transition
+dashboard --> dashboard : refresh()
+
+state "profile management" as profile_management
+state "setting saved" as setting_saved
+
+dashboard --> profile_management : manage profile
+profile_management --> setting_saved : save changes
+setting_saved --> profile_management : return
+
+state "assests" as assests
+dashboard --> assests : view
+
+state "wealth score" as wealth_score
+dashboard --> wealth_score : view
+
+' 6. Composite State (Grouping the goal logic)
+state "Goal Management System" as GoalSystem {
+    state "set goals" as set_goals
+    
+    ' 7. Decision Box
+    state conflict_diamond <<choice>>
+    
+    state "resolve conflict" as resolve_conflict
+    state "save goals" as save_goals
+    
+    [*] --> set_goals
+    set_goals --> conflict_diamond : check conflict
+    conflict_diamond --> resolve_conflict : [conflict]
+    conflict_diamond --> save_goals : [no conflict]
+    resolve_conflict --> set_goals : retry
+}
+
+dashboard --> GoalSystem : manage goals
+GoalSystem --> dashboard : back to dashboard
+
+state "feature selection" as feature_selection
+state "financial management" as financial_management
+state "report" as report
+state "ai chat" as ai_chat
+state "ai responce" as ai_responce
+
+dashboard --> feature_selection : select features
+feature_selection --> financial_management : choose features
+financial_management --> report : view summary
+report --> ai_chat : ask ai
+
+' Self Transition
+ai_chat --> ai_chat : ask again
+
+ai_chat --> ai_responce : get advice
+ai_responce --> dashboard : back to dashboard
+
+state "logout" as logout
+dashboard --> logout : logout
+
+' 8. Final State
+logout --> [*] : end session
+
+@enduml
+        `;
+        
+        const encoded = plantumlEncoder.encode(umlCode);
+        const url = 'https://www.plantuml.com/plantuml/svg/' + encoded;
+        
+        document.getElementById('diagram').innerHTML = '<img src="' + url + '" alt="UML State Chart Diagram">';
+    </script>
+</body>
+</html>

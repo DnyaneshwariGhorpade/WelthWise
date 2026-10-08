@@ -1,0 +1,679 @@
+WealthWise
+Database Schema, Core Stack & System Architecture Specification
+AI-Powered Personal Wealth Planner — Unified Financial Tracking, Explainable Scoring & Goal-Aware Advisory
+Project Property
+Specification Details
+Project Title
+WealthWise — AI-Powered Personal Wealth Planner
+Target Architecture
+Modular Monolith (Node.js / Express) on Cloud Infrastructure
+Database Engine
+MySQL 8 (Relational, InnoDB)
+Compliance Standards
+IEEE Std 830-1998, OWASP ASVS, GDPR-Equivalent Principles (OR-02)
+Security Framework
+JWT Authentication, AES-256 Encryption at Rest, HTTPS / TLS 1.3
+Version & Status
+Version 1.0 — Architecture & Implementation Baseline
+1. System Overview & Core Technical Stack
+WealthWise is a single-user-facing personal finance platform that consolidates income, expenses, assets, liabilities, and investments, then layers three AI-assisted analytical engines on top: Wealth Scoring, Stress Testing, and a Goal Conflict & Decision Advisor. The stack favors a lean, modular monolith over a distributed microservices footprint, matching the project's actual scale while keeping each engine cleanly separable for future extraction (OR-05).
+Layer / Component
+Technology Stack
+Architectural Purpose & SLA
+Frontend Web Client
+React.js, TailwindCSS, Chart.js / Recharts, Axios
+Responsive, mobile-friendly single-page dashboard for the individual User role; renders all trend charts and AI insight cards (NFR13, FR29).
+Backend API Server
+Node.js, Express.js (REST)
+Hosts all functional modules behind a single versioned REST API; validates every input before it reaches an analytical engine (NFR04).
+Primary Database
+MySQL 8 (InnoDB)
+Relational storage for accounts, financial records, goals, scores, and audit trails with enforced foreign-key integrity.
+AI Advisory Layer
+OpenAI API or Gemini API (pluggable)
+Generates plain-language score explanations, resilience recommendations, and decision verdicts over HTTPS; swappable via configuration with no code change (OR-04).
+Caching Layer
+Redis (session & score cache)
+Caches the latest computed Wealth Score and blacklists revoked JWTs so logout takes effect immediately (NFR11).
+Background Job Runner
+node-cron / Bull queue
+Re-runs stress tests and goal-conflict checks automatically whenever underlying financial data changes materially (BR-03, BR-05).
+Security & Identity
+JWT (HS256), bcrypt, HTTPS / TLS 1.3
+Stateless session authentication, salted password hashing, and enforced encrypted transport (NFR07–NFR09).
+DevOps & Hosting
+Docker, GitHub Actions, Cloud Hosting (AWS / Azure / GCP — TBD-03)
+Containerized deployment supporting horizontal scaling as user load grows (NFR15).
+2. Complete Database Schemas & Data Dictionaries
+The database is partitioned into 7 core functional modules. Every table includes complete attribute names, MySQL data types, default values, primary / foreign key relationships, and integrity constraints.
+Module 1: Identity & Account Management
+Table: users
+Central credentials, role, and account state for the platform's two actor types.
+Attribute
+Data Type
+Default
+Constraints / Notes
+user_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY. Global unique user identifier.
+full_name
+VARCHAR(150)
+NULL
+NOT NULL. Display name shown across the dashboard.
+email
+VARCHAR(255)
+NULL
+UNIQUE, NOT NULL. Normalized lowercase login email.
+password_hash
+VARCHAR(255)
+NULL
+NOT NULL. bcrypt password hash.
+role
+ENUM
+'USER'
+NOT NULL. Enum: USER, ADMIN.
+account_status
+ENUM
+'ACTIVE'
+Enum: ACTIVE, LOCKED, DEACTIVATED.
+failed_login_attempts
+TINYINT UNSIGNED
+0
+NOT NULL. Consecutive failed logins (locks at 5).
+last_login_at
+DATETIME
+NULL
+Timestamp of latest successful login.
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL. Account creation timestamp.
+updated_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL. Auto-updates on row modification.
+Module 2: Financial Data Management (Foundation)
+Table: incomes
+User-entered income sources feeding net worth and Wealth Score calculations.
+Attribute
+Data Type
+Default
+Constraints / Notes
+income_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+source
+VARCHAR(120)
+NULL
+NOT NULL. E.g., Salary, Freelance, Rental.
+amount
+DECIMAL(14,2)
+0.00
+NOT NULL. Stored as decimal to avoid rounding drift.
+frequency
+ENUM
+'MONTHLY'
+Enum: MONTHLY, QUARTERLY, YEARLY.
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Table: expenses
+User-entered recurring or one-off expenses.
+Attribute
+Data Type
+Default
+Constraints / Notes
+expense_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+category
+VARCHAR(100)
+NULL
+NOT NULL. E.g., Rent, Groceries, Insurance.
+amount
+DECIMAL(14,2)
+0.00
+NOT NULL.
+frequency
+ENUM
+'MONTHLY'
+Enum: MONTHLY, QUARTERLY, YEARLY.
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Table: assets
+Owned assets used in the net worth calculation (FR-01).
+Attribute
+Data Type
+Default
+Constraints / Notes
+asset_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+asset_type
+VARCHAR(100)
+NULL
+NOT NULL. E.g., Savings Account, Property, Vehicle.
+current_value
+DECIMAL(14,2)
+0.00
+NOT NULL.
+liquidity_level
+ENUM
+'MEDIUM'
+Enum: HIGH, MEDIUM, LOW. Feeds liquidity sub-score.
+updated_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Table: liabilities
+Outstanding debts used in the net worth calculation (FR-01).
+Attribute
+Data Type
+Default
+Constraints / Notes
+liability_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+liability_type
+VARCHAR(100)
+NULL
+NOT NULL. E.g., Credit Card, Student Loan, Mortgage.
+outstanding_amount
+DECIMAL(14,2)
+0.00
+NOT NULL.
+interest_rate
+DECIMAL(5,2)
+NULL
+Annual interest rate, where applicable.
+updated_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Table: investments
+Investment holdings including risk profile (FR-24).
+Attribute
+Data Type
+Default
+Constraints / Notes
+investment_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+investment_type
+VARCHAR(100)
+NULL
+NOT NULL. E.g., Mutual Fund, Stocks, Fixed Deposit.
+amount_invested
+DECIMAL(14,2)
+0.00
+NOT NULL.
+risk_level
+ENUM
+'MEDIUM'
+Enum: LOW, MEDIUM, HIGH.
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Module 3: Wealth Scoring Engine
+Table: wealth_scores
+Historical snapshots of the composite Wealth Score and its sub-factors (FR-01–FR-05).
+Attribute
+Data Type
+Default
+Constraints / Notes
+score_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+overall_score
+SMALLINT UNSIGNED
+NULL
+NOT NULL. Composite score, range 0–100.
+savings_subscore
+SMALLINT UNSIGNED
+NULL
+Range 0–100.
+debt_subscore
+SMALLINT UNSIGNED
+NULL
+Range 0–100.
+liquidity_subscore
+SMALLINT UNSIGNED
+NULL
+Range 0–100.
+growth_subscore
+SMALLINT UNSIGNED
+NULL
+Range 0–100.
+ai_explanation
+TEXT
+NULL
+Plain-language narrative of score drivers (FR-03).
+calculated_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL. Indexed for trend-history queries (FR-04).
+Module 4: Financial Stress Testing
+Table: stress_test_scenarios
+Predefined shock scenarios the user can select from (FR-06).
+Attribute
+Data Type
+Default
+Constraints / Notes
+scenario_id
+SMALLINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+name
+VARCHAR(100)
+NULL
+NOT NULL. E.g., Job Loss, Medical Emergency, Income Drop.
+description
+TEXT
+NULL
+Shown to the user when selecting a scenario.
+income_impact_pct
+DECIMAL(5,2)
+0.00
+Assumed percentage drop in income for the simulation.
+expense_impact_pct
+DECIMAL(5,2)
+0.00
+Assumed percentage change in expenses for the simulation.
+Table: stress_test_results
+Per-user results of a run scenario, including the AI-generated recommendation (FR-07–FR-09).
+Attribute
+Data Type
+Default
+Constraints / Notes
+result_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+scenario_id
+SMALLINT UNSIGNED
+NULL
+FOREIGN KEY (stress_test_scenarios.scenario_id).
+months_of_runway
+DECIMAL(5,1)
+NULL
+NOT NULL. Months of expenses the user could sustain.
+weakest_point
+VARCHAR(150)
+NULL
+E.g., ‘Low emergency fund’ (FR-08).
+ai_recommendation
+TEXT
+NULL
+Practical next steps generated after the run (FR-09).
+is_stale
+BOOLEAN
+FALSE
+Flips TRUE when source financial data changes materially (BR-03).
+run_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Module 5: Goal Conflict & Decision Advisor Engine
+Table: financial_goals
+User-defined savings goals with target amount, date, and priority (FR-27).
+Attribute
+Data Type
+Default
+Constraints / Notes
+goal_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+goal_name
+VARCHAR(150)
+NULL
+NOT NULL. E.g., Emergency Fund, Down Payment.
+target_amount
+DECIMAL(14,2)
+NULL
+NOT NULL.
+current_amount
+DECIMAL(14,2)
+0.00
+NOT NULL. Progress toward the target.
+target_date
+DATE
+NULL
+Used for urgency ranking (FR-11).
+priority
+TINYINT UNSIGNED
+3
+User-defined priority, 1 (highest) – 5 (lowest).
+status
+ENUM
+'ACTIVE'
+Enum: ACTIVE, COMPLETED, ARCHIVED. Not COMPLETED until fully funded (BR-02).
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+updated_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL. Re-triggers conflict detection (BR-05).
+Table: goal_conflicts
+Detected overlaps between two or more active goals competing for the same funds (FR-10–FR-13).
+Attribute
+Data Type
+Default
+Constraints / Notes
+conflict_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+goal_ids_involved
+JSON
+NULL
+NOT NULL. Array of financial_goals.goal_id values in conflict.
+recommended_plan
+JSON
+NULL
+AI-suggested adjusted contribution plan (FR-12).
+resolution_status
+ENUM
+'PENDING'
+Enum: PENDING, ACCEPTED, MODIFIED, DISMISSED (FR-13).
+detected_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Table: decision_evaluations
+Log of “Should you do this?” verdicts on user-proposed financial decisions, with supporting data (BR-04).
+Attribute
+Data Type
+Default
+Constraints / Notes
+evaluation_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+decision_description
+TEXT
+NULL
+NOT NULL. The user's proposed decision, in their own words.
+ai_verdict
+ENUM
+NULL
+NOT NULL. Enum: ADVISABLE, CAUTION, NOT_ADVISABLE.
+ai_reasoning
+TEXT
+NULL
+NOT NULL. Plain-language justification for the verdict.
+source_data_snapshot
+JSON
+NULL
+NOT NULL. Snapshot of goals / finances the verdict was based on (BR-04).
+evaluated_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Module 6: Dashboard & AI Advisor
+Table: ai_insights
+Short AI-generated observations surfaced on the dashboard insight feed (FR-28).
+Attribute
+Data Type
+Default
+Constraints / Notes
+insight_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+insight_type
+ENUM
+'GENERAL'
+Enum: SCORE_CHANGE, GOAL_CONFLICT, STRESS_ALERT, GENERAL.
+message
+TEXT
+NULL
+NOT NULL. Plain-language insight text.
+is_read
+BOOLEAN
+FALSE
+NOT NULL.
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Table: advisor_chat_messages
+Conversation history for the AI Financial Advisor chat (FR-31).
+Attribute
+Data Type
+Default
+Constraints / Notes
+message_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE CASCADE.
+sender
+ENUM
+NULL
+NOT NULL. Enum: USER, AI.
+message_text
+TEXT
+NULL
+NOT NULL.
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL.
+Module 7: Security & Audit (Supporting)
+Table: audit_logs
+Immutable record of critical financial-data operations for audit purposes (NFR-06).
+Attribute
+Data Type
+Default
+Constraints / Notes
+log_id
+BIGINT UNSIGNED
+AUTO_INCREMENT
+PRIMARY KEY.
+user_id
+BIGINT UNSIGNED
+NULL
+FOREIGN KEY (users.user_id) ON DELETE SET NULL. Nullable for system events.
+action
+VARCHAR(150)
+NULL
+NOT NULL. E.g., FINANCE_RECORD_UPDATED, LOGIN_SUCCESS.
+resource_type
+VARCHAR(100)
+NULL
+E.g., income, goal, wealth_score.
+resource_id
+BIGINT UNSIGNED
+NULL
+ID of the affected record, where applicable.
+ip_address
+VARCHAR(45)
+NULL
+Supports IPv4 and IPv6.
+created_at
+DATETIME
+CURRENT_TIMESTAMP
+NOT NULL. Indexed; rows are never updated or deleted.
+3. Database Rules, Constraints & Policies
+📌 Rule 1: Automatic Recalculation on Material Data Change (BR-03 & BR-05)
+Whenever a user creates, edits, or deletes an income, expense, asset, or liability row, the API marks related stress_test_results.is_stale = TRUE and re-queues goal-conflict detection via the background job runner, so resilience and conflict data never drifts from the user's current numbers.
+📌 Rule 2: Explainable-AI Data Binding (BR-04 & NFR-16)
+Every row written to ai_insights, stress_test_results, or decision_evaluations must carry a non-null snapshot of (or direct reference to) the source figures that produced it. The application layer rejects any AI-generated output that cannot be paired with its supporting data before it reaches the UI.
+High-Performance Indexing Strategy
+Index Identifier
+Target Table(s)
+Indexed Columns
+Index Type
+Purpose
+idx_users_email
+users
+email
+Unique B-Tree
+Fast, unique lookup during login (NFR-01).
+idx_finance_user
+incomes, expenses, assets, liabilities, investments
+user_id
+B-Tree
+Speeds up per-user financial data retrieval.
+idx_wealth_scores_trend
+wealth_scores
+user_id, calculated_at DESC
+Composite B-Tree
+Accelerates trend-history chart queries (FR-04).
+idx_stress_results_latest
+stress_test_results
+user_id, run_at DESC
+Composite B-Tree
+Quick retrieval of the latest result per user.
+idx_goals_user_status
+financial_goals
+user_id, status
+Composite B-Tree
+Filters active goals for conflict detection (FR-10).
+idx_conflicts_status
+goal_conflicts
+user_id, resolution_status
+Composite B-Tree
+Surfaces pending conflicts on the Goals page.
+idx_audit_action_date
+audit_logs
+action, created_at DESC
+Composite B-Tree
+Supports audit and compliance searches (NFR-06).
+4. Architect's Design Notes
+4.1 Financial Input Validation & Data Integrity (NFR-04)
+• Server-side validation rejects non-numeric, negative, or malformed amounts before they reach any analytical engine.
+• All monetary columns use DECIMAL(14,2) rather than FLOAT, preventing floating-point rounding drift in net-worth and score math.
+4.2 Stateless JWT Security & Session Expiry (NFR-07, NFR-11)
+• JWTs carry a short expiry claim; a Redis-backed blacklist immediately invalidates a token on logout, even before natural expiry.
+• Inactive sessions are force-expired after 15 minutes, enforced server-side on the next incoming request rather than trusted to the client alone.
+4.3 Swappable AI Provider Abstraction (OR-04)
+• All AI calls pass through a single internal ai-provider adapter interface rather than calling OpenAI or Gemini SDKs directly.
+• Switching providers is a configuration-file change, isolating the rest of the system from vendor-specific request and response formats.
+4.4 Explainability by Design (BR-04, NFR-16)
+• Every score, alert, and recommendation is stored alongside the data snapshot that produced it, so the UI can always render “here's the data behind this” next to any AI-generated text.
+• This applies uniformly to wealth_scores, stress_test_results, goal_conflicts, and decision_evaluations.
+4.5 Modular Engine Boundaries for Future Reuse (NFR-14, OR-05)
+• The Wealth Scoring, Stress Testing, and Goal Conflict engines are implemented as isolated backend modules with their own route, service, and table boundaries.
+• Any one engine can later be extracted into an independent service without touching the others (OR-05).
+5. Complete Project Folder Structure
+wealthwise/
+├── .github/
+│   └── workflows/
+│       ├── ci.yml                       # Lint, test, and build on every push
+│       └── cd-deploy.yml                # Deploy to cloud host on merge to main
+├── docker/
+│   ├── docker-compose.yml           # Local dev: API + MySQL + Redis
+│   ├── Dockerfile.api
+│   └── Dockerfile.frontend
+├── database/
+│   ├── migrations/
+│   │   └── V1__init_wealthwise_schema.sql   # 14 tables, enums & indexes
+│   └── seeds/
+│       └── dev_seed_data.sql            # Sample scenarios & demo user
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   │   ├── db.js                    # MySQL connection pool
+│   │   │   └── ai-provider.js           # Swappable OpenAI / Gemini adapter (OR-04)
+│   │   ├── modules/
+│   │   │   ├── auth/                    # Registration, login, JWT, password reset
+│   │   │   ├── finances/                # Income, expense, asset, liability, investment CRUD
+│   │   │   ├── wealth-score/            # Scoring engine & trend history
+│   │   │   ├── stress-test/             # Scenario runner & resilience recommendations
+│   │   │   ├── goals/                   # Goal CRUD, conflict detection & decision advisor
+│   │   │   ├── advisor/                 # AI chat endpoint
+│   │   │   └── dashboard/               # Aggregated summary & insights feed
+│   │   ├── jobs/
+│   │   │   └── recalculate.job.js       # Re-runs stress test & conflicts (BR-03, BR-05)
+│   │   ├── middleware/
+│   │   │   ├── auth.middleware.js       # JWT verification & role guard
+│   │   │   └── validate.middleware.js   # Input validation (NFR-04)
+│   │   ├── common/
+│   │   │   ├── errors/
+│   │   │   └── audit/                   # Audit log writer
+│   │   ├── app.js
+│   │   └── server.js
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/                  # Cards, charts, shared UI
+│   │   ├── context/                     # AuthContext
+│   │   ├── hooks/                       # useFinances, useGoals, useWealthScore
+│   │   ├── pages/
+│   │   │   ├── dashboard/
+│   │   │   ├── finances/
+│   │   │   ├── wealth-score/
+│   │   │   ├── stress-test/
+│   │   │   ├── goals/
+│   │   │   ├── advisor/
+│   │   │   └── settings/
+│   │   ├── services/                    # Axios API clients
+│   │   ├── App.tsx
+│   │   └── index.css
+│   └── vite.config.ts
+├── docs/
+│   ├── WealthWise_Database_Schema_and_System_Architecture.docx
+│   └── WealthWise_Role_and_Page_Wise_Feature_Map.docx
+└── README.md

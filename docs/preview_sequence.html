@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthWise Sequence Diagram</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f9f9f9; 
+            text-align: center;
+        }
+        #diagram { 
+            margin-top: 30px; 
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <!-- PlantUML Encoder -->
+    <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+</head>
+<body>
+    <div id="diagram">
+        <p>Loading Sequence Diagram...</p>
+    </div>
+    
+    <script>
+        const umlCode = `
+@startuml
+skinparam style strictuml
+skinparam monochrome true
+skinparam maxMessageSize 250
+skinparam ParticipantPadding 20
+
+' [CONCEPT] Objects / Participants & Lifelines
+participant "User" as user
+participant "System" as sys
+participant "Database" as db
+participant "AI Service" as ai
+participant "Admin" as admin
+
+group 1) User Registration & Authentication
+    ' [CONCEPT] Synchronous Message & Activation Bar
+    user -> sys : 1.1 Login(email, password)
+    activate sys
+    
+    sys -> db : 1.1.1 Query user credentials & hash
+    activate db
+    ' [CONCEPT] Return Message
+    db --> sys : 1.1.2 Credentials verified & status active
+    deactivate db
+    
+    ' [CONCEPT] Asynchronous Message (Non-blocking audit log)
+    sys ->> admin : 1.3 Audit log authentication event
+    activate admin
+    admin --> sys : 1.3.1 Audit acknowledged
+    deactivate admin
+    
+    sys --> user : 1.2 Issue JWT token & display dashboard
+    deactivate sys
+end
+
+group 2) Financial Data Management
+    user -> sys : 2.1 Input financial records (Income, Asset, Debt)
+    activate sys
+    
+    ' [CONCEPT] Reflexive Message
+    sys -> sys : 2.1.1 Validate bounds (amount >= 0)
+    activate sys
+    deactivate sys
+    
+    sys -> db : 2.1.2 Save financial records & audit entry
+    activate db
+    db --> sys : 2.1.3 Records committed & snapshot updated
+    deactivate db
+    
+    sys --> user : 2.2 Return 201 Created & Updated Net Worth
+    deactivate sys
+end
+
+group 3) Wealth Scoring & AI Explanation
+    user -> sys : 3.1 Request Wealth Score & Breakdown
+    activate sys
+    
+    sys -> db : 3.1.1 Query financial snapshot (savings, debts, assets)
+    activate db
+    db --> sys : 3.1.2 Return financial data snapshot
+    deactivate db
+    
+    sys -> ai : 3.2 Request plain-language explanation of sub-scores
+    activate ai
+    ai --> sys : 3.2.1 Return score driver narrative
+    deactivate ai
+    
+    sys --> user : 3.3 Render Wealth Score gauge, sub-scores & AI explanation
+    deactivate sys
+end
+
+group 4) Financial Stress Testing
+    user -> sys : 4.1 Run stress test scenario (e.g., Job Loss - 100% income)
+    activate sys
+    
+    sys -> db : 4.1.1 Fetch liquid assets & monthly burn liabilities
+    activate db
+    db --> sys : 4.1.2 Return balance sheet data
+    deactivate db
+    
+    sys -> ai : 4.2 Request resilience steps for weakest financial point
+    activate ai
+    ai --> sys : 4.2.1 Return targeted emergency action plan
+    deactivate ai
+    
+    sys --> user : 4.3 Display runway months, weak point & resilience advice
+    deactivate sys
+end
+
+group 5) Goal Setting & Conflict Detection
+    user -> sys : 5.1 Create financial goal (Amount, Date, Priority)
+    activate sys
+    
+    ' [CONCEPT] Create Message (Dynamically spawning an object on the timeline)
+    create "g:Goal" as goal
+    sys -> goal : <<create>> new Goal()
+    activate goal
+    
+    sys -> db : 5.1.1 Save goal & check overlapping timelines
+    activate db
+    db --> sys : 5.1.2 Conflict detected (competing target dates)
+    deactivate db
+    
+    sys -> ai : 5.2 Request rebalanced contribution plan (BP-35)
+    activate ai
+    ai --> sys : 5.2.1 Return adjusted monthly contribution schedule
+    deactivate ai
+    
+    sys --> user : 5.3 Surface Goal Conflict Warning & AI Adjustment Plan
+    deactivate sys
+end
+
+group 6) Decision Evaluation (Should You Do This?)
+    user -> sys : 6.1 Submit proposed decision (e.g., $15k car purchase)
+    activate sys
+    
+    sys -> db : 6.1.1 Compile live financial profile & goal commitments
+    activate db
+    db --> sys : 6.1.2 Return financial state snapshot
+    deactivate db
+    
+    sys -> ai : 6.2 Evaluate transaction against budget & goals
+    activate ai
+    ai --> sys : 6.2.1 Return verdict (ADVISABLE/CAUTION) & rationale
+    deactivate ai
+    
+    ' [CONCEPT] Destroy Message (Terminating the dynamic Goal object created in Step 5)
+    sys -> goal : <<destroy>> evaluation complete
+    destroy goal
+    
+    sys --> user : 6.3 Display verdict badge, trade-offs & justification
+    deactivate sys
+end
+
+group 7) AI Advisor Interactive Chat
+    user -> sys : 7.1 Send question: "Why did my score drop this month?"
+    activate sys
+    
+    sys -> db : 7.1.1 Fetch recent financial changes & goal status
+    activate db
+    db --> sys : 7.1.2 Return grounded personal financial context
+    deactivate db
+    
+    sys -> ai : 7.2 Send prompt with financial ground truth
+    activate ai
+    ai --> sys : 7.2.1 Generate personalized advice narrative
+    deactivate ai
+    
+    sys --> user : 7.3 Render chat response with informational disclaimer
+    deactivate sys
+end
+
+group 8) Platform Admin & AI Configuration
+    admin -> sys : 8.1 Switch AI Provider (Select: Gemini 1.5 Pro)
+    activate sys
+    
+    sys -> ai : 8.1.1 Health check ping to new endpoint
+    activate ai
+    ai --> sys : 8.1.2 200 OK (Connection verified)
+    deactivate ai
+    
+    sys -> db : 8.2 UPDATE system_configs & write audit log
+    activate db
+    db --> sys : 8.2.1 Config updated & audit logged
+    deactivate db
+    
+    sys --> admin : 8.3 200 OK & Updated active provider badge
+    deactivate sys
+end
+
+@enduml
+        `;
+        
+        const encoded = plantumlEncoder.encode(umlCode);
+        const url = 'https://www.plantuml.com/plantuml/svg/' + encoded;
+        
+        document.getElementById('diagram').innerHTML = '<img src="' + url + '" alt="UML Sequence Diagram">';
+    </script>
+</body>
+</html>

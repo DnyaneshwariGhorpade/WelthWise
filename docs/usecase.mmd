@@ -1,0 +1,89 @@
+graph LR
+    %% Actors (using FontAwesome icons to represent UML actors in Mermaid)
+    User(("fa:fa-user User"))
+    EmailService(("fa:fa-envelope Email Service"))
+    AIService(("fa:fa-robot AI Service"))
+    Admin(("fa:fa-user-tie Admin"))
+
+    %% System Boundary
+    subgraph WealthWise_System[WealthWise System]
+        %% Account & Data Management
+        UC_Register([Register])
+        UC_Login([Login])
+        UC_Profile([Manage Profile & Settings])
+        UC_ResetPwd([Reset Password])
+        UC_SendEmail([Send Reset Email])
+        
+        UC_IncExp([Manage Income & Expenses])
+        UC_AssLia([Manage Assets & Liabilities])
+        UC_Invest([Manage Investment Holdings])
+        
+        %% Core Engines (MSP)
+        UC_WealthScore([View Wealth Score & Trends])
+        UC_StressTest([Run Stress Test])
+        UC_Goals([Manage Financial Goals])
+        UC_GoalConflict([Detect Goal Conflicts])
+        UC_Decision([Analyze Decision Impact])
+        UC_Simulate([Simulate Future Scenarios])
+        UC_ReversePlan([Run Reverse Planning])
+        
+        %% Dashboard & Insights
+        UC_Dashboard([View Dashboard])
+        UC_Report([Generate Financial Report])
+        UC_Chat([Chat with AI Advisor])
+        UC_AI_Insights([Generate AI Insights])
+        
+        %% Admin Functions
+        UC_ManageUsers([Manage Users])
+        UC_Usage([View Platform Usage])
+        UC_ConfigAI([Configure AI Provider])
+        UC_Audit([View Audit Log])
+    end
+
+    %% User Interactions
+    User --- UC_Register
+    User --- UC_Login
+    User --- UC_Profile
+    User --- UC_ResetPwd
+    User --- UC_IncExp
+    User --- UC_AssLia
+    User --- UC_Invest
+    User --- UC_WealthScore
+    User --- UC_StressTest
+    User --- UC_Goals
+    User --- UC_GoalConflict
+    User --- UC_Decision
+    User --- UC_Simulate
+    User --- UC_Dashboard
+    User --- UC_Report
+    User --- UC_Chat
+
+    %% Includes & Extends
+    UC_ResetPwd -.->|«include»| UC_SendEmail
+    
+    UC_WealthScore -.->|«include»| UC_AI_Insights
+    UC_StressTest -.->|«include»| UC_AI_Insights
+    UC_GoalConflict -.->|«include»| UC_AI_Insights
+    UC_Decision -.->|«include»| UC_AI_Insights
+    UC_Chat -.->|«include»| UC_AI_Insights
+    
+    UC_ReversePlan -.->|«extend»| UC_Simulate
+
+    %% Secondary / External Actor Interactions
+    UC_SendEmail --- EmailService
+    UC_AI_Insights --- AIService
+    UC_ConfigAI --- AIService
+    
+    %% Admin Interactions
+    UC_ManageUsers --- Admin
+    UC_Usage --- Admin
+    UC_ConfigAI --- Admin
+    UC_Audit --- Admin
+    
+    %% Diagram Styling
+    classDef default fill:#FFFFFF,stroke:#000000,stroke-width:2px,color:#000000;
+    classDef actor fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#000000;
+    classDef usecase fill:#FFFFFF,stroke:#000000,stroke-width:2px,color:#000000;
+    
+    class User,EmailService,AIService,Admin actor;
+    class UC_Register,UC_Login,UC_Profile,UC_ResetPwd,UC_SendEmail,UC_IncExp,UC_AssLia,UC_Invest,UC_WealthScore,UC_StressTest,UC_Goals,UC_GoalConflict,UC_Decision,UC_Simulate,UC_ReversePlan,UC_Dashboard,UC_Report,UC_Chat,UC_AI_Insights,UC_ManageUsers,UC_Usage,UC_ConfigAI,UC_Audit usecase;

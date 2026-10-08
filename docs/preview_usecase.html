@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthWise Use Case Diagram (UML Standard)</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f9f9f9; 
+            text-align: center;
+        }
+        #diagram { 
+            margin-top: 30px; 
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <!-- PlantUML Encoder for browser -->
+    <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+</head>
+<body>
+    <div id="diagram">
+        <p>Loading UML diagram...</p>
+    </div>
+    
+    <script>
+        // Strict UML Definition using PlantUML syntax
+        const umlCode = `
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam linetype polyline
+skinparam actorBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam actorBorderColor black
+skinparam usecaseBorderColor black
+
+' Primary Actor
+actor "User" as user
+
+' Secondary Actors
+actor "Email Service" as email
+actor "AI Service" as ai
+actor "Admin" as admin
+
+rectangle "WealthWise System" {
+  ' Base Use Cases
+  usecase "Register / Login" as UC1
+  usecase "Manage Profile & Settings" as UC_Profile
+  usecase "Reset Password" as UC_ResetPwd
+  usecase "Manage Financial Data" as UC2
+  
+  ' Specialized Use Cases (For Generalization)
+  usecase "Manage Income & Expenses" as UC_IncExp
+  usecase "Manage Assets & Liabilities" as UC_AssLia
+  usecase "Manage Investment Holdings" as UC_Invest
+
+  usecase "View Wealth Score & Trends" as UC3
+  usecase "Run Stress Test" as UC4
+  usecase "Manage Financial Goals" as UC5
+  usecase "Detect Goal Conflicts" as UC6
+  usecase "Simulate Future Scenarios" as UC7
+  usecase "Analyze Decision Impact" as UC8
+  usecase "View Dashboard & Reports" as UC9
+  usecase "Chat with AI Advisor" as UC10
+
+  ' Utility Use Cases
+  usecase "Calculate Net Worth" as UC_NetWorth
+  usecase "Generate AI Insights" as UC_AI
+  usecase "Send Reset Email" as UC_Email
+  usecase "Run Reverse Planning" as UC_RevPlan
+  
+  ' Admin Use Cases
+  usecase "Manage Users" as A1
+  usecase "View Platform Usage" as A2
+  usecase "Configure AI Provider" as A3
+  usecase "View Audit Log" as A4
+}
+
+' Primary Actor Associations
+user -- UC1
+user -- UC_Profile
+user -- UC_ResetPwd
+user -- UC2
+user -- UC3
+user -- UC4
+user -- UC5
+user -- UC6
+user -- UC7
+user -- UC8
+user -- UC9
+user -- UC10
+
+' Generalization (Solid line with hollow arrow)
+UC_IncExp --|> UC2
+UC_AssLia --|> UC2
+UC_Invest --|> UC2
+
+' Uses Relationship (Solid line with hollow arrow + <<uses>>)
+UC3 -|> UC_NetWorth : <<uses>>
+UC9 -|> UC_NetWorth : <<uses>>
+
+' Include Relationships (Dotted line with arrow)
+UC_ResetPwd ..> UC_Email : <<include>>
+UC3 ..> UC_AI : <<include>>
+UC4 ..> UC_AI : <<include>>
+UC6 ..> UC_AI : <<include>>
+UC8 ..> UC_AI : <<include>>
+UC10 ..> UC_AI : <<include>>
+
+' Extend Relationship (Dotted line with arrow)
+UC_RevPlan ..> UC7 : <<extend>>
+
+' Secondary Actor Associations
+UC_Email -- email
+UC_AI -- ai
+
+' Admin Associations
+admin -- A1
+admin -- A2
+admin -- A3
+admin -- A4
+
+A3 -- ai
+@enduml
+        `;
+        
+        // Encode and render via PlantUML Server
+        const encoded = plantumlEncoder.encode(umlCode);
+        const url = 'https://www.plantuml.com/plantuml/svg/' + encoded;
+        
+        document.getElementById('diagram').innerHTML = '<img src="' + url + '" alt="UML Use Case Diagram">';
+    </script>
+</body>
+</html>

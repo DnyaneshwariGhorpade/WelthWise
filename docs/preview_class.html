@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthWise Class Diagram</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f9f9f9; 
+            text-align: center;
+        }
+        #diagram { 
+            margin-top: 30px; 
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <!-- PlantUML Encoder for browser -->
+    <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+</head>
+<body>
+    <div id="diagram">
+        <p>Loading Class Diagram...</p>
+    </div>
+    
+    <script>
+        const umlCode = `
+@startuml
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam classBackgroundColor white
+skinparam classBorderColor black
+hide circle
+
+class User {
+  - id: int
+  - name: String
+  - email: String
+  - password: String
+  - role: Role
+  - isActive: boolean
+  - createdAt: DateTime
+  - updatedAt: DateTime
+  + register()
+  + login()
+  + resetPassword()
+  + updateProfile()
+}
+
+class Admin {
+  + manageusers()
+  + toggleuserstatus()
+  + viewaudit()
+  + viewUsageStatus()
+}
+
+' Generalization Relationship
+Admin --|> User : +is a
+
+class AuditLog {
+  - id: int
+  - action: ActionType
+  - entity: String
+  - entityId: int
+  - createdAt: DateTime
+  + log()
+}
+
+' Composition Relationship
+User *-- AuditLog
+
+class AIConfig {
+  - id: int
+  - provider: AIProvider
+  - apiKeyEncrypted: String
+  - updatedAt: DateTime
+  + switchProvider()
+}
+
+' Aggregation Relationship
+Admin o-- AIConfig
+
+class Income {
+  + id: int
+  + source: String
+  - amount: Decimal
+  - frequency: Frequency
+  - dateReceived: Date
+  + create()
+  + update()
+  + delete()
+}
+
+class Expense {
+  + id: int
+  + category: String
+  + amount: Decimal
+  - dateSpent: Date
+  - notes: String
+  + create()
+  + update()
+  + delete()
+}
+
+class Asset {
+  + id: int
+  + name: String
+  + type: AssetType
+  + value: Decimal
+  + dateAquired: Date
+  + create()
+  + update()
+  + delete()
+}
+
+class Liability {
+  + id: int
+  + name: String
+  + type: LiabilityType
+  + amount: Decimal
+  + interestRate: Decimal
+  + dueDate: Date
+  + create()
+  + update()
+  + delete()
+}
+
+class Investment {
+  + id: int
+  + type: InvestmentType
+  + amountInvested: Decimal
+  - currentValue: Decimal
+  - riskLevel: RiskLevel
+  - purchaseDate: Date
+  + create()
+  + update()
+  + delete()
+}
+
+class Goal {
+  - id: int
+  - name: String
+  - targetAmount: Decimal
+  - currentAmount: Decimal
+  - targetDate: Date
+  - priority: Priority
+  - status: GoalStatus
+  + checkConflict()
+  + updateProgress()
+  + markComplete()
+}
+
+class GoalConflict {
+  - id: int
+  - aiRecommendation: String
+  - resolutionStatus: ResolutionStatus
+  - detectedAt: DateTime
+  + detect()
+  + resolve()
+}
+
+' Aggregation Relationship
+Goal o-- GoalConflict
+
+class WealthScore {
+  - id: int
+  - score: Decimal
+  - netWorth: Decimal
+  - savingsFactor: Decimal
+  - debtFactor: Decimal
+  - liquidityFactor: Decimal
+  - growthFactor: Decimal
+  - aiExplanation: String
+  - calculatedAt: DateTime
+  + calculate()
+  + explain()
+}
+
+class StressTest {
+  - id: int
+  - scenarioType: ScenarioType
+  - monthsSustainable: Decimal
+  - weakPoint: String
+  - aiRecommendation: String
+  - runAt: DateTime
+  + run()
+  + identifyWeakPoint()
+}
+
+' Directed Association Relationships
+User --> Income : +owns
+User --> Expense : +owns
+User --> Asset : +owns
+User --> Liability : +owns
+User --> Investment : +owns
+User --> Goal : +sets
+User --> WealthScore : +has
+User --> StressTest : +runs
+
+' Dependency Relationships
+WealthScore ..> AIConfig : <<uses>>
+StressTest ..> AIConfig : <<uses>>
+
+@enduml
+        `;
+        
+        const encoded = plantumlEncoder.encode(umlCode);
+        const url = 'https://www.plantuml.com/plantuml/svg/' + encoded;
+        
+        document.getElementById('diagram').innerHTML = '<img src="' + url + '" alt="UML Class Diagram">';
+    </script>
+</body>
+</html>
