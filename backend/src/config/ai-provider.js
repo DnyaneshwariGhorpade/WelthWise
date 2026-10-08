@@ -14,7 +14,7 @@ async function callOpenAI(prompt) {
   if (!apiKey) throw new Error('OPENAI_API_KEY is not configured');
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 10000);
+  const timeout = setTimeout(() => controller.abort(), 20000);
 
   try {
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -27,7 +27,7 @@ async function callOpenAI(prompt) {
         model: OPENAI_MODEL,
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.4,
-        max_tokens: 1024,
+        max_tokens: 4096,
       }),
       signal: controller.signal,
     });
@@ -54,7 +54,7 @@ async function callGemini(prompt) {
   for (const model of GEMINI_CANDIDATE_MODELS) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 6000);
+    const timeout = setTimeout(() => controller.abort(), 20000);
 
     try {
       const res = await fetch(url, {
@@ -65,7 +65,7 @@ async function callGemini(prompt) {
         },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.4, maxOutputTokens: 1024 },
+          generationConfig: { temperature: 0.4, maxOutputTokens: 4096 },
         }),
         signal: controller.signal,
       });
