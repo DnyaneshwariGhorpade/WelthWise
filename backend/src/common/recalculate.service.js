@@ -12,6 +12,11 @@ async function insertInsight(userId, type, message) {
 async function recalculateUser(userId) {
   const agg = await getAggregates(userId);
 
+  if (!agg.hasData) {
+    await pool.query('DELETE FROM wealth_scores WHERE user_id = $1', [userId]);
+    return;
+  }
+
   const prev = await pool.query(
     'SELECT overall_score FROM wealth_scores WHERE user_id = $1 ORDER BY calculated_at DESC LIMIT 1',
     [userId]

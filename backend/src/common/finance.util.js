@@ -32,7 +32,15 @@ async function getAggregates(userId) {
     .reduce((s, r) => s + Number(r.current_value), 0);
   const totalInvestments = investments.rows.reduce((s, r) => s + Number(r.amount_invested), 0);
 
+  const hasData =
+    (incomes.rowCount || 0) > 0 ||
+    (expenses.rowCount || 0) > 0 ||
+    (assets.rowCount || 0) > 0 ||
+    (liabilities.rowCount || 0) > 0 ||
+    (investments.rowCount || 0) > 0;
+
   return {
+    hasData,
     monthlyIncome,
     monthlyExpense,
     totalAssets,

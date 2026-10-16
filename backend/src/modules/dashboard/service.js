@@ -4,11 +4,17 @@ const { getAggregates } = require('../../common/finance.util');
 async function summary(userId) {
   const agg = await getAggregates(userId);
 
+  if (!agg.hasData) {
+    await pool.query('DELETE FROM wealth_scores WHERE user_id = $1', [userId]);
+  }
+
   const [scoreResult, goalsResult, conflictResult] = await Promise.all([
-    pool.query(
-      'SELECT overall_score FROM wealth_scores WHERE user_id = $1 ORDER BY calculated_at DESC LIMIT 1',
-      [userId]
-    ),
+    agg.hasData
+      ? pool.query(
+          'SELECT overall_score FROM wealth_scores WHERE user_id = $1 ORDER BY calculated_at DESC LIMIT 1',
+          [userId]
+        )
+      : Promise.resolve({ rows: [] }),
     pool.query(
       "SELECT COUNT(*)::int AS n FROM financial_goals WHERE user_id = $1 AND status = 'ACTIVE'",
       [userId]
@@ -24,13 +30,18 @@ async function summary(userId) {
     monthlyIncome: Math.round(agg.monthlyIncome * 100) / 100,
     monthlyExpense: Math.round(agg.monthlyExpense * 100) / 100,
     liquidAssets: Math.round(agg.liquidAssets * 100) / 100,
-    wealthScore: scoreResult.rows[0]?.overall_score ?? null,
+    wealthScore: agg.hasData ? (scoreResult.rows[0]?.overall_score ?? null) : null,
     activeGoals: goalsResult.rows[0].n,
     pendingConflicts: conflictResult.rows[0].n,
   };
 }
 
 async function trends(userId) {
+  const agg = await getAggregates(userId);
+  if (!agg.hasData) {
+    return { snapshotTrend: [], scoreTrend: [] };
+  }
+
   const snapshots = await pool.query(
     `SELECT monthly_income, monthly_expense, net_worth, taken_at FROM financial_snapshots
      WHERE user_id = $1 ORDER BY taken_at DESC LIMIT 12`,

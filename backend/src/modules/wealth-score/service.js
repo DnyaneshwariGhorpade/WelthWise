@@ -46,6 +46,12 @@ function buildExplanation(agg, sub) {
 }
 
 async function getLatest(userId) {
+  const agg = await getAggregates(userId);
+  if (!agg.hasData) {
+    await pool.query('DELETE FROM wealth_scores WHERE user_id = $1', [userId]);
+    return null;
+  }
+
   const result = await pool.query(
     `SELECT score_id, overall_score, savings_subscore, debt_subscore, liquidity_subscore, growth_subscore, ai_explanation, calculated_at
      FROM wealth_scores WHERE user_id = $1 ORDER BY calculated_at DESC LIMIT 1`,
@@ -66,6 +72,9 @@ async function getLatest(userId) {
 }
 
 async function getHistory(userId, limit = 12) {
+  const agg = await getAggregates(userId);
+  if (!agg.hasData) return [];
+
   const result = await pool.query(
     `SELECT overall_score, calculated_at FROM wealth_scores
      WHERE user_id = $1 ORDER BY calculated_at DESC LIMIT $2`,
@@ -76,14 +85,20 @@ async function getHistory(userId, limit = 12) {
 
 async function explainLatest(userId) {
   const latest = await getLatest(userId);
-  if (!latest) throw new ApiError(404, 'No Wealth Score has been calculated yet');
+  if (!latest) throw new ApiError(404, 'No Wealth Score has been calculated yet. Please add financial data in Finances first.');
   return { explanation: latest.explanation };
 }
 
 async function ensureFresh(userId) {
+  const agg = await getAggregates(userId);
+  if (!agg.hasData) {
+    await pool.query('DELETE FROM wealth_scores WHERE user_id = $1', [userId]);
+    return null;
+  }
+
   const latest = await getLatest(userId);
   if (latest) return latest;
-  const agg = await getAggregates(userId);
+
   const score = computeScore(agg);
   await pool.query(
     `INSERT INTO wealth_scores (user_id, overall_score, savings_subscore, debt_subscore, liquidity_subscore, growth_subscore, ai_explanation)
