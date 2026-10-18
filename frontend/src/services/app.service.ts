@@ -129,11 +129,28 @@ export interface DecisionEvaluation {
   snapshot: Record<string, unknown>;
 }
 
+export interface AdvisorComparison {
+  modelA: {
+    name: string;
+    focus: string;
+    perspective: string;
+  };
+  modelB: {
+    name: string;
+    focus: string;
+    perspective: string;
+  };
+  consensus: string[];
+  differences: string[];
+  finalSuggestion: string;
+}
+
 export interface AdvisorMessage {
   message: string;
   messageId: number;
   createdAt: string;
-  generatedByAI: boolean;
+  generatedByAI?: boolean;
+  comparison?: AdvisorComparison;
 }
 
 export interface AdvisorHistoryMessage {
@@ -141,6 +158,7 @@ export interface AdvisorHistoryMessage {
   sender: 'USER' | 'AI';
   text: string;
   createdAt: string;
+  comparison?: AdvisorComparison;
 }
 
 // ---------- Dashboard ----------
@@ -375,8 +393,8 @@ export const getAiConfig = async () => {
   return data.config;
 };
 
-export const updateAiConfig = async (provider: string) => {
-  const { data } = await api.put<{ currentProvider: string; apiKeyConfigured: boolean; message: string }>('/admin/ai-config', { provider });
+export const updateAiConfig = async (provider: string, apiKey?: string) => {
+  const { data } = await api.put<{ currentProvider: string; apiKeyConfigured: boolean; message: string }>('/admin/ai-config', { provider, apiKey });
   return data;
 };
 

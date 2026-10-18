@@ -137,7 +137,7 @@ async function getAIConfig() {
   };
 }
 
-async function updateAIConfig(provider) {
+async function updateAIConfig(provider, apiKey = null) {
   if (!VALID_PROVIDERS.includes(provider)) {
     throw new ApiError(422, `Invalid provider. Must be one of: ${VALID_PROVIDERS.join(', ')}`);
   }
@@ -145,12 +145,36 @@ async function updateAIConfig(provider) {
   process.env.AI_PROVIDER = provider;
 
   const keyEnvVar = provider === 'gemini' ? 'GEMINI_API_KEY' : 'OPENAI_API_KEY';
-  const apiKey = process.env[keyEnvVar];
+  if (apiKey && typeof apiKey === 'string' && apiKey.trim()) {
+    const cleanKey = apiKey.trim();
+    process.env[keyEnvVar] = cleanKey;
+
+    const fs = require('fs');
+    const path = require('path');
+    const envPath = path.resolve(__dirname, '../../../.env');
+    try {
+      if (fs.existsSync(envPath)) {
+        let envContent = fs.readFileSync(envPath, 'utf8');
+        const regex = new RegExp(`^${keyEnvVar}=.*$`, 'm');
+        if (regex.test(envContent)) {
+          envContent = envContent.replace(regex, `${keyEnvVar}=${cleanKey}`);
+        } else {
+          envContent += `\n${keyEnvVar}=${cleanKey}\n`;
+        }
+        fs.writeFileSync(envPath, envContent, 'utf8');
+      }
+    } catch (e) {
+      console.warn('Could not update .env file:', e.message);
+    }
+  }
+
+  const currentKey = process.env[keyEnvVar];
 
   return {
     currentProvider: provider,
-    apiKeyConfigured: !!apiKey,
-    message: `AI provider switched to ${provider}`,
+    apiKeyConfigured: !!currentKey,
+    apiKeyMasked: maskKey(currentKey),
+    message: apiKey ? `API key updated and provider set to ${provider}` : `AI provider switched to ${provider}`,
   };
 }
 

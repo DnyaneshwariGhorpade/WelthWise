@@ -37,8 +37,8 @@ async function getAIConfig(req, res, next) {
 
 async function updateAIConfig(req, res, next) {
   try {
-    const { provider } = req.body;
-    const config = await adminService.updateAIConfig(provider);
+    const { provider, apiKey } = req.body;
+    const config = await adminService.updateAIConfig(provider, apiKey);
     await writeAuditLog({
       userId: req.user.sub,
       action: 'AI_PROVIDER_SWITCHED',

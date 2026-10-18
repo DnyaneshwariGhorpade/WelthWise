@@ -3,10 +3,9 @@
 // OpenAI / Gemini is a configuration change, not a code change.
 const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
 const GEMINI_CANDIDATE_MODELS = [
-  process.env.GEMINI_MODEL || 'gemini-3.6-flash',
-  'gemini-2.5-pro',
-  'gemini-3.5-flash',
-  'gemini-flash-latest'
+  process.env.GEMINI_MODEL || 'gemini-2.0-flash',
+  'gemini-1.5-flash',
+  'gemini-1.5-pro'
 ];
 
 async function callOpenAI(prompt) {

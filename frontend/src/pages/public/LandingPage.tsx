@@ -670,9 +670,9 @@ export default function LandingPage() {
             </div>
 
             <div className="flex items-center gap-6 text-[#7A746B]">
-              <a href="#" className="hover:text-[#121212] transition-colors">Security Architecture</a>
-              <a href="#" className="hover:text-[#121212] transition-colors">Privacy Charter</a>
-              <a href="#" className="hover:text-[#121212] transition-colors">Terms of Service</a>
+              <a href="#security" className="hover:text-[#121212] transition-colors">Security Architecture</a>
+              <Link to="/privacy" className="hover:text-[#121212] transition-colors">Privacy Charter</Link>
+              <Link to="/terms" className="hover:text-[#121212] transition-colors">Terms of Service</Link>
             </div>
           </div>
 

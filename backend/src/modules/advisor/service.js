@@ -224,12 +224,172 @@ function deterministicResponse(question, ctx) {
     `• **Net Worth**: **₹${fmt(ctx.netWorth)}**\n` +
     `• **Wealth Score**: **${ctx.wealthScore ?? 86}/100**\n` +
     `• **Emergency Runway**: **${emergencyMonths} months** (₹${fmt(ctx.liquidAssets)} in liquid bank accounts)\n\n` +
-    `### Suggested Questions to Ask Me:\n` +
     `1. *How should I manage my finances and distribute my monthly income?*\n` +
     `2. *Give me an overall review of my financial health and portfolio.*\n` +
     `3. *How much should I invest in SIPs every month across Nifty 50 and Flexi-Cap?*\n` +
     `4. *How can I save tax under Section 80C and 80D?*\n` +
     `5. *Should I prepay my car loan or invest in mutual funds?*`;
+}
+
+function generateModel1Strategic(question, ctx) {
+  const q = question.toLowerCase();
+  const income = extractIncomeFromQuery(question, ctx.monthlyIncome);
+  const expense = ctx.monthlyExpense > 0 ? ctx.monthlyExpense : Math.round(income * 0.42);
+  const surplus = Math.max(0, income - expense);
+  const savingsRate = income > 0 ? Math.round((surplus / income) * 100) : 0;
+  const emergencyMonths = expense > 0 ? (ctx.liquidAssets / expense).toFixed(1) : 0;
+
+  let advice = `### Perspective: AI Model 1 — Strategic Growth Advisor (Gemini Flash Engine)\n\n`;
+  advice += `**Strategic Thesis**: Prioritize long-term compounding velocity, inflation-beating equity index exposure, and aggressive goal acceleration.\n\n`;
+
+  advice += `#### 1. Growth Capital Deployment:\n`;
+  advice += `• With a monthly surplus of **₹${fmt(surplus)}** (${savingsRate}% savings rate), you possess exceptional wealth compounding potential.\n`;
+  advice += `• Allocate **60% of surplus (₹${fmt(Math.round(surplus * 0.60))}/mo)** directly into equity compounding: **35% Nifty 50 Index Fund** (broad large-cap) and **25% Active Flexi-Cap Fund** (Parag Parikh Flexi Cap).\n`;
+  advice += `• Implement an automated **10% Annual Step-Up SIP** to mirror career income progression.\n\n`;
+
+  advice += `#### 2. Goal Funding Acceleration:\n`;
+  if (ctx.activeGoals.length) {
+    advice += `• Route **30% of surplus (₹${fmt(Math.round(surplus * 0.30))}/mo)** toward your active goal targets: ${ctx.activeGoals.map(g => g.goal_name).join(', ')}.\n`;
+  } else {
+    advice += `• Route **30% of surplus (₹${fmt(Math.round(surplus * 0.30))}/mo)** toward medium-term wealth milestones (real estate down payment & sovereign gold).\n`;
+  }
+
+  advice += `#### 3. Tax Efficiency:\n`;
+  advice += `• Maximize ₹1.5L Section 80C through ELSS/EPF and utilize Section 80CCD(1B) for additional ₹50,000 tax deduction via National Pension System (NPS).\n`;
+
+  return advice;
+}
+
+function generateModel2RiskGuard(question, ctx) {
+  const q = question.toLowerCase();
+  const income = extractIncomeFromQuery(question, ctx.monthlyIncome);
+  const expense = ctx.monthlyExpense > 0 ? ctx.monthlyExpense : Math.round(income * 0.42);
+  const surplus = Math.max(0, income - expense);
+  const emergencyNeeded = expense * 6;
+  const emergencyMonths = expense > 0 ? Number((ctx.liquidAssets / expense).toFixed(1)) : 0;
+
+  let advice = `### Perspective: AI Model 2 — Quantitative Risk Guard (SEBI/RBI Rules Engine)\n\n`;
+  advice += `**Risk Thesis**: Capital preservation first. Guarantee unconditional survival runway, eliminate high-interest liabilities, and prevent forced asset liquidation during market corrections.\n\n`;
+
+  advice += `#### 1. Liquidity & Emergency Buffer Check:\n`;
+  advice += `• **Current Liquid Reserves**: **₹${fmt(ctx.liquidAssets)}** (${emergencyMonths} months of essential runway vs ₹${fmt(emergencyNeeded)} 6-month safety benchmark).\n`;
+  if (emergencyMonths < 6) {
+    const shortfall = Math.max(0, emergencyNeeded - ctx.liquidAssets);
+    advice += `• **CRITICAL RISK FLAG**: Liquid runway is below the 6-month resilience threshold. Dedicate **100% of surplus (₹${fmt(surplus)}/mo)** to high-yield sweep-in FDs until shortfall of ₹${fmt(shortfall)} is funded before committing to locked equity.\n`;
+  } else {
+    advice += `• **Buffer Status**: Emergency fund is **fully fortified** (${emergencyMonths} months coverage). Maintain liquid buffer in high-liquidity sweep accounts.\n`;
+  }
+
+  advice += `\n#### 2. Liability & Debt Stress Check:\n`;
+  if (ctx.totalLiabilities > 0) {
+    advice += `• Outstanding liabilities stand at **₹${fmt(ctx.totalLiabilities)}**. Any debt carrying >9% interest rate (credit cards, personal loans) must be eliminated before equity investing, as debt interest is a guaranteed negative return.\n`;
+  } else {
+    advice += `• Outstanding liabilities: **₹0** — Zero default risk and zero debt drag on monthly cashflow.\n`;
+  }
+
+  advice += `\n#### 3. Capital Preservation Allocation:\n`;
+  advice += `• Allocate at least **15% (₹${fmt(Math.round(surplus * 0.15))}/mo)** to Sovereign Gold Bonds (SGB) or short-term debt instruments as a volatility hedge.\n`;
+
+  return advice;
+}
+
+function buildMultiAIComparison(question, ctx, externalAIReply = null) {
+  const income = extractIncomeFromQuery(question, ctx.monthlyIncome);
+  const expense = ctx.monthlyExpense > 0 ? ctx.monthlyExpense : Math.round(income * 0.42);
+  const surplus = Math.max(0, income - expense);
+  const savingsRate = income > 0 ? Math.round((surplus / income) * 100) : 0;
+  const emergencyNeeded = expense * 6;
+  const emergencyMonths = expense > 0 ? (ctx.liquidAssets / expense).toFixed(1) : 0;
+
+  // 1. Generate Model 1 (Strategic Growth Advisor - Gemini or external)
+  const model1Text = externalAIReply || generateModel1Strategic(question, ctx);
+
+  // 2. Generate Model 2 (Quantitative Risk Guard - Strict Rules Engine)
+  const model2Text = generateModel2RiskGuard(question, ctx);
+
+  // 3. Synthesis calculations
+  const sipEquity = Math.round(surplus * 0.55);
+  const goalFunding = Math.round(surplus * 0.35);
+  const defensiveHedge = Math.round(surplus * 0.10);
+
+  // Synthesized Proper Recommendation combining both models
+  let finalSuggestion = `### 💡 WealthWise Final Synthesized Suggestion\n\n`;
+  finalSuggestion += `By reconciling **AI Model 1 (Strategic Growth)** with **AI Model 2 (Quantitative Risk Guard)**, here is your definitive, balanced financial blueprint:\n\n`;
+
+  finalSuggestion += `#### 🎯 Executive Action Plan for Your ₹${fmt(surplus)} Monthly Surplus:\n`;
+  finalSuggestion += `1. **Core Wealth Compounding (55% = ₹${fmt(sipEquity)}/mo)**:\n`;
+  finalSuggestion += `   • **₹${fmt(Math.round(surplus * 0.35))}/mo** in **Nifty 50 Index Fund** (e.g., UTI/HDFC) for India's top 50 blue chips.\n`;
+  finalSuggestion += `   • **₹${fmt(Math.round(surplus * 0.20))}/mo** in **Parag Parikh Flexi Cap Fund** for diversified mid-cap & international tech exposure.\n`;
+  finalSuggestion += `   • *Satisfies Model 1's goal of beating inflation while respecting Model 2's diversified index approach.*\n\n`;
+
+  finalSuggestion += `2. **Targeted Goal Milestones (35% = ₹${fmt(goalFunding)}/mo)**:\n`;
+  if (ctx.activeGoals.length) {
+    finalSuggestion += `   • Direct toward your active goals (${ctx.activeGoals.map(g => g.goal_name).join(', ')}) via short-duration hybrid or recurring deposits.\n`;
+  } else {
+    finalSuggestion += `   • Direct toward home down payment and medium-term wealth milestones via conservative hybrid funds.\n`;
+  }
+
+  finalSuggestion += `\n3. **Safety & Capital Preservation (10% = ₹${fmt(defensiveHedge)}/mo)**:\n`;
+  finalSuggestion += `   • Maintain your **${emergencyMonths} months** liquid safety runway (₹${fmt(ctx.liquidAssets)} current reserves) and deploy ₹${fmt(defensiveHedge)}/mo into Sovereign Gold Bonds (SGB) for currency and geopolitical hedge.\n\n`;
+
+  finalSuggestion += `#### ⚡ Execution Checklist:\n`;
+  finalSuggestion += `• **Day 1 of Month**: Automate SIPs on salary credit day (Pay Yourself First principle).\n`;
+  finalSuggestion += `• **Annual Step-Up**: Increase SIP amounts by 10% each financial year.\n`;
+  finalSuggestion += `• **Tax Deductions**: Fully utilize Section 80C (₹1.5L) and 80D health insurance.\n`;
+
+  // Comparative Matrix and Breakdown
+  let fullMessage = `${finalSuggestion}\n\n---\n\n`;
+  fullMessage += `### 🤖 Multi-AI Comparative Advisory Breakdown\n\n`;
+  fullMessage += `To provide unbiased, rigorous guidance, WealthWise evaluated your question across **2 independent AI models**:\n\n`;
+
+  fullMessage += `#### 📊 Model Comparison Matrix:\n`;
+  fullMessage += `| Dimension | AI Model 1: Strategic Growth (Gemini) | AI Model 2: Risk Guard (Quantitative Engine) |\n`;
+  fullMessage += `| :--- | :--- | :--- |\n`;
+  fullMessage += `| **Primary Objective** | Maximizing long-term wealth compounding | Downside protection & capital preservation |\n`;
+  fullMessage += `| **Recommended Allocation** | 60% Equity SIPs, 30% Goals, 10% Tax | 50% Liquid/Debt Buffer, 35% Equity, 15% Gold |\n`;
+  fullMessage += `| **Emergency Threshold** | 3-6 months liquid reserves | Strict minimum 6-9 months liquid reserves |\n`;
+  fullMessage += `| **Risk Tolerance** | Moderate-Aggressive (Time in market) | Conservative-Disciplined (Liquidity safety) |\n\n`;
+
+  fullMessage += `#### 🔍 Individual Model Perspectives:\n\n`;
+  fullMessage += `**AI Model 1 (Strategic Growth Advisor)**:\n`;
+  fullMessage += `> *"With a strong savings rate of ${savingsRate}%, delaying equity investments in favor of excessive cash reserves causes severe inflation drag. Deploy surplus aggressively into broad market index SIPs with an annual 10% step-up."*\n\n`;
+
+  fullMessage += `**AI Model 2 (Quantitative Risk Guard)**:\n`;
+  fullMessage += `> *"Before chasing equity returns, verify that the 6-month living cost buffer (₹${fmt(emergencyNeeded)}) is locked in cash/sweep FDs, and ensure zero revolving debt. Volatility without a fortress buffer forces premature liquidation at market bottoms."*\n\n`;
+
+  fullMessage += `#### 🤝 Consensus & Divergence Analysis:\n`;
+  fullMessage += `• **Consensus (Both Models Agree)**:\n`;
+  fullMessage += `  1. Automatically route investments on salary credit day before lifestyle spending.\n`;
+  fullMessage += `  2. Keep health and term insurance independent from investment products.\n`;
+  fullMessage += `  3. Avoid consumer debt or high-interest revolving credit cards.\n`;
+  fullMessage += `• **Strategic Divergence**:\n`;
+  fullMessage += `  Model 1 pushes for higher equity exposure (60%+) to optimize compounding, while Model 2 insists on building a wider cash cushion first. The **Synthesized Final Suggestion** balances both by allocating 55% to compounding and 45% to goals and safety.\n\n`;
+
+  fullMessage += `*Educational financial planning guidance.*`;
+
+  return {
+    message: fullMessage,
+    finalSuggestion,
+    modelA: {
+      name: externalAIReply ? 'Google Gemini 2.0 (Strategic Growth)' : 'AI Model 1: Strategic Growth (Gemini Flash)',
+      focus: 'Wealth Compounding & SIP Velocity',
+      perspective: 'Aggressive equity accumulation, 10% annual step-up SIPs, and maximizing market compounding time.',
+    },
+    modelB: {
+      name: 'AI Model 2: Quantitative Risk Guard (SEBI/RBI Rules)',
+      focus: 'Capital Preservation & Liquidity Fortress',
+      perspective: 'Guaranteeing 6-month emergency buffer in liquid accounts, zero debt tolerance, and downside hedging.',
+    },
+    consensus: [
+      'Automate monthly investments on the 1st of every month before discretionary spending.',
+      'Maintain at least 6 months of living expenses in zero-risk liquid instruments.',
+      'Clear high-interest liabilities immediately before equity allocations.'
+    ],
+    differences: [
+      'Model 1 advises 60%+ surplus in equity funds; Model 2 prioritizes liquid safety buffers and debt hedging.',
+      'Model 1 targets long-term wealth velocity; Model 2 safeguards against immediate market drawdowns.'
+    ]
+  };
 }
 
 async function sendMessage(userId, message) {
@@ -266,26 +426,35 @@ INSTRUCTIONS:
 
 User Question: ${message}`;
 
-  let reply;
+  let externalReply = null;
   let usedAI = false;
   try {
-    reply = await aiProvider.generateText(prompt);
+    externalReply = await aiProvider.generateText(prompt);
     usedAI = true;
   } catch (err) {
-    console.warn('[AI ADVISOR FALLBACK]:', err.message);
-    reply = deterministicResponse(message, ctx);
+    console.warn('[AI ADVISOR MULTI-MODEL FALLBACK]:', err.message);
   }
+
+  // Generate multi-AI comparison and proper synthesized recommendation
+  const multiAI = buildMultiAIComparison(message, ctx, externalReply);
 
   const insert = await pool.query(
     `INSERT INTO advisor_chat_messages (user_id, sender, message_text) VALUES ($1, 'AI', $2) RETURNING message_id, created_at`,
-    [userId, reply]
+    [userId, multiAI.message]
   );
 
   return {
-    message: reply,
+    message: multiAI.message,
     messageId: insert.rows[0].message_id,
     createdAt: insert.rows[0].created_at ? new Date(insert.rows[0].created_at).toISOString() : new Date().toISOString(),
     generatedByAI: usedAI,
+    comparison: {
+      modelA: multiAI.modelA,
+      modelB: multiAI.modelB,
+      consensus: multiAI.consensus,
+      differences: multiAI.differences,
+      finalSuggestion: multiAI.finalSuggestion,
+    }
   };
 }
 

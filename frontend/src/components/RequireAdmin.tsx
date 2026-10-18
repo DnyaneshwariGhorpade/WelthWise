@@ -3,7 +3,12 @@ import { ReactNode } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 export default function RequireAdmin({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  // Wait for auth hydration to complete before redirecting
+  if (loading) {
+    return null;
+  }
 
   if (!user) {
     return <Navigate to="/login" replace />;

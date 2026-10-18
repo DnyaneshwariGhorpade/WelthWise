@@ -16,7 +16,10 @@ router.get('/system-status', adminCtrl.getSystemStatus);
 router.get('/ai-config', adminCtrl.getAIConfig);
 router.put(
   '/ai-config',
-  [body('provider').isIn(['openai', 'gemini']).withMessage('Provider must be openai or gemini')],
+  [
+    body('provider').isIn(['openai', 'gemini']).withMessage('Provider must be openai or gemini'),
+    body('apiKey').optional().trim(),
+  ],
   validateMiddleware,
   adminCtrl.updateAIConfig
 );

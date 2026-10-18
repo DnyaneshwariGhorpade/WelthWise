@@ -74,34 +74,38 @@ export default function AIConfigPage() {
               return (
                 <div
                   key={p.name}
-                  className={`rounded-2xl border p-5 ${
+                  className={`rounded-2xl border p-5 flex flex-col justify-between ${
                     isActive ? 'border-emerald-600 ring-2 ring-emerald-600/20 bg-emerald-50/40' : 'border-slate-200'
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Cpu className="h-4 w-4 text-slate-500" />
-                      <span className="font-bold text-slate-900 capitalize">{p.name}</span>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Cpu className="h-4 w-4 text-slate-500" />
+                        <span className="font-bold text-slate-900 capitalize">{p.name}</span>
+                      </div>
+                      {isActive && <Badge color="emerald">Active</Badge>}
                     </div>
-                    {isActive && <Badge color="emerald">Active</Badge>}
+
+                    <div className="mt-3 flex items-center gap-2 text-sm text-slate-600">
+                      <KeyRound className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                      {p.apiKeyConfigured ? (
+                        <span>
+                          API key configured · <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">{p.apiKeyMasked}</code>
+                        </span>
+                      ) : (
+                        <span className="text-amber-600 font-medium">No API key configured in backend environment</span>
+                      )}
+                    </div>
                   </div>
-                  <div className="mt-3 flex items-center gap-2 text-sm text-slate-600">
-                    <KeyRound className="h-3.5 w-3.5 text-slate-400" />
-                    {p.apiKeyConfigured ? (
-                      <span>
-                        API key set · <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded">{p.apiKeyMasked}</code>
-                      </span>
-                    ) : (
-                      <span className="text-amber-600">No API key configured in the backend environment</span>
-                    )}
-                  </div>
+
                   <Button
                     className="mt-4"
                     variant={isActive ? 'secondary' : 'primary'}
                     disabled={isActive || saving}
                     onClick={() => switchProvider(p.name)}
                   >
-                    {isActive ? 'In use' : saving ? 'Switching…' : `Switch to ${p.name}`}
+                    {isActive ? 'In use' : saving ? 'Switching…' : `Set as Active (${p.name})`}
                   </Button>
                 </div>
               );

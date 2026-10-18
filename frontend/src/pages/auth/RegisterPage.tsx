@@ -205,8 +205,8 @@ export default function RegisterPage() {
             />
             <label htmlFor="terms" className="text-xs text-[#5A554E] leading-relaxed">
               I acknowledge that WealthWise provides algorithmic wealth modeling and educational AI insights, not certified financial advisory. I agree to the{' '}
-              <a href="#" className="underline text-[#121212]">Terms of Service</a> and{' '}
-              <a href="#" className="underline text-[#121212]">Privacy Charter</a>.
+              <Link to="/terms" target="_blank" className="underline text-[#121212] font-semibold hover:text-[#5A554E]">Terms of Service</Link> and{' '}
+              <Link to="/privacy" target="_blank" className="underline text-[#121212] font-semibold hover:text-[#5A554E]">Privacy Charter</Link>.
             </label>
           </div>
 

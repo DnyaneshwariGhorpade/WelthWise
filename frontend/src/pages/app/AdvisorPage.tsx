@@ -34,47 +34,221 @@ function FormattedMessage({ text, sender }: { text: string; sender: 'USER' | 'AI
   const isUser = sender === 'USER';
   const lines = text.split('\n');
 
-  return (
-    <div className="space-y-1.5 leading-relaxed">
-      {lines.map((line, idx) => {
-        const trimmed = line.trim();
-        if (!trimmed) return <div key={idx} className="h-1" />;
+  // Group lines into blocks (paragraphs, tables, lists, quotes)
+  const blocks: { type: 'header' | 'bullet' | 'number' | 'table' | 'quote' | 'hr' | 'paragraph'; content: any }[] = [];
+  let currentTable: string[] = [];
 
-        if (trimmed.startsWith('#')) {
-          const headerText = trimmed.replace(/^#+\s*/, '');
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+
+    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+      currentTable.push(trimmed);
+      continue;
+    } else if (currentTable.length > 0) {
+      blocks.push({ type: 'table', content: [...currentTable] });
+      currentTable = [];
+    }
+
+    if (!trimmed) {
+      blocks.push({ type: 'paragraph', content: '' });
+      continue;
+    }
+
+    if (trimmed === '---') {
+      blocks.push({ type: 'hr', content: '' });
+    } else if (trimmed.startsWith('#')) {
+      blocks.push({ type: 'header', content: trimmed.replace(/^#+\s*/, '') });
+    } else if (trimmed.startsWith('>')) {
+      blocks.push({ type: 'quote', content: trimmed.replace(/^>\s*/, '') });
+    } else if (trimmed.startsWith('* ') || trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
+      blocks.push({ type: 'bullet', content: trimmed.replace(/^[*•-]\s*/, '') });
+    } else {
+      const numMatch = trimmed.match(/^(\d+\.)\s*(.*)/);
+      if (numMatch) {
+        blocks.push({ type: 'number', content: { num: numMatch[1], text: numMatch[2] } });
+      } else {
+        blocks.push({ type: 'paragraph', content: trimmed });
+      }
+    }
+  }
+
+  if (currentTable.length > 0) {
+    blocks.push({ type: 'table', content: [...currentTable] });
+  }
+
+  return (
+    <div className="space-y-1.5 leading-relaxed text-sm">
+      {blocks.map((block, idx) => {
+        if (block.type === 'paragraph') {
+          if (!block.content) return <div key={idx} className="h-1" />;
           return (
-            <h4 key={idx} className={`font-bold text-sm mt-2 mb-1 ${isUser ? 'text-white' : 'text-slate-900 dark:text-white dark:text-white transition-colors'}`}>
-              {formatInlineText(headerText, isUser)}
+            <p key={idx} className={isUser ? 'text-white' : 'text-slate-800 dark:text-slate-200'}>
+              {formatInlineText(block.content, isUser)}
+            </p>
+          );
+        }
+
+        if (block.type === 'header') {
+          return (
+            <h4 key={idx} className={`font-bold text-sm mt-3 mb-1.5 flex items-center gap-1.5 ${isUser ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+              {formatInlineText(block.content, isUser)}
             </h4>
           );
         }
 
-        if (trimmed.startsWith('* ') || trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
-          const bulletText = trimmed.replace(/^[*•-]\s*/, '');
+        if (block.type === 'hr') {
+          return <hr key={idx} className="my-3 border-slate-200 dark:border-slate-700" />;
+        }
+
+        if (block.type === 'quote') {
+          return (
+            <div key={idx} className="border-l-2 border-emerald-500 pl-3 py-1 my-2 bg-emerald-50/60 dark:bg-emerald-950/30 rounded-r-md text-xs italic text-slate-700 dark:text-slate-300">
+              {formatInlineText(block.content, isUser)}
+            </div>
+          );
+        }
+
+        if (block.type === 'bullet') {
           return (
             <div key={idx} className="flex items-start gap-2 ml-1">
               <span className={`font-bold select-none ${isUser ? 'text-emerald-200' : 'text-emerald-600'}`}>•</span>
-              <div>{formatInlineText(bulletText, isUser)}</div>
+              <div className={isUser ? 'text-white' : 'text-slate-800 dark:text-slate-200'}>
+                {formatInlineText(block.content, isUser)}
+              </div>
             </div>
           );
         }
 
-        const numMatch = trimmed.match(/^(\d+\.)\s*(.*)/);
-        if (numMatch) {
+        if (block.type === 'number') {
           return (
             <div key={idx} className="flex items-start gap-2 ml-1">
-              <span className={`font-semibold ${isUser ? 'text-emerald-100' : 'text-emerald-700'}`}>{numMatch[1]}</span>
-              <div>{formatInlineText(numMatch[2], isUser)}</div>
+              <span className={`font-semibold shrink-0 ${isUser ? 'text-emerald-100' : 'text-emerald-700'}`}>{block.content.num}</span>
+              <div className={isUser ? 'text-white' : 'text-slate-800 dark:text-slate-200'}>
+                {formatInlineText(block.content.text, isUser)}
+              </div>
             </div>
           );
         }
 
-        return (
-          <p key={idx}>
-            {formatInlineText(trimmed, isUser)}
-          </p>
-        );
+        if (block.type === 'table') {
+          const rows = block.content.map((rowStr: string) =>
+            rowStr
+              .split('|')
+              .slice(1, -1)
+              .map((cell) => cell.trim())
+          );
+          if (rows.length < 2) return null;
+          const header = rows[0];
+          // skip separator row if exists (e.g. :---)
+          const dataRows = rows.slice(1).filter((r: string[]) => !r.every((c: string) => /^:?-+:?$/.test(c)));
+
+          return (
+            <div key={idx} className="my-3 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 shadow-xs">
+              <table className="w-full text-xs text-left">
+                <thead className="bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold">
+                  <tr>
+                    {header.map((col: string, cIdx: number) => (
+                      <th key={cIdx} className="px-3 py-2">
+                        {formatInlineText(col, false)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                  {dataRows.map((r: string[], rIdx: number) => (
+                    <tr key={rIdx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                      {r.map((c: string, cIdx: number) => (
+                        <td key={cIdx} className="px-3 py-2 text-slate-700 dark:text-slate-300">
+                          {formatInlineText(c, false)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+
+        return null;
       })}
+    </div>
+  );
+}
+
+function AIMessageBubble({ text, createdAt }: { text: string; createdAt: string }) {
+  const [activeTab, setActiveTab] = useState<'final' | 'compare' | 'full'>('final');
+  const isMultiAI = text.includes('Multi-AI Comparative Advisory Breakdown');
+
+  // Split text into final synthesized suggestion and comparative breakdown
+  let finalPart = text;
+  let comparePart = '';
+
+  if (isMultiAI) {
+    const splitIndex = text.indexOf('---');
+    if (splitIndex !== -1) {
+      finalPart = text.slice(0, splitIndex).trim();
+      comparePart = text.slice(splitIndex + 3).trim();
+    }
+  }
+
+  return (
+    <div className="max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-xs space-y-3">
+      {isMultiAI && (
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-slate-200 dark:border-slate-700">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Multi-AI Consensus Engine Active (2 Models Evaluated)</span>
+          </div>
+
+          <div className="flex items-center gap-1 bg-white dark:bg-slate-900 rounded-lg p-0.5 border border-slate-200 dark:border-slate-700 text-[11px]">
+            <button
+              onClick={() => setActiveTab('final')}
+              className={`px-2.5 py-1 rounded-md font-medium transition-colors ${
+                activeTab === 'final'
+                  ? 'bg-emerald-600 text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              🌟 Final Suggestion
+            </button>
+            <button
+              onClick={() => setActiveTab('compare')}
+              className={`px-2.5 py-1 rounded-md font-medium transition-colors ${
+                activeTab === 'compare'
+                  ? 'bg-emerald-600 text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              ⚖️ Model Comparison
+            </button>
+            <button
+              onClick={() => setActiveTab('full')}
+              className={`px-2 py-1 rounded-md font-medium transition-colors ${
+                activeTab === 'full'
+                  ? 'bg-emerald-600 text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              Full
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Content based on tab */}
+      <div>
+        {activeTab === 'final' && <FormattedMessage text={finalPart} sender="AI" />}
+        {activeTab === 'compare' && comparePart && <FormattedMessage text={comparePart} sender="AI" />}
+        {(activeTab === 'full' || (!comparePart && activeTab === 'compare')) && (
+          <FormattedMessage text={text} sender="AI" />
+        )}
+      </div>
+
+      <p className="pt-1 text-[10px] text-slate-400 dark:text-slate-500 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+        <span>AI Generated Advisory</span>
+        <span>{formatTime(createdAt)}</span>
+      </p>
     </div>
   );
 }
@@ -177,12 +351,16 @@ export default function AdvisorPage() {
               <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${e.sender === 'AI' ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}`}>
                 {e.sender === 'AI' ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
               </div>
-              <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${e.sender === 'AI' ? 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200' : 'bg-emerald-600 text-white'}`}>
-                <FormattedMessage text={e.text} sender={e.sender} />
-                <p className={`mt-1 text-[10px] ${e.sender === 'AI' ? 'text-slate-400 dark:text-slate-500 dark:text-slate-400' : 'text-emerald-100'}`}>
-                  {formatTime(e.createdAt)}
-                </p>
-              </div>
+              {e.sender === 'AI' ? (
+                <AIMessageBubble text={e.text} createdAt={e.createdAt} />
+              ) : (
+                <div className="max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed bg-emerald-600 text-white">
+                  <FormattedMessage text={e.text} sender={e.sender} />
+                  <p className="mt-1 text-[10px] text-emerald-100">
+                    {formatTime(e.createdAt)}
+                  </p>
+                </div>
+              )}
             </div>
           ))}
 

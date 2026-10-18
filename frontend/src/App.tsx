@@ -5,6 +5,8 @@ import RequireAdmin from './components/RequireAdmin';
 import AppShell from './components/layout/AppShell';
 import AdminShell from './components/layout/AdminShell';
 import LandingPage from './pages/public/LandingPage';
+import TermsPage from './pages/public/TermsPage';
+import PrivacyPage from './pages/public/PrivacyPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
@@ -29,6 +31,8 @@ function App() {
         <Routes>
           {/* Public / Auth screens */}
           <Route path="/" element={<LandingPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
