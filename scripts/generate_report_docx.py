@@ -369,8 +369,8 @@ def generate_report():
         p.paragraph_format.space_after = Pt(6)
 
     # Save document
-    output_docs_path = r"c:\Users\chaud\OneDrive\Desktop\projects\wealthwise\WelthWise\docs\WealthWise_Project_Report_Part_A_and_Part_B.docx"
-    output_root_path = r"c:\Users\chaud\OneDrive\Desktop\projects\wealthwise\WelthWise\WealthWise_Project_Report_Part_A_and_Part_B.docx"
+    output_docs_path = r"c:\Users\chaud\OneDrive\Desktop\projects\wealthwise\WelthWise\docs\reports\WealthWise_Project_Report_Part_A_and_Part_B.docx"
+    output_root_path = r"c:\Users\chaud\OneDrive\Desktop\projects\wealthwise\WelthWise\docs\reports\WealthWise_Project_Report_Part_A_and_Part_B.docx"
     
     doc.save(output_docs_path)
     doc.save(output_root_path)
