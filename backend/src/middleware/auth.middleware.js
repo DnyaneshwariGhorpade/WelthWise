@@ -10,7 +10,13 @@ async function getRedis() {
   redisChecked = true;
   try {
     const { createClient } = require('redis');
-    const client = createClient({ url: process.env.REDIS_URL || 'redis://localhost:6379', socket: { connectTimeout: 1500 } });
+    const client = createClient({
+      url: process.env.REDIS_URL || 'redis://localhost:6379',
+      socket: { connectTimeout: 3000, reconnectStrategy: (retries) => Math.min(retries * 500, 5000) }
+    });
+    client.on('error', (err) => {
+      console.warn('Redis client warning (safe):', err.message);
+    });
     await client.connect();
     redisClient = client;
     return client;

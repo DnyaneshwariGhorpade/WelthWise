@@ -76,7 +76,36 @@ export default function LoginPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+        {/* Quick Demo Fill Buttons */}
+        <div className="mt-5 p-3 bg-[#FAF8F5] border border-[#EAE6DF] rounded-2xl flex flex-col gap-2">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#7A746B] text-center">
+            One-Click Demo Credentials
+          </span>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('user@wealthwise.demo');
+                setPassword('WealthWise@123');
+              }}
+              className="px-2.5 py-1.5 bg-white border border-[#DDD7CD] hover:border-[#121212] rounded-xl text-xs font-medium text-[#121212] transition-all shadow-2xs"
+            >
+              👤 Demo User
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('admin@wealthwise.demo');
+                setPassword('WealthWise@123');
+              }}
+              className="px-2.5 py-1.5 bg-white border border-[#DDD7CD] hover:border-[#121212] rounded-xl text-xs font-medium text-[#121212] transition-all shadow-2xs"
+            >
+              🛡️ Admin User
+            </button>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-5 space-y-5">
           <div>
             <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-[#5A554E] mb-2">
               Email Address

@@ -22,4 +22,11 @@ async function start() {
   });
 }
 
+process.on('uncaughtException', (err) => {
+  console.warn('Process uncaughtException (prevented exit):', err.message);
+});
+process.on('unhandledRejection', (reason) => {
+  console.warn('Process unhandledRejection (prevented exit):', reason);
+});
+
 start();

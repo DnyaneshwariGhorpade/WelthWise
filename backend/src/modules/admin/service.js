@@ -89,6 +89,7 @@ async function getSystemStatus() {
       url: process.env.REDIS_URL || 'redis://localhost:6379',
       socket: { connectTimeout: 2000 },
     });
+    client.on('error', (err) => console.warn('Redis ping warning (safe):', err.message));
     const redisStart = Date.now();
     await client.connect();
     await client.ping();

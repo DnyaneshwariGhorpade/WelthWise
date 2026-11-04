@@ -257,6 +257,7 @@ async function logout(token) {
   try {
     const { createClient } = require('redis');
     const client = createClient({ url: process.env.REDIS_URL || 'redis://localhost:6379' });
+    client.on('error', (err) => console.warn('Redis logout warning (safe):', err.message));
     await client.connect();
     const ttlLeft = Math.max(0, decodeJwtTtl(token));
     if (ttlLeft > 0) {
