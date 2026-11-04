@@ -53,3 +53,8 @@ Modular monolith (Node.js / Express) with a React frontend. Design specs live in
 ## Disclaimer
 
 AI-generated content is informational and not certified financial advice.
+
+## SEML Testing Assignment & Live Demo
+
+Please refer to [docs/TESTING_README.md](docs/TESTING_README.md) for full commands and instructions to re-run unit tests, Selenium UI suites, and load tests.
+- **API smoke tests**: `python tests/simple_testing/test_wealthwise_api.py`

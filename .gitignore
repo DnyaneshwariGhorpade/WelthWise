@@ -24,8 +24,14 @@ Thumbs.db
 
 # Test coverage
 coverage/
+.coverage
+.pytest_cache/
+metrics.json
 
 # Python cache & artifacts
 __pycache__/
 *.pyc
-*.pyo
+*.pyo
+
+# TypeScript build info
+*.tsbuildinfo
