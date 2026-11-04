@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WealthWise – UML Use Case Diagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .diagram-wrapper {
+      width: 100%;
+      max-width: 1550px;
+      margin: 20px auto 60px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    svg#ucd {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="diagram-wrapper">
+    <svg id="ucd" xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 2020 2860" width="2020" height="2860">
+      <defs>
+        <!-- Include arrow: open V arrowhead (pointing along line) -->
+        <marker id="arr-include" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <polyline points="1,1 9,5 1,9" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+
+        <!-- Extend arrow: open V arrowhead (pointing along line) -->
+        <marker id="arr-extend" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <polyline points="1,1 9,5 1,9" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+
+        <!-- Generalization: hollow triangle pointing forward along line to parent -->
+        <marker id="arr-generalization" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="13" markerHeight="13" orient="auto">
+          <polygon points="1,1 13,7 1,13" fill="#ffffff" stroke="#000" stroke-width="1.8" stroke-linejoin="miter"/>
+        </marker>
+      </defs>
+
+      <!-- Clean White Background -->
+      <rect width="2020" height="2860" fill="#ffffff"/>
+
+      <!-- ============================================================
+           SYSTEM BOUNDARY (SOLID RECTANGLE per official UML Standard)
+           Encloses all use cases; actors reside outside.
+      ============================================================ -->
+      <rect x="250" y="55" width="1460" height="2760" rx="8"
+            fill="none" stroke="#000000" stroke-width="2.5"/>
+
+      <!-- System Boundary Title Pill -->
+      <rect x="730" y="38" width="500" height="34" rx="4"
+            fill="#ffffff" stroke="#000000" stroke-width="2"/>
+      <text x="980" y="60" text-anchor="middle"
+            font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#000000">
+        «SYSTEM» WealthWise Platform
+      </text>
+
+      <!-- ============================================================
+           ACTORS (Stick figures outside the boundary)
+      ============================================================ -->
+
+      <!-- 1. REGULAR USER (Primary Actor - Left Top) -->
+      <g id="actor-user">
+        <circle cx="110" cy="265" r="22" fill="#fff" stroke="#000" stroke-width="2"/>
+        <line x1="110" y1="287" x2="110" y2="350" stroke="#000" stroke-width="2"/>
+        <line x1="75"  y1="310" x2="145" y2="310" stroke="#000" stroke-width="2"/>
+        <line x1="110" y1="350" x2="80"  y2="395" stroke="#000" stroke-width="2"/>
+        <line x1="110" y1="350" x2="140" y2="395" stroke="#000" stroke-width="2"/>
+        <text x="110" y="420" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#000">Regular User</text>
+        <text x="110" y="436" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#333">(Primary Actor)</text>
+      </g>
+
+      <!-- 2. ADMIN (Primary Actor - Left Bottom) -->
+      <g id="actor-admin">
+        <circle cx="110" cy="2615" r="22" fill="#fff" stroke="#000" stroke-width="2"/>
+        <line x1="110" y1="2637" x2="110" y2="2700" stroke="#000" stroke-width="2"/>
+        <line x1="75"  y1="2660" x2="145" y2="2660" stroke="#000" stroke-width="2"/>
+        <line x1="110" y1="2700" x2="80"  y2="2745" stroke="#000" stroke-width="2"/>
+        <line x1="110" y1="2700" x2="140" y2="2745" stroke="#000" stroke-width="2"/>
+        <text x="110" y="2770" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#000">Admin</text>
+        <text x="110" y="2786" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#333">(Primary Actor)</text>
+      </g>
+
+      <!-- 3. BACKGROUND JOB RUNNER (Secondary Actor - Right Upper) -->
+      <g id="actor-jobrunner">
+        <circle cx="1870" cy="1165" r="22" fill="#fff" stroke="#000" stroke-width="2"/>
+        <line x1="1870" y1="1187" x2="1870" y2="1250" stroke="#000" stroke-width="2"/>
+        <line x1="1835" y1="1210" x2="1905" y2="1210" stroke="#000" stroke-width="2"/>
+        <line x1="1870" y1="1250" x2="1840" y2="1295" stroke="#000" stroke-width="2"/>
+        <line x1="1870" y1="1250" x2="1900" y2="1295" stroke="#000" stroke-width="2"/>
+        <text x="1870" y="1320" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#000">Background</text>
+        <text x="1870" y="1336" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#000">Job Runner</text>
+        <text x="1870" y="1352" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#333">(Secondary Actor)</text>
+      </g>
+
+      <!-- 4. AI ENGINE (Secondary Actor - Right Lower) -->
+      <g id="actor-ai">
+        <circle cx="1870" cy="1625" r="22" fill="#fff" stroke="#000" stroke-width="2"/>
+        <line x1="1870" y1="1647" x2="1870" y2="1710" stroke="#000" stroke-width="2"/>
+        <line x1="1835" y1="1670" x2="1905" y2="1670" stroke="#000" stroke-width="2"/>
+        <line x1="1870" y1="1710" x2="1840" y2="1755" stroke="#000" stroke-width="2"/>
+        <line x1="1870" y1="1710" x2="1900" y2="1755" stroke="#000" stroke-width="2"/>
+        <text x="1870" y="1780" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#000">AI Engine</text>
+        <text x="1870" y="1796" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#333">(Secondary Actor)</text>
+      </g>
+
+      <!-- ============================================================
+           GENERALIZATION: Admin ▷ Regular User
+           Solid line from Admin pointing UP to Regular User with hollow triangle
+      ============================================================ -->
+      <line x1="110" y1="2585" x2="110" y2="455" stroke="#000000" stroke-width="2" marker-end="url(#arr-generalization)"/>
+      <rect x="52" y="1450" width="116" height="24" rx="3" fill="#ffffff" stroke="#cccccc" stroke-width="1"/>
+      <text x="110" y="1466" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-style="italic" fill="#000">generalization</text>
+
+      <!-- ============================================================
+           REGULAR USER ASSOCIATIONS (Clean orthogonal bus corridor)
+      ============================================================ -->
+      <!-- Connection from User stick figure to association spine -->
+      <line x1="145" y1="310" x2="205" y2="310" stroke="#000000" stroke-width="1.5"/>
+      <!-- Vertical association spine along left corridor -->
+      <line x1="205" y1="160" x2="205" y2="2480" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- Horizontal association branches entering each base use case -->
+      <!-- Auth Module (4) -->
+      <line x1="205" y1="160" x2="385" y2="160" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="230" x2="385" y2="230" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="300" x2="385" y2="300" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="370" x2="385" y2="370" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- Financial Management (5) -->
+      <line x1="205" y1="500" x2="385" y2="500" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="570" x2="385" y2="570" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="640" x2="385" y2="640" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="710" x2="385" y2="710" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="780" x2="385" y2="780" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- Wealth Scoring (2) -->
+      <line x1="205" y1="920" x2="385" y2="920" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="1130" x2="385" y2="1130" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- Stress Testing (3) -->
+      <line x1="205" y1="1260" x2="385" y2="1260" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="1330" x2="385" y2="1330" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="1540" x2="385" y2="1540" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- Goals & Conflicts (4) -->
+      <line x1="205" y1="1670" x2="385" y2="1670" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="1740" x2="385" y2="1740" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="1810" x2="385" y2="1810" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="1880" x2="385" y2="1880" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- Decision Advisor (1 base) -->
+      <line x1="205" y1="2050" x2="385" y2="2050" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- AI Advisor Chat (2) -->
+      <line x1="205" y1="2210" x2="385" y2="2210" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="2280" x2="385" y2="2280" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- Dashboard Module (2) -->
+      <line x1="205" y1="2410" x2="385" y2="2410" stroke="#000000" stroke-width="1.5"/>
+      <line x1="205" y1="2480" x2="385" y2="2480" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- ============================================================
+           ADMIN ASSOCIATIONS (Direct lines to Admin use cases)
+      ============================================================ -->
+      <line x1="145" y1="2645" x2="385" y2="2610" stroke="#000000" stroke-width="1.5"/>
+      <line x1="145" y1="2660" x2="385" y2="2680" stroke="#000000" stroke-width="1.5"/>
+      <line x1="145" y1="2675" x2="385" y2="2750" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- ============================================================
+           MODULE 1: AUTH MODULE
+      ============================================================ -->
+      <rect x="270" y="105" width="220" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="380" y="121" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">AUTH MODULE</text>
+
+      <!-- Register Account (Base) -->
+      <ellipse cx="530" cy="160" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="165" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Register Account</text>
+
+      <!-- Login (Base) -->
+      <ellipse cx="530" cy="230" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="235" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Login</text>
+
+      <!-- Validate JWT Token (Included) -->
+      <ellipse cx="1200" cy="230" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="235" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Validate JWT Token</text>
+
+      <!-- Login ──«include»──> Validate JWT Token -->
+      <line x1="675" y1="230" x2="1035" y2="230" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="217" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Logout (Base) -->
+      <ellipse cx="530" cy="300" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="305" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Logout</text>
+
+      <!-- Reset Password (Base) -->
+      <ellipse cx="530" cy="370" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="375" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Reset Password</text>
+
+      <!-- Send OTP Email (Extension) -->
+      <ellipse cx="1200" cy="370" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="375" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Send OTP Email</text>
+
+      <!-- Send OTP Email ──«extend»──> Reset Password -->
+      <line x1="1040" y1="370" x2="680" y2="370" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="825" y="357" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="370" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- ============================================================
+           MODULE 2: FINANCIAL MANAGEMENT MODULE
+      ============================================================ -->
+      <rect x="270" y="445" width="280" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="410" y="461" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">FINANCIAL MANAGEMENT MODULE</text>
+
+      <!-- Manage Incomes (Base) -->
+      <ellipse cx="530" cy="500" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="505" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Manage Incomes</text>
+
+      <!-- Manage Expenses (Base) -->
+      <ellipse cx="530" cy="570" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="575" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Manage Expenses</text>
+
+      <!-- CRUD Operations (Included) -->
+      <ellipse cx="1200" cy="570" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="575" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">CRUD Operations</text>
+
+      <!-- Manage Expenses ──«include»──> CRUD Operations -->
+      <line x1="675" y1="570" x2="1035" y2="570" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="557" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="570" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Manage Assets (Base) -->
+      <ellipse cx="530" cy="640" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="645" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Manage Assets</text>
+
+      <!-- Validate Financial Input (Included) -->
+      <ellipse cx="1200" cy="640" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="645" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Validate Financial Input</text>
+
+      <!-- Manage Assets ──«include»──> Validate Financial Input -->
+      <line x1="675" y1="640" x2="1035" y2="640" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="627" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="640" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Manage Liabilities (Base) -->
+      <ellipse cx="530" cy="710" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="715" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Manage Liabilities</text>
+
+      <!-- Write Audit Log (Included) -->
+      <ellipse cx="1200" cy="710" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="715" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Write Audit Log</text>
+
+      <!-- Manage Liabilities ──«include»──> Write Audit Log -->
+      <line x1="675" y1="710" x2="1035" y2="710" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="697" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="710" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Manage Investments (Base) -->
+      <ellipse cx="530" cy="780" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="785" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Manage Investments</text>
+
+      <!-- Generalization Bracket for Finance (grouping 5 CRUD use cases) -->
+      <path d="M 370,490 L 355,490 L 355,790 L 370,790 M 355,640 L 340,640" fill="none" stroke="#000000" stroke-width="1.5"/>
+      <text x="325" y="645" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-style="italic" fill="#000" transform="rotate(-90,325,645)">«generalized» Manage Financial Data</text>
+
+      <!-- ============================================================
+           MODULE 3: WEALTH SCORING MODULE
+      ============================================================ -->
+      <rect x="270" y="855" width="240" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="390" y="871" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">WEALTH SCORING MODULE</text>
+
+      <!-- View Wealth Score (Base) -->
+      <ellipse cx="530" cy="920" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="925" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">View Wealth Score</text>
+
+      <!-- Calculate Composite Score (Included) -->
+      <ellipse cx="1200" cy="920" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="925" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Calculate Composite Score</text>
+
+      <!-- View Wealth Score ──«include»──> Calculate Composite Score -->
+      <line x1="675" y1="920" x2="1035" y2="920" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="907" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="920" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Generate AI Explanation (Included) -->
+      <ellipse cx="1200" cy="990" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="995" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Generate AI Explanation</text>
+
+      <!-- View Wealth Score ──«include»──> Generate AI Explanation -->
+      <line x1="675" y1="928" x2="1035" y2="985" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="947" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="960" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Export Score Report (Extension) -->
+      <ellipse cx="1200" cy="1060" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="1065" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Export Score Report</text>
+
+      <!-- Export Score Report ──«extend»──> View Wealth Score -->
+      <line x1="1040" y1="1052" x2="680" y2="932" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="835" y="985" width="60" height="18" fill="#ffffff"/>
+      <text x="865" y="998" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- View Score Trend History (Base) -->
+      <ellipse cx="530" cy="1130" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1135" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">View Score Trend History</text>
+
+      <!-- ============================================================
+           MODULE 4: STRESS TESTING MODULE
+      ============================================================ -->
+      <rect x="270" y="1195" width="240" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="390" y="1211" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">STRESS TESTING MODULE</text>
+
+      <!-- Select Stress Scenario (Base) -->
+      <ellipse cx="530" cy="1260" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1265" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Select Stress Scenario</text>
+
+      <!-- Run Stress Simulation (Base) -->
+      <ellipse cx="530" cy="1330" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1335" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Run Stress Simulation</text>
+
+      <!-- Calculate Runway Months (Included) -->
+      <ellipse cx="1200" cy="1330" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="1335" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Calculate Runway Months</text>
+
+      <!-- Run Stress Simulation ──«include»──> Calculate Runway Months -->
+      <line x1="675" y1="1330" x2="1035" y2="1330" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="1317" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="1330" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- AI Resilience Recommendation (Included) -->
+      <ellipse cx="1200" cy="1400" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="1405" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">AI Resilience Recommendation</text>
+
+      <!-- Run Stress Simulation ──«include»──> AI Resilience Recommendation -->
+      <line x1="675" y1="1338" x2="1035" y2="1395" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="1357" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="1370" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Auto-Recalculate on Data Change (Extension) -->
+      <ellipse cx="1200" cy="1470" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="1475" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Auto-Recalculate on Data Change</text>
+
+      <!-- Auto-Recalculate ──«extend»──> Run Stress Simulation -->
+      <line x1="1040" y1="1462" x2="680" y2="1342" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="835" y="1395" width="60" height="18" fill="#ffffff"/>
+      <text x="865" y="1408" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- View Resilience Result (Base) -->
+      <ellipse cx="530" cy="1540" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1545" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">View Resilience Result</text>
+
+      <!-- ============================================================
+           MODULE 5: GOALS & CONFLICT ENGINE
+      ============================================================ -->
+      <rect x="270" y="1605" width="240" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="390" y="1621" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">GOALS &amp; CONFLICT ENGINE</text>
+
+      <!-- Create Financial Goal (Base) -->
+      <ellipse cx="530" cy="1670" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1675" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Create Financial Goal</text>
+
+      <!-- Prioritize Goals by Urgency (Extension) -->
+      <ellipse cx="1200" cy="1670" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="1675" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Prioritize Goals by Urgency</text>
+
+      <!-- Prioritize Goals ──«extend»──> Create Financial Goal -->
+      <line x1="1040" y1="1670" x2="680" y2="1670" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="825" y="1657" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="1670" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- Track Goal Progress (Base) -->
+      <ellipse cx="530" cy="1740" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1745" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Track Goal Progress</text>
+
+      <!-- Detect Goal Conflicts (Base) -->
+      <ellipse cx="530" cy="1810" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1815" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Detect Goal Conflicts</text>
+
+      <!-- AI Contribution Plan (Included) -->
+      <ellipse cx="1200" cy="1810" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="1815" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">AI Contribution Plan</text>
+
+      <!-- Detect Goal Conflicts ──«include»──> AI Contribution Plan -->
+      <line x1="675" y1="1810" x2="1035" y2="1810" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="1797" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="1810" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Resolve Goal Conflict (Base) -->
+      <ellipse cx="530" cy="1880" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="1885" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Resolve Goal Conflict</text>
+
+      <!-- Mark Goal as Completed (Extension) -->
+      <ellipse cx="1200" cy="1880" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="1885" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Mark Goal as Completed</text>
+
+      <!-- Mark Goal as Completed ──«extend»──> Resolve Goal Conflict -->
+      <line x1="1040" y1="1880" x2="680" y2="1880" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="825" y="1867" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="1880" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- ============================================================
+           MODULE 6: DECISION ADVISOR MODULE
+      ============================================================ -->
+      <rect x="270" y="1945" width="240" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="390" y="1961" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">DECISION ADVISOR MODULE</text>
+
+      <!-- Submit Financial Decision (Base) -->
+      <ellipse cx="530" cy="2050" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2055" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Submit Financial Decision</text>
+
+      <!-- Snapshot Financial State (Included) -->
+      <ellipse cx="1200" cy="1980" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="1985" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Snapshot Financial State</text>
+
+      <!-- Submit Decision ──«include»──> Snapshot Financial State -->
+      <line x1="675" y1="2040" x2="1035" y2="1985" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="1997" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="2010" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- Receive AI Verdict (Included - generated by AI Engine) -->
+      <ellipse cx="1200" cy="2050" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="2055" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Receive AI Verdict</text>
+
+      <!-- Submit Decision ──«include»──> Receive AI Verdict -->
+      <line x1="675" y1="2050" x2="1035" y2="2050" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="2037" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="2050" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- View Decision History (Extension) -->
+      <ellipse cx="1200" cy="2120" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="2125" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">View Decision History</text>
+
+      <!-- View Decision History ──«extend»──> Submit Financial Decision -->
+      <line x1="1040" y1="2115" x2="680" y2="2055" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="835" y="2072" width="60" height="18" fill="#ffffff"/>
+      <text x="865" y="2085" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- ============================================================
+           MODULE 7: AI ADVISOR CHAT MODULE
+      ============================================================ -->
+      <rect x="270" y="2145" width="240" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="390" y="2161" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">AI ADVISOR CHAT MODULE</text>
+
+      <!-- Chat with AI Advisor (Base) -->
+      <ellipse cx="530" cy="2210" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2215" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Chat with AI Advisor</text>
+
+      <!-- Context-Aware AI Response (Included) -->
+      <ellipse cx="1200" cy="2210" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="2215" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Context-Aware AI Response</text>
+
+      <!-- Chat ──«include»──> Context-Aware AI Response -->
+      <line x1="675" y1="2210" x2="1035" y2="2210" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="2197" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="2210" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- View AI Insights Feed (Base) -->
+      <ellipse cx="530" cy="2280" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2285" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">View AI Insights Feed</text>
+
+      <!-- Mark Insight as Read (Extension) -->
+      <ellipse cx="1200" cy="2280" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="2285" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Mark Insight as Read</text>
+
+      <!-- Mark Insight as Read ──«extend»──> View AI Insights Feed -->
+      <line x1="1040" y1="2280" x2="680" y2="2280" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="825" y="2267" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="2280" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- ============================================================
+           MODULE 8: DASHBOARD MODULE
+      ============================================================ -->
+      <rect x="270" y="2345" width="220" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="380" y="2361" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">DASHBOARD MODULE</text>
+
+      <!-- View Dashboard Summary (Base) -->
+      <ellipse cx="530" cy="2410" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2415" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">View Dashboard Summary</text>
+
+      <!-- Aggregate Net Worth Data (Included) -->
+      <ellipse cx="1200" cy="2410" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="1200" y="2415" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Aggregate Net Worth Data</text>
+
+      <!-- View Dashboard Summary ──«include»──> Aggregate Net Worth Data -->
+      <line x1="675" y1="2410" x2="1035" y2="2410" stroke="#000000" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-include)"/>
+      <rect x="825" y="2397" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="2410" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«include»</text>
+
+      <!-- View Financial Charts (Base) -->
+      <ellipse cx="530" cy="2480" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2485" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">View Financial Charts</text>
+
+      <!-- ============================================================
+           MODULE 9: ADMIN MODULE
+      ============================================================ -->
+      <rect x="270" y="2545" width="220" height="24" rx="4" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
+      <text x="380" y="2561" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">ADMIN MODULE</text>
+
+      <!-- Manage User Accounts (Base) -->
+      <ellipse cx="530" cy="2610" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2615" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Manage User Accounts</text>
+
+      <!-- Lock / Deactivate Account (Extension) -->
+      <ellipse cx="1200" cy="2610" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="2615" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Lock / Deactivate Account</text>
+
+      <!-- Lock / Deactivate Account ──«extend»──> Manage User Accounts -->
+      <line x1="1040" y1="2610" x2="680" y2="2610" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="825" y="2597" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="2610" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- View Audit Logs (Base) -->
+      <ellipse cx="530" cy="2680" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2685" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">View Audit Logs</text>
+
+      <!-- Filter Audit by Action / Date (Extension) -->
+      <ellipse cx="1200" cy="2680" rx="160" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="1200" y="2685" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#000">Filter Audit by Action / Date</text>
+
+      <!-- Filter Audit ──«extend»──> View Audit Logs -->
+      <line x1="1040" y1="2680" x2="680" y2="2680" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-extend)"/>
+      <rect x="825" y="2667" width="60" height="18" fill="#ffffff"/>
+      <text x="855" y="2680" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#000">«extend»</text>
+
+      <!-- Manage Stress Scenarios (Base) -->
+      <ellipse cx="530" cy="2750" rx="145" ry="28" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+      <text x="530" y="2755" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#000">Manage Stress Scenarios</text>
+
+      <!-- ============================================================
+           SECONDARY ACTOR ASSOCIATIONS (Right side)
+      ============================================================ -->
+
+      <!-- Background Job Runner connects to background triggers -->
+      <!-- To Calculate Composite Score -->
+      <line x1="1835" y1="1210" x2="1360" y2="925" stroke="#000000" stroke-width="1.5"/>
+      <!-- To Auto-Recalculate on Data Change -->
+      <line x1="1835" y1="1225" x2="1360" y2="1470" stroke="#000000" stroke-width="1.5"/>
+
+      <!-- AI Engine connects to AI-powered use cases -->
+      <!-- To Generate AI Explanation -->
+      <line x1="1835" y1="1660" x2="1360" y2="995" stroke="#000000" stroke-width="1.5"/>
+      <!-- To AI Resilience Recommendation -->
+      <line x1="1835" y1="1670" x2="1360" y2="1405" stroke="#000000" stroke-width="1.5"/>
+      <!-- To AI Contribution Plan -->
+      <line x1="1835" y1="1680" x2="1360" y2="1810" stroke="#000000" stroke-width="1.5"/>
+      <!-- To Receive AI Verdict -->
+      <line x1="1835" y1="1695" x2="1360" y2="2050" stroke="#000000" stroke-width="1.5"/>
+      <!-- To Context-Aware AI Response -->
+      <line x1="1835" y1="1710" x2="1360" y2="2210" stroke="#000000" stroke-width="1.5"/>
+
+    </svg>
+  </div>
+
+</body>
+</html>

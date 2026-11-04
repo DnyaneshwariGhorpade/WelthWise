@@ -37,178 +37,217 @@
 @startuml
 skinparam classAttributeIconSize 0
 skinparam linetype ortho
-skinparam classBackgroundColor white
-skinparam classBorderColor black
+skinparam nodesep 45
+skinparam ranksep 50
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #000000
+skinparam classBorderWidth 1.5
+skinparam classHeaderBackgroundColor #F4F6F9
+skinparam roundcorner 4
+skinparam arrowColor #000000
+skinparam arrowThickness 1.2
 hide circle
 
+' ==========================================
+' IDENTITY & GOVERNANCE
+' ==========================================
 class User {
   - id: int
-  - name: String
+  - fullName: String
   - email: String
-  - password: String
+  - passwordHash: String
   - role: Role
-  - isActive: boolean
+  - accountStatus: AccountStatus
+  - failedLoginAttempts: int
+  - lastLoginAt: DateTime
   - createdAt: DateTime
   - updatedAt: DateTime
-  + register()
-  + login()
-  + resetPassword()
-  + updateProfile()
+  + register(name: String, email: String, pass: String): boolean
+  + login(email: String, pass: String): String
+  + resetPassword(token: String, newPass: String): boolean
+  + updateProfile(name: String): boolean
 }
 
 class Admin {
-  + manageusers()
-  + toggleuserstatus()
-  + viewaudit()
-  + viewUsageStatus()
+  + manageUsers(): List<User>
+  + toggleUserStatus(userId: int, status: AccountStatus): boolean
+  + viewAuditLogs(filters: Filter): List<AuditLog>
+  + viewUsageStats(): Stats
+  + configureAI(provider: AIProvider, key: String): boolean
 }
-
-' Generalization Relationship
-Admin --|> User : +is a
 
 class AuditLog {
-  - id: int
-  - action: ActionType
-  - entity: String
-  - entityId: int
+  - logId: int
+  - userId: int
+  - action: String
+  - resourceType: String
+  - resourceId: int
+  - ipAddress: String
   - createdAt: DateTime
-  + log()
+  + log(action: String, res: String): void
+  + getFormattedLog(): String
 }
-
-' Composition Relationship
-User *-- AuditLog
 
 class AIConfig {
-  - id: int
+  - configId: int
   - provider: AIProvider
   - apiKeyEncrypted: String
+  - isActive: boolean
   - updatedAt: DateTime
-  + switchProvider()
+  + switchProvider(p: AIProvider): boolean
+  + getActiveClient(): AIClient
 }
 
-' Aggregation Relationship
-Admin o-- AIConfig
-
+' ==========================================
+' FINANCIAL PORTFOLIO
+' ==========================================
 class Income {
-  + id: int
-  + source: String
+  - incomeId: int
+  - userId: int
+  - source: String
   - amount: Decimal
   - frequency: Frequency
-  - dateReceived: Date
-  + create()
-  + update()
-  + delete()
+  - createdAt: DateTime
+  + create(data: IncomeDTO): boolean
+  + update(data: IncomeDTO): boolean
+  + delete(id: int): boolean
 }
 
 class Expense {
-  + id: int
-  + category: String
-  + amount: Decimal
-  - dateSpent: Date
-  - notes: String
-  + create()
-  + update()
-  + delete()
+  - expenseId: int
+  - userId: int
+  - category: String
+  - amount: Decimal
+  - frequency: Frequency
+  - createdAt: DateTime
+  + create(data: ExpenseDTO): boolean
+  + update(data: ExpenseDTO): boolean
+  + delete(id: int): boolean
 }
 
 class Asset {
-  + id: int
-  + name: String
-  + type: AssetType
-  + value: Decimal
-  + dateAquired: Date
-  + create()
-  + update()
-  + delete()
+  - assetId: int
+  - userId: int
+  - assetType: String
+  - currentValue: Decimal
+  - liquidityLevel: LiquidityLevel
+  - updatedAt: DateTime
+  + create(data: AssetDTO): boolean
+  + update(data: AssetDTO): boolean
+  + delete(id: int): boolean
 }
 
 class Liability {
-  + id: int
-  + name: String
-  + type: LiabilityType
-  + amount: Decimal
-  + interestRate: Decimal
-  + dueDate: Date
-  + create()
-  + update()
-  + delete()
+  - liabilityId: int
+  - userId: int
+  - liabilityType: String
+  - outstandingAmount: Decimal
+  - interestRate: Decimal
+  - updatedAt: DateTime
+  + create(data: LiabilityDTO): boolean
+  + update(data: LiabilityDTO): boolean
+  + delete(id: int): boolean
 }
 
 class Investment {
-  + id: int
-  + type: InvestmentType
-  + amountInvested: Decimal
-  - currentValue: Decimal
+  - investmentId: int
+  - userId: int
+  - investmentType: String
+  - amountInvested: Decimal
   - riskLevel: RiskLevel
-  - purchaseDate: Date
-  + create()
-  + update()
-  + delete()
+  - createdAt: DateTime
+  + create(data: InvestmentDTO): boolean
+  + update(data: InvestmentDTO): boolean
+  + delete(id: int): boolean
 }
 
+' ==========================================
+' GOALS, SCORING & ADVISORY
+' ==========================================
 class Goal {
-  - id: int
-  - name: String
+  - goalId: int
+  - userId: int
+  - goalName: String
   - targetAmount: Decimal
   - currentAmount: Decimal
   - targetDate: Date
-  - priority: Priority
+  - priority: int
   - status: GoalStatus
-  + checkConflict()
-  + updateProgress()
-  + markComplete()
+  - createdAt: DateTime
+  + checkConflict(): List<GoalConflict>
+  + updateProgress(amt: Decimal): boolean
+  + markComplete(): boolean
 }
 
 class GoalConflict {
-  - id: int
-  - aiRecommendation: String
-  - resolutionStatus: ResolutionStatus
+  - conflictId: int
+  - userId: int
+  - goalIdsInvolved: List<int>
+  - recommendedPlan: JSON
+  - resolutionStatus: ConflictStatus
   - detectedAt: DateTime
-  + detect()
-  + resolve()
+  + detect(): boolean
+  + resolve(status: ConflictStatus): boolean
 }
 
-' Aggregation Relationship
-Goal o-- GoalConflict
-
 class WealthScore {
-  - id: int
-  - score: Decimal
-  - netWorth: Decimal
-  - savingsFactor: Decimal
-  - debtFactor: Decimal
-  - liquidityFactor: Decimal
-  - growthFactor: Decimal
+  - scoreId: int
+  - userId: int
+  - overallScore: int
+  - savingsSubscore: int
+  - debtSubscore: int
+  - liquiditySubscore: int
+  - growthSubscore: int
   - aiExplanation: String
   - calculatedAt: DateTime
-  + calculate()
-  + explain()
+  + calculateScore(userId: int): int
+  + explain(): String
 }
 
 class StressTest {
-  - id: int
-  - scenarioType: ScenarioType
-  - monthsSustainable: Decimal
-  - weakPoint: String
+  - resultId: int
+  - userId: int
+  - scenarioId: int
+  - monthsOfRunway: Decimal
+  - weakestPoint: String
   - aiRecommendation: String
+  - isStale: boolean
   - runAt: DateTime
-  + run()
-  + identifyWeakPoint()
+  + runSimulation(scId: int): StressResult
+  + identifyWeakPoint(): String
 }
 
-' Directed Association Relationships
-User --> Income : +owns
-User --> Expense : +owns
-User --> Asset : +owns
-User --> Liability : +owns
-User --> Investment : +owns
-User --> Goal : +sets
-User --> WealthScore : +has
-User --> StressTest : +runs
+' ==========================================
+' RELATIONSHIPS & MULTIPLICITIES
+' ==========================================
 
-' Dependency Relationships
-WealthScore ..> AIConfig : <<uses>>
-StressTest ..> AIConfig : <<uses>>
+' Tier 1: Identity & Governance (AuditLog on left, Admin on right)
+User "1" o-left- "0..*" AuditLog : -auditLogs
+Admin -left-|> User
+Admin "1" -down-> "1" AIConfig : configures >
+
+' Tier 2: Financial Portfolio (directly below User)
+User "1" *-- "0..*" Income : -incomes
+User "1" *-- "0..*" Expense : -expenses
+User "1" *-- "0..*" Asset : -assets
+User "1" *-- "0..*" Liability : -liabilities
+User "1" *-- "0..*" Investment : -investments
+
+' Layout hints for financial classes
+Income -[hidden]right- Expense
+Expense -[hidden]right- Asset
+Asset -[hidden]right- Liability
+Liability -[hidden]right- Investment
+
+' Tier 3: Goals, Analytics & Advisory
+User "1" *-- "0..*" Goal : -goals
+User "1" *-- "0..*" WealthScore : -wealthScore
+User "1" *-- "0..*" StressTest : -stressTests
+
+' Internal Goal & AI dependencies (short direct connections)
+Goal "1" *-- "0..*" GoalConflict : triggers >
+WealthScore -right..> AIConfig : <<uses>>
+StressTest -down..> AIConfig : <<uses>>
 
 @enduml
         `;
