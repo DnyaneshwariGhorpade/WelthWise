@@ -85,7 +85,17 @@ async function login({ email, password }) {
   const user = result.rows[0];
 
   if (user.account_status === 'LOCKED') {
-    throw new ApiError(423, 'Account is locked due to too many failed login attempts. Try again later.');
+    const valid = await bcrypt.compare(password, user.password_hash);
+    if (valid && (user.role === 'ADMIN' || (user.updated_at && (Date.now() - new Date(user.updated_at).getTime() > 5 * 60 * 1000)))) {
+      await pool.query(
+        'UPDATE users SET failed_login_attempts = 0, account_status = \'ACTIVE\' WHERE user_id = $1',
+        [user.user_id]
+      );
+      user.account_status = 'ACTIVE';
+      user.failed_login_attempts = 0;
+    } else {
+      throw new ApiError(423, 'Account is locked due to too many failed login attempts. Try again later.');
+    }
   }
 
   if (user.account_status === 'DEACTIVATED') {
